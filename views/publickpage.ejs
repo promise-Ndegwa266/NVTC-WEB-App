@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nakuru Vocational Training Centre – NVTC</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Leaflet CSS (Free map) -->
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="publick.css" />
+</head>
+<body>
+
+    <!-- ====== NAVBAR ====== -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <a href="#" class="logo">
+                <span class="logo-img"></span>
+                <h5>Nakuru Vocational Training Centre<span>.</span></h5>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" class="active">About</a></li>
+                <li><a href="#why-nvtc">Why NVTC</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#admissions">Admissions</a></li>
+                <li><a href="#map-section">Location</a></li>
+                <li><a href="/gallery">Gallery</a></li>
+                <li><a href="/admin-dashboad/admin-login">Admin</a></li>
+                <li><a href="/enrollment-form" class="nav-cta">Enroll Now</a></li>
+            </ul>
+
+            <div class="hamburger" id="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====== HERO ====== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="text-head">Build Your Future at <span>Nakuru Vocational Training Centre (NVTC)</span></h1>
+                <p class="paregraph">
+                    Nakuru Vocational Training Centre — a premier county-managed technical
+                    institution offering market-driven artisan and craft courses. Gain practical,
+                    hands-on skills for employability and entrepreneurship aligned with Kenya's Vision.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#admissions" class="btn">
+                        <i class="fas fa-user-graduate"></i> Apply Now
+                    </a>
+                    <a href="/student-dashboad/login" target="_blank" class="btn">
+                        <i class="fas fa-user-check"></i> Student Dashboad
+                    </a>
+                    <a href="#courses" class="btn btn-outline">
+                        <i class="fas fa-book-open"></i> Explore Courses
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <h3>15+</h3>
+                        <p>Artisan &amp; Craft Courses</p>
+                    </div>
+                    <div class="stat">
+                        <h3><%= length %>+</h3>
+                        <p>Active Trainees</p>
+                    </div>
+                    <div class="stat">
+                        <h3>85%</h3>
+                        <p>Graduate Employability</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <div class="illustration">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Hands-On Training</h3>
+                    <p>Industry-relevant skills taught by experienced instructors in modern, fully-equipped workshops.</p>
+                    <div class="badge-row">
+                        <span><i class="fas fa-check-circle" style="color:var(--primary);"></i> NITA Approved</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--primary);"></i> CBET Registered</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--accent);"></i> County-Managed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ABOUT ====== -->
+    <section class="about section-padding" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <span style="font-weight:600; color:var(--primary); letter-spacing:0.05em; text-transform:uppercase; font-size:0.85rem;">
+                       About Us
+                    </span>
+                    <h2 class="section-title">Empowering Youth Through <span>Skills</span></h2>
+                    <p>
+                        Nakuru Vocational Training Centre (VTC) is a premier county-managed technical
+                        institution in Nakuru, Kenya. We offer market-driven artisan and craft courses
+                        that equip youth with practical, hands-on skills to boost employability and
+                        foster entrepreneurship.
+                    </p>
+                    <p>
+                        Our training programmes are designed in alignment with Kenya's Vision 2030,
+                        ensuring that every graduate is job-ready and capable of creating economic
+                        opportunities for themselves and their communities.
+                    </p>
+                    <ul class="highlight-list">
+                        <li><i class="fas fa-check-circle"></i> NITA &amp; CBET Accredited</li>
+                        <li><i class="fas fa-check-circle"></i> Industry-Linked Training</li>
+                        <li><i class="fas fa-check-circle"></i> Modern Workshops &amp; Tools</li>
+                        <li><i class="fas fa-check-circle"></i> Entrepreneurship Support</li>
+                        <li><i class="fas fa-check-circle"></i> County Government Backing</li>
+                        <li><i class="fas fa-check-circle"></i> 100% Practical Sessions</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-building-columns"></i>
+                    <h4>County-Managed Excellence</h4>
+                    <p>
+                        Proudly serving the youth of Nakuru County and beyond with quality,
+                        accessible technical education and government-supported infrastructure.
+                    </p>
+                    <div style="margin-top:20px; display:flex; gap:12px; justify-content:center;">
+                        <span style="background:var(--primary); color:var(--white); padding:6px 18px; border-radius:50px; font-size:0.8rem; font-weight:600;">
+                            <i class="fas fa-map-pin"></i> Nakuru, Kenya
+                        </span>
+                        <span style="background:var(--accent); color:var(--white); padding:6px 18px; border-radius:50px; font-size:0.8rem; font-weight:600;">
+                            <i class="fas fa-hands"></i> Hands-On
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== WHY NVTC (County-Management & Hands-On Focus) ====== -->
+    <section class="why-nvtc section-padding" id="why-nvtc">
+        <div class="container">
+            <div class="text-center">
+                <span style="font-weight:600; color:var(--primary); letter-spacing:0.05em; text-transform:uppercase; font-size:0.85rem;">
+                     The NVTC Advantage
+                </span>
+                <h2 class="section-title">Why NVTC <span>Stands Out</span></h2>
+                <p class="section-subtitle mx-auto">
+                    We combine the strength of county government backing with an unrelenting focus
+                    on practical, hands-on skill development to create unmatched opportunities for our trainees.
+                </p>
+            </div>
+
+            <div class="why-grid card-one">
+                <!-- County-Management Excellence Card -->
+                <div class="why-card">
+                    
+                    <h3>County-Management Excellence</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Government-Backed:</strong> Fully supported by the Nakuru County Government, ensuring sustainable funding and strategic oversight.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Affordable & Accessible:</strong> Subsidized fee structures make quality technical education available to all youth in the county.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Standardized Curricula:</strong> Nationally recognized KNEC and NITA programmes that meet strict government quality standards.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Community Focus:</strong> Directly aligned with county development goals, producing graduates who drive local economic growth.</span>
+                        </li>
+                    </ul>
+                    <span class="tag"><i class="fas fa-badge-check"></i> County-Approved Centre</span>
+                </div>
+
+                <!-- Hands-On Training Card -->
+                <div class="why-card card-two">
+                   
+                    <h3>Hands-On Training Focus</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Modern Workshops:</strong> State-of-the-art facilities equipped with the latest industry-standard machinery and tools.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Practical Projects:</strong> Every course emphasizes real-world projects, from building structures to fabricating mechanical parts.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Industry Attachments:</strong> Mandatory industrial placements give trainees invaluable on-the-job experience before graduation.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Expert Instructors:</strong> Our trainers are industry veterans who bring years of field experience directly to the classroom.</span>
+                        </li>
+                    </ul>
+                    <span class="tag"><i class="fas fa-hands"></i> 100% Practical Learning</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== COURSES ====== -->
+    <section class="courses section-padding" id="courses">
+        <div class="container">
+            <div class="text-center">
+                <span style="font-weight:600; color:var(--primary); letter-spacing:0.05em; text-transform:uppercase; font-size:0.85rem;">
+                    Our Programmes
+                </span>
+                <h2 class="section-title">Market-Driven <span>Courses</span></h2>
+                <p class="section-subtitle mx-auto">
+                    Choose from a wide range of artisan and craft courses designed to meet
+                    industry demands and ignite your career.
+                </p>
+            </div>
+
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="icon"><i class="fas fa-wrench"></i></div>
+                    <h3>Mechanical Engineering</h3>
+                    <p>Fitting, welding, and fabrication skills for the automotive and manufacturing sectors.</p>
+                </div>
+                <div class="course-card">
+                    <div class="icon"><i class="fas fa-plug"></i></div>
+                    <h3>Electrical &amp; Electronics</h3>
+                    <p>Installation, maintenance, and repair of electrical systems and electronic devices.</p>
+                </div>
+                <div class="course-card">
+                    <div class="icon"><i class="fas fa-hammer"></i></div>
+                    <h3>Building &amp; Construction</h3>
+                    <p>Masonry, carpentry, plumbing, and tiling for the booming construction industry.</p>
+                </div>
+                <div class="course-card">
+                    <div class="icon"><i class="fas fa-utensils"></i></div>
+                    <h3>Hospitality &amp; Catering</h3>
+                    <p>Food production, service, and hotel operations for the tourism sector.</p>
+                </div>
+                <div class="course-card">
+                    <div class="icon"><i class="fas fa-tshirt"></i></div>
+                    <h3>Fashion &amp; Textiles</h3>
+                    <p>Garment making, fashion design, and textile production for creative entrepreneurs.</p>
+                </div>
+                <div class="course-card">
+                    <div class="icon"><i class="fas fa-laptop"></i></div>
+                    <h3>ICT &amp; Computer Studies</h3>
+                    <p>Basic programming, networking, and digital literacy for the modern workplace.</p>
+                </div>
+            </div>
+
+            <div style="text-align:center; margin-top:40px; gap:15px; display:flex; justify-content:center; flex-wrap:wrap;">
+                
+                <a href="/cources" class="btn btn-accent">
+                    <i class="fas fa-external-link-alt"></i> Full Course List
+                </a>
+                <a href="https://www.nakuru.go.ke/nakuru-county-government-prioritizes-enhancement-of-vocational-training-centers/" target="_blank" class="btn btn-accent">
+                    <i class="fas fa-external-link-alt"></i> County Training Article
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ADMISSIONS ====== -->
+    <section class="admissions section-padding" id="admissions">
+        <div class="container">
+            <div class="text-center">
+                <span style="font-weight:600; color:var(--primary); letter-spacing:0.05em; text-transform:uppercase; font-size:0.85rem;">
+                    How to Join
+                </span>
+                <h2 class="section-title">Admissions &amp; <span>Requirements</span></h2>
+                <p class="section-subtitle mx-auto">
+                    Get started on your journey to a skilled career. Here's everything you need
+                    to know about eligibility, documents, and fees.
+                </p>
+            </div>
+
+            <div class="admissions-grid">
+                <div class="admission-card admission-card-one">
+                    <div class="icon"><i class="fas fa-user-check"></i></div>
+                    <h3>Eligibility</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>NITA Artisan:</strong> Open to anyone who can read and write.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <!--cbet or knek-->
+                            <span><strong>KNEC Artisan:</strong> KCPE certificate or KCSE mean grade D- and below.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="admission-card admission-card-two">
+                    <div class="icon"><i class="fas fa-folder-open"></i></div>
+                    <h3>Required Documents</h3>
+                    <ul>
+                        <li><i class="fas fa-file-pdf"></i> Academic certificates</li>
+                        <li><i class="fas fa-id-card"></i> National ID or birth certificate</li>
+                        <li><i class="fas fa-camera"></i> Two passport-size photos</li>
+                    </ul>
+                </div>
+
+                <div class="admission-card admission-card-three">
+                    <div class="icon"><i class="fas fa-toolbox"></i></div>
+                    <h3>Fees &amp; Tools</h3>
+                    <ul>
+                        <li><i class="fas fa-tools"></i> Course-specific toolkits required</li>
+                        <li><i class="fas fa-hard-hat"></i> Personal Protective Equipment (PPE) upon admission</li>
+                        <li><i class="fas fa-coins"></i> Affordable fee structure available at the office</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="hero-buttons" style="display: flex; justify-content: center; align-items: center; padding: 25px;">
+                <a href="https://www.nakuru.go.ke/wp-content/uploads/2025/02/VTC-Admission-Procedures-Jan.-2023.pdf" target="_blank" class="btn">
+                    <i class="fas fa-file-alt"></i></i> Read More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== MAP SECTION ====== -->
+    <section id="map-section" class="section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title map-tittle">Our <span>Location</span></h2>
+                <p class="section-subtitle mx-auto map-par">
+                    Visit us at our main campus in Nakuru, Kenya.
+                </p>
+            </div>
+
+            <div class="map-wrapper">
+                <div id="map"></div>
+                <div class="map-overlay">
+                    <h4><i class="fas fa-map-pin" style="color:#0a6b3c;"></i> NVTC Main Campus</h4>
+                    <p>Nakuru, Kenya</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== BACK TO TOP ====== -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- ====== LEAFLET JS (must be loaded before your script) ====== -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- ====== MAP SCRIPT ====== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // ---------- BACK TO TOP (optional) ----------
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 400) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ---------- LEAFLET MAP ----------
+            // Coordinates for Nakuru, Kenya
+            const lat = -0.3031;
+            const lng = 36.0800;
+
+            const mapContainer = document.getElementById('map');
+            if (mapContainer) {
+                const map = L.map('map').setView([lat, lng], 14);
+
+                // OpenStreetMap tiles (free, no API key)
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    maxZoom: 19,
+                }).addTo(map);
+
+                // Custom marker
+                const redIcon = L.divIcon({
+                    className: 'custom-marker',
+                    html: `<div style="background:#0a6b3c; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow: 0 4px 16px rgba(10,107,60,0.4); border:3px solid white;">
+                            <i class="fas fa-graduation-cap" style="color:white; font-size:20px;"></i>
+                           </div>`,
+                    iconSize: [44, 44],
+                    iconAnchor: [22, 44],
+                    popupAnchor: [0, -44],
+                });
+
+                L.marker([lat, lng], { icon: redIcon })
+                    .addTo(map)
+                    .bindPopup(`
+                        <strong style="font-size:1.1rem;">Nakuru VTC</strong><br>
+                        P.O. Box 3973-20100, Nakuru<br>
+                        <i class="fas fa-phone" style="color:#0a6b3c;"></i> 0702 474 169
+                    `)
+                    .openPopup();
+            } else {
+                console.warn('Map container #map not found.');
+            }
+        });
+    </script>
+
+    <!-- ====== CONTACT ====== -->
+    <section class="contact section-padding" id="contact">
+        <div class="container">
+            <div class="text-center">
+                <span style="font-weight:600; color:var(--primary); letter-spacing:0.05em; text-transform:uppercase; font-size:0.85rem;">
+                    Get in Touch
+                </span>
+                <h2 class="section-title">Contact <span>Us</span></h2>
+                <p class="section-subtitle mx-auto">
+                    Have questions about admissions, courses, or anything else? Reach out
+                    and we'll get back to you promptly.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Address</h4>
+                            <p>P.O. Box 3973-20100, Nakuru, Kenya</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon-box"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p><a href="tel:+254702474169">0702 474 169</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:info@nvct.ac.ke">info@nvct.ac.ke</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon-box"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h4>Office Hours</h4>
+                            <p>Mon – Fri: 8:00 AM – 5:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 style="margin-bottom:12px;">Connect With Us</h4>
+                        <div class="contact-social">
+                            <a href="https://web.facebook.com/nakuru.vtc" target="_blank" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://twitter.com/nakuru_vtc" target="_blank" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://wa.me/+254700123456" target="_blank" aria-label="WhatsApp">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                            <a href="https://www.nakuru.go.ke/?s=nakuru+vocational+training+center" target="_blank" aria-label="Website">
+                                <i class="fas fa-globe"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3><i class="fas fa-paper-plane" style="color:var(--primary);"></i> Send a Message</h3>
+                    <form action="/admin-dashboad/message-data" method="post" id="contactForm">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" name="fullName" placeholder="e.g. Jane Mwangi" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="emailAddress">Email Address</label>
+                            <input type="email" name="emailAddress" placeholder="e.g. jane@example.com" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="tel" name="phoneNumber" placeholder="e.g. 0712 345 678" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="messageText">Message</label>
+                            <textarea name="messageText" placeholder="Tell us how we can help…" required></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width:100%; justify-content:center;">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-img"></span>
+                        <h5>Nakuru Vocational Training Centre<span>.</span></h5>
+                    </a>
+                    <p>
+                        Nakuru Vocational Training Centre — empowering youth with practical
+                        skills for employability and entrepreneurship in Nakuru County and beyond.
+                    </p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#why-nvtc">Why NVTC</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#admissions">Admissions</a></li>
+                        <li><a href="#map-section">Location</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://nakuru.go.ke/vocational-training/" target="_blank">County Training Portal</a></li>
+                        <li><a href="https://www.nita.go.ke/" target="_blank">NITA Kenya</a></li>
+                        <li><a href="https://www.knec.ac.ke/" target="_blank">KNEC</a></li>
+                        <li><a href="https://vision2030.go.ke/" target="_blank">Vision 2030</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone" style="width:20px;"></i> 0702 474 169</li>
+                        <li><i class="fas fa-envelope" style="width:20px;"></i> nakuruvtc@gmail.com</li>
+                        <li><i class="fas fa-map-pin" style="width:20px;"></i> Nakuru, Kenya</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2026 Nakuru Vocational Training Centre. All rights reserved.</span>
+                <span>
+                    Built with <i class="fas fa-heart" style="color:var(--accent);"></i> for the youth of Kenya
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== BACK TO TOP ====== -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- ====== TOAST ====== -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Message sent successfully!</span>
+    </div>
+    <script src="publick.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js" integrity="sha512-OaIE7ud4P04EhnBuhEcm0wQSceIxbi2pV03oBLS/+F6ampfxsnxcIxOp7H2eF9G7N0kEht0VAzOLG+dTLSo17Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="gsap_anime.js"></script>
+</body>
+</html>

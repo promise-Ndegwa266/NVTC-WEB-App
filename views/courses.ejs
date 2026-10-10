@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Full Course List – Nakuru Vocational Training Centre</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/courses.css" />
+</head>
+<body>
+
+    <!-- ====== NAVBAR ====== -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-img"></span>
+                <h5>Nakuru Vocational Training Centre<span>.</span></h5>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#courses">All Courses</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#admissions">Admissions</a></li>
+                <li><a href="/gallery">Gallery</a></li>
+                <li><a href="/enrollment-form" class="nav-cta">Enroll Now</a></li>
+            </ul>
+
+            <div class="hamburger" id="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <i class="fas fa-gift"></i> Fully Sponsored Programmes
+            </div>
+            <h1 class="header-one">Our Full <span>Course List</span></h1>
+            <p class="paragraph-text">
+                Explore the complete range of artisan and craft courses offered at Nakuru Vocational Training Centre.
+                <!--All programmes are <strong>fully sponsored</strong> by Governor Susan Kihika's administration — 
+                meaning <strong>zero tuition fees</strong> for eligible trainees.-->
+            </p>
+            
+        </div>
+    </section>
+
+    <!-- COURSE STATS -->
+    <section class="course-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>9+</h3>
+                    <p>Core Disciplines</p>
+                </div>
+                
+                <div class="stat-item">
+                    <h3><i class="fa-solid fa-location-dot"></i> Bondeni</h3>
+                    <p>Nakuru, Kenya</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTER / TABS -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-tabs" id="filterTabs">
+                <button class="filter-tab active" data-filter="all">All Courses</button>
+                <button class="filter-tab" data-filter="nita">NITA Artisan</button>
+                <button class="filter-tab" data-filter="knec">CBET Craft</button>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- COURSES GRID -->
+    <section class="courses-list" id="coursesList">
+        <div class="container">
+            <div class="courses-grid" id="coursesGrid">
+
+                <!-- Course 1: ICT -->
+                <div class="course-card" data-type="knec" data-level="level1 level2 level3">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3>ICT &amp; Computer Studies</h3>
+                    </div>
+                    <div class="course-meta">
+                        <span><i class="fas fa-tag"></i> CBET </span>
+                        <span class="level-tag"><i class="fas fa-layer-group"></i></span>
+                    </div>
+                    <p>
+                        Comprehensive training in computer applications, networking, programming basics,
+                        and digital literacy. Prepares graduates for IT support roles and entrepreneurship.
+                    </p>
+                    <div class="card-footer">
+                        <span class="duration"><i class="fas fa-clock"></i> 3–6 months per level</span>
+                        <span style="font-size:0.8rem; color:var(--primary); font-weight:600;">
+                            <i class="fas fa-check-circle"></i> Sponsored
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Course 2: Fashion & Design -->
+                <div class="course-card" data-type="knec" data-level="level1 level2 level3">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-tshirt"></i></div>
+                        <h3>Fashion &amp; Design</h3>
+                    </div>
+                    <div class="course-meta">
+                        <span><i class="fas fa-tag"></i> CBET </span>
+                        <span class="level-tag"><i class="fas fa-layer-group"></i></span>
+                    </div>
+                    <p>
+                        Garment construction, pattern drafting, fashion illustration, textile design,
+                        and entrepreneurship skills for the fashion industry.
+                    </p>
+                    <div class="card-footer">
+                        <span class="duration"><i class="fas fa-clock"></i> 3–6 months per level</span>
+                        <span style="font-size:0.8rem; color:var(--primary); font-weight:600;">
+                            <i class="fas fa-check-circle"></i> Sponsored
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Course 3: Plumbing -->
+                <div class="course-card" data-type="nita" data-level="level1 level2 level3">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-wrench"></i></div>
+                        <h3>Plumbing</h3>
+                    </div>
+                    <div class="course-meta">
+                        <span><i class="fas fa-tag"></i> NITA </span>
+                        <span class="level-tag"><i class="fas fa-layer-group"></i> </span>
+                    </div>
+                    <p>
+                        Installation, maintenance, and repair of water supply systems, drainage,
+                        and sanitary fixtures. Hands-on training in modern plumbing techniques.
+                    </p>
+                    <div class="card-footer">
+                        <span class="duration"><i class="fas fa-clock"></i> 3–6 months per level</span>
+                        <span style="font-size:0.8rem; color:var(--primary); font-weight:600;">
+                            <i class="fas fa-check-circle"></i> Sponsored
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Course 4: Building & Construction -->
+                <div class="course-card" data-type="knec" data-level="level1 level2 level3">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-hard-hat"></i></div>
+                        <h3>Building &amp; Construction</h3>
+                    </div>
+                    <div class="course-meta">
+                        <span><i class="fas fa-tag"></i> CBET </span>
+                        <span class="level-tag"><i class="fas fa-layer-group"></i></span>
+                    </div>
+                    <p>
+                        Masonry, carpentry, roofing, tiling, and construction project management.
+                        Practical skills for the booming construction sector in Kenya.
+                    </p>
+                    <div class="card-footer">
+                        <span class="duration"><i class="fas fa-clock"></i> 3–6 months per level</span>
+                        <span style="font-size:0.8rem; color:var(--primary); font-weight:600;">
+                            <i class="fas fa-check-circle"></i> Sponsored
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Course 5: Food & Beverage -->
+                <div class="course-card" data-type="knec" data-level="level1 level2 level3">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-utensils"></i></div>
+                        <h3>Food &amp; Beverage</h3>
+                    </div>
+                    <div class="course-meta">
+                        <span><i class="fas fa-tag"></i> CBET</span>
+                        <span class="level-tag"><i class="fas fa-layer-group"></i> </span>
+                    </div>
+                    <p>
+                        Food production, baking, pastry, catering, and restaurant operations.
+                        Prepares graduates for careers in hospitality, tourism, and food entrepreneurship.
+                    </p>
+                    <div class="card-footer">
+                        <span class="duration"><i class="fas fa-clock"></i> 3–6 months per level</span>
+                        <span style="font-size:0.8rem; color:var(--primary); font-weight:600;">
+                            <i class="fas fa-check-circle"></i> Sponsored
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Course 6: Electrical Installation -->
+                <div class="course-card" data-type="nita" data-level="level1 level2 level3">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>Electrical Installation</h3>
+                    </div>
+                    <div class="course-meta">
+                        <span><i class="fas fa-tag"></i> NITA </span>
+                        <span class="level-tag"><i class="fas fa-layer-group"></i></span>
+                    </div>
+                    <p>
+                        Domestic and industrial wiring, electrical safety, motor control, and
+                        renewable energy systems. Practical training in modern electrical works.
+                    </p>
+                    <div class="card-footer">
+                        <span class="duration"><i class="fas fa-clock"></i> 3–6 months per level</span>
+                        <span style="font-size:0.8rem; color:var(--primary); font-weight:600;">
+                            <i class="fas fa-check-circle"></i> Sponsored
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Course 7: Motor Vehicle Mechanics -->
+                <div class="course-card" data-type="nita" data-level="level1 level2 level3">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-car"></i></div>
+                        <h3>Motor Vehicle Mechanics</h3>
+                    </div>
+                    <div class="course-meta">
+                        <span><i class="fas fa-tag"></i> NITA </span>
+                        <span class="level-tag"><i class="fas fa-layer-group"></i></span>
+                    </div>
+                    <p>
+                        Engine repair, transmission systems, brake systems, diagnostics, and
+                        automotive electricals. Hands-on training in a fully equipped workshop.
+                    </p>
+                    <div class="card-footer">
+                        <span class="duration"><i class="fas fa-clock"></i> 3–6 months per level</span>
+                        <span style="font-size:0.8rem; color:var(--primary); font-weight:600;">
+                            <i class="fas fa-check-circle"></i> Sponsored
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Course 8: Cosmetology -->
+                <div class="course-card" data-type="nita" data-level="level1 level2 level3">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-spa"></i></div>
+                        <h3>Cosmetology &amp; Beauty Therapy</h3>
+                    </div>
+                    <div class="course-meta">
+                        <span><i class="fas fa-tag"></i> NITA </span>
+                        <span class="level-tag"><i class="fas fa-layer-group"></i></span>
+                    </div>
+                    <p>
+                        Hairdressing, skincare, makeup artistry, nail technology, and salon
+                        management. Creative skills for the booming beauty and wellness industry.
+                    </p>
+                    <div class="card-footer">
+                        <span class="duration"><i class="fas fa-clock"></i> 3–6 months per level</span>
+                        <span style="font-size:0.8rem; color:var(--primary); font-weight:600;">
+                            <i class="fas fa-check-circle"></i> Sponsored
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Course 9: Welding -->
+                <div class="course-card" data-type="nita" data-level="level1 level2 level3">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fas fa-fire"></i></div>
+                        <h3>Welding &amp; Fabrication</h3>
+                    </div>
+                    <div class="course-meta">
+                        <span><i class="fas fa-tag"></i> NITA </span>
+                        <span class="level-tag"><i class="fas fa-layer-group"></i></span>
+                    </div>
+                    <p>
+                        Arc welding, MIG/TIG welding, metal fabrication, cutting, and safety.
+                        Essential skills for the manufacturing, construction, and automotive industries.
+                    </p>
+                    <div class="card-footer">
+                        <span class="duration"><i class="fas fa-clock"></i> 3–6 months per level</span>
+                        <span style="font-size:0.8rem; color:var(--primary); font-weight:600;">
+                            <i class="fas fa-check-circle"></i> Sponsored
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- No results message -->
+            <div id="noResults" style="display:none; text-align:center; padding:40px 0;">
+                <i class="fas fa-search" style="font-size:2.5rem; color:var(--gray-300); margin-bottom:16px;"></i>
+                <p style="font-size:1.1rem; color:var(--text-light);">No courses found for the selected filter.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- REQUIREMENTS -->
+    <section class="requirements section-padding" id="requirements">
+        <div class="container">
+            <div class="text-center">
+                <span style="font-weight:600; color:var(--primary); letter-spacing:0.05em; text-transform:uppercase; font-size:0.85rem;">
+                    Entry Criteria
+                </span>
+                <h2 class="section-title">Eligibility <span>Requirements</span></h2>
+                <p class="section-subtitle mx-auto">
+                    Two pathways to join NVTC — choose the one that best fits your academic background.
+                    Both are fully sponsored and open to qualifying applicants.
+                </p>
+            </div>
+
+            <div class="requirements-grid">
+                <!-- NITA Artisan -->
+                <div class="requirements-card">
+                    
+                    <h3>NITA Artisan Courses</h3>
+                    <p>
+                        Open to anyone who can read and write. No minimum KCSE grade is required — 
+                        making it accessible to all youth seeking practical skills.
+                    </p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> No KCSE minimum grade</li>
+                        <li><i class="fas fa-check-circle"></i> Ability to read and write</li>
+                        <li><i class="fas fa-check-circle"></i> National ID or birth certificate</li>
+                        <li><i class="fas fa-check-circle"></i> 2 passport-size photos</li>
+                    </ul>
+                </div>
+
+                <!-- KNEC Craft -->
+                <div class="requirements-card">
+                    
+                    <h3>CBET Courses</h3>
+                    <p>
+                        Requires a KCPE certificate or a KCSE mean grade of D- and below.
+                        Ideal for students who completed primary or secondary education.
+                    </p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> KCPE certificate</li>
+                        <li><i class="fas fa-check-circle"></i> KCSE D- or below</li>
+                        <li><i class="fas fa-check-circle"></i> National ID or birth certificate</li>
+                        <li><i class="fas fa-check-circle"></i> 2 passport-size photos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPLICATION -->
+    <section class="application section-padding" id="application">
+        <div class="container">
+            <div class="application-box">
+                <div class="application-content">
+                    <span style="font-weight:600; color:var(--primary); letter-spacing:0.05em; text-transform:uppercase; font-size:0.85rem;">
+                        <i class="fas fa-pen-fancy"></i> How to Apply
+                    </span>
+                    <h2>Ready to <span>Enroll?</span></h2>
+                    <p>
+                        Applying to NVTC is simple and straightforward. All you need is your
+                        <strong>National ID</strong> and the required academic documents.
+                        Walk into our campus in <strong>Bondeni, Nakuru</strong>, and start your
+                        journey toward a skilled, prosperous future.
+                    </p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Bring your <strong>National ID</strong> or birth certificate</li>
+                        <li><i class="fas fa-check-circle"></i> Academic certificates (KCPE / KCSE)</li>
+                        <li><i class="fas fa-check-circle"></i> Two passport-size photos</li>
+                        <li><i class="fas fa-check-circle"></i> No tuition fees — fully sponsored!</li>
+                    </ul>
+                    <a href="/#contact" class="btn btn-accent">
+                        <i class="fas fa-arrow-right"></i> Contact Us to Apply
+                    </a>
+                </div>
+                <div class="application-image">
+                    <div class="icon-circle">
+                        <i class="fas fa-file-signature"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION NOTE -->
+    <section class="location-note">
+        <div class="container">
+            <p>
+                <i class="fas fa-map-pin"></i>
+                <strong><i class="fa-solid fa-map-location-dot"></i> Located in Bondeni, Nakuru</strong>
+                — easily accessible and ready to welcome you.
+                <span style="opacity:0.7; margin-left:12px;">
+                    <i class="fas fa-phone"></i> 0702 474 169
+                </span>
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <span class="logo-img"></span>
+                        <h5>Nakuru Vocational Training Centre<span>.</span></h5>
+                    </a>
+                    <p>
+                        Nakuru Vocational Training Centre — empowering youth with practical
+                        skills for employability and entrepreneurship in Nakuru County and beyond.
+                    </p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/#about">About Us</a></li>
+                        <li><a href="/#courses">All Courses</a></li>
+                        <li><a href="/#admissions">Admissions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://nakuru.go.ke/vocational-training/" target="_blank">County Training Portal</a></li>
+                        <li><a href="https://www.nita.go.ke/" target="_blank">NITA Kenya</a></li>
+                        <li><a href="https://tvetcdacc.go.ke/cbet-implementation-at-its-peak/" target="_blank">CBET</a></li>
+                        <li><a href="https://vision2030.go.ke/" target="_blank">Vision 2030</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone" style="width:20px;"></i> 0702 474 169</li>
+                        <li><i class="fas fa-envelope" style="width:20px;"></i> nakuruvtc@gmail.com</li>
+                        <li><i class="fas fa-map-pin" style="width:20px;"></i> Bondeni, Nakuru</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2026 Nakuru Vocational Training Centre. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+        <i class="fas fa-info-circle"></i>
+        <span id="toastMessage">Filter applied!</span>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="cources.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+    <script src="/courses_gsap_anime.js"></script>
+</body>
+</html>

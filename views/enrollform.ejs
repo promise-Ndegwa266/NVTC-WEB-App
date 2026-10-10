@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>NVTC Admission Form</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <link rel="stylesheet" href="/style-admission.css" />
+</head>
+<body>
+    <div class="container">
+
+        <!-- ===== HEADER ===== -->
+        <div class="header">
+            <div class="logo-icon">
+                <span class="logo-img"></span>
+            </div>
+            <h1>NVTC<span>.</span></h1>
+            <p class="subtitle">Nakuru Vocational Training Centre</p>
+            <p class="contact-info">P.O. Box 3973 - 20100, Nakuru | Tel: 0702 474 169</p>
+            <div class="gov-badge">
+                <i class="fas fa-building"></i> County Government of Nakuru
+            </div>
+            <h2 class="form-title">ADMISSION FORM</h2>
+        </div>
+
+        <!-- ===== FORM ===== -->
+        <form id="admissionForm" novalidate action="/uploads/enrollment_form_upload" method="post" enctype="multipart/form-data">
+
+            <!-- ===== PART 1 ===== -->
+            <div class="form-card">
+                <div class="section-title">
+                    <i class="fas fa-user-graduate"></i> PART 1: TRAINEE INFORMATION
+                </div>
+
+                <div class="section-subtitle">I) PERSONAL DATA</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="surname">Surname <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" name="surename" id="inputField" placeholder="Enter surname" required />
+                            <span class="icon"><i class="fas fa-user"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" name="firstName" id="inputField" placeholder="Enter first name" required />
+                            <span class="icon"><i class="fas fa-user"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="middleName">Middle Name</label>
+                    <div class="input-wrapper">
+                        <input type="text" name="middleName" id="middleName" placeholder="Enter middle name (optional)" />
+                        <span class="icon"><i class="fas fa-user"></i></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="postalAddress">Postal Address</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="postalAdress" id="postalAddress" placeholder="e.g. P.O. Box 123" />
+                            <span class="icon"><i class="fas fa-envelope"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Tel./Mobile No. <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="tel" name="studentTel" id="inputField" placeholder="e.g. 0712 345 678" required />
+                            <span class="icon"><i class="fas fa-phone"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-wrapper">
+                        <input type="email" name="studentEmail" id="inputField" placeholder="trainee@example.com" required />
+                        <span class="icon"><i class="fas fa-at"></i></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dob">Date of Birth <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="date" name="dateOfBirth" id="inputField" required />
+                            <span class="icon"><i class="fas fa-calendar-alt"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="idNumber">ID/Passport No. <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" name="studentIdOrPassport" id="inputField" placeholder="Enter ID or Passport number" required />
+                            <span class="icon"><i class="fas fa-id-card"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="entryDate">Date of Entry</label>
+                        <div class="input-wrapper">
+                            <input type="date" name="entryDate" id="entryDate" />
+                            <span class="icon"><i class="fas fa-calendar-plus"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nationality">Nationality <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" name="nationality" id="inputField" placeholder="e.g. Kenyan" required />
+                            <span class="icon"><i class="fas fa-globe-africa"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Gender <span class="required">*</span></label>
+                        <div class="inline-group">
+                            <label><input type="radio" name="gender" value="Male" required /> Male</label>
+                            <label><input type="radio" name="gender" value="Female" /> Female</label>
+                            <label><input type="radio" name="gender" value="Other" /> Other</label>
+                        </div>
+                        <div class="error-msg" id="genderError">Please select your gender.</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Marital Status <span class="required">*</span></label>
+                        <div class="inline-group">
+                            <label><input type="radio" name="maritalStatus" value="Single" required /> Single</label>
+                            <label><input type="radio" name="maritalStatus" value="Married" /> Married</label>
+                            <label><input type="radio" name="maritalStatus" value="Other" /> Other</label>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="constituency">Constituency <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" name="constituency" id="inputField" placeholder="Enter constituency" required />
+                            <span class="icon"><i class="fas fa-map-pin"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ward">Ward <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" name="ward" id="inputField" placeholder="Enter ward" required />
+                            <span class="icon"><i class="fas fa-map-marked-alt"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- II) COURSE -->
+                <div class="section-subtitle" style="margin-top:20px;">II) COURSE</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="courseApplied">Course Applied For <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" name="courseApplied" id="inputField" placeholder="e.g. Mechanical Engineering" required />
+                            <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="level">Level <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select name="level" id="inputField" required>
+                                <option value="">Select Level</option>
+                                <option value="Level I">Level I</option>
+                                <option value="Level II">Level II</option>
+                                <option value="Level III">Level III</option>
+                                <option value="Artisan">Artisan</option>
+                                <option value="Craft">Craft</option>
+                            </select>
+                            <span class="icon"><i class="fas fa-layer-group"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="duration">Duration (Terms) <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" name="duration" id="inputField" placeholder="e.g. 3 Terms" required />
+                            <span class="icon"><i class="fas fa-clock"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Mode of Study <span class="required">*</span></label>
+                        <div class="inline-group">
+                            <label><input type="radio" name="modeOfStudy" value="Regular" required /> Regular</label>
+                            <label><input type="radio" name="modeOfStudy" value="Part-Time" /> Part-Time</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Examination Body <span class="required">*</span></label>
+                            <div class="inline-group">
+                                <label><input type="radio" name="ExaminationBody" value="CBET" required /> CBET</label>
+                                <label><input type="radio" name="ExaminationBody" value="NITA" /> NITA</label>
+                            </div>
+                        </div>
+                    <div class="form-group">
+                        <label>Type <span class="required">*</span></label>
+                        <div class="inline-group">
+                            <label><input type="radio" name="type" value="Day Scholar" required /> Day Scholar</label>
+                            <label><input type="radio" name="type" value="Boarder" /> Boarder</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- III) EDUCATION BACKGROUND -->
+                <div class="section-subtitle" style="margin-top:20px;">III) EDUCATION BACKGROUND</div>
+
+                <div class="form-group">
+                    <label for="lastSchool">Last School Attended <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <input type="text" name="lastSchoolAttended" id="inputField" placeholder="Enter last school name" required />
+                        <span class="icon"><i class="fas fa-school"></i></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="educationLevel">Education Level <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select name="educationLevel" id="inputField" required>
+                                <option value="">Select Level</option>
+                                <option value="KCPE">KCPE</option>
+                                <option value="KCSE D-">KCSE D-</option>
+                                <option value="KCSE D">KCSE D</option>
+                                <option value="KCSE D+">KCSE D+</option>
+                                <option value="KCSE C-">KCSE C-</option>
+                                <option value="KCSE C">KCSE C</option>
+                                <option value="KCSE C+">KCSE C+</option>
+                                <option value="KCSE B-">KCSE B-</option>
+                                <option value="KCSE B">KCSE B</option>
+                                <option value="KCSE B+">KCSE B+</option>
+                                <option value="KCSE A-">KCSE A-</option>
+                                <option value="KCSE A">KCSE A</option>
+                                <option value="Certificate">Certificate</option>
+                                <option value="Diploma">Diploma</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <span class="icon"><i class="fas fa-book-open"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="marksGrade">Marks/Grade Attained</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="gradeAttained" id="inputField" placeholder="e.g. B+ or 350 marks" />
+                            <span class="icon"><i class="fas fa-star"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Records of Proof</label>
+                    <div class="helper-text">
+                        <i class="fas fa-paperclip"></i> Attach copies of results slips and certificates (PDF, JPG, PNG)
+                    </div>
+                    <div class="input-wrapper" style="margin-top:4px;">
+                        <input type="file" name="resultSlipsPapers" id="inputField" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" multiple />
+                        <span class="icon"><i class="fas fa-file-alt"></i></span>
+                    </div>
+                    <div class="file-status" id="certificateStatus">
+                        <span class="file-count" id="certCount">No files selected</span>
+                    </div>
+                </div>
+
+                <!-- IV) HEALTH -->
+                <div class="section-subtitle" style="margin-top:20px;">IV) HEALTH</div>
+
+                <div class="form-group">
+                    <label for="healthProblem">Any Health Problem?</label>
+                    <div class="input-wrapper">
+                        <textarea name="healthProblem" id="healthProblem" placeholder="Describe any health issues (if any)"></textarea>
+                        <span class="icon"><i class="fas fa-heartbeat"></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialCase">Any Form of Special Case / Challenge (Disability)</label>
+                    <div class="input-wrapper">
+                        <textarea name="disability" id="specialCase" placeholder="Describe any special needs (if any)"></textarea>
+                        <span class="icon"><i class="fas fa-wheelchair"></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Medical Recommendations</label>
+                    <div class="helper-text">
+                        <i class="fas fa-paperclip"></i> Attach any medical recommendations (PDF, JPG, PNG)
+                    </div>
+                    <div class="input-wrapper" style="margin-top:4px;">
+                        <input type="file" name="resultSlipsPapers" id="medicalUpload" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" multiple />
+                        <span class="icon"><i class="fas fa-file-medical"></i></span>
+                    </div>
+                    <div class="file-status" id="medicalStatus">
+                        <span class="file-count" id="medicalCount">No file selected</span>
+                    </div>
+                </div>
+
+                <!-- V) CO-CURRICULAR -->
+                <div class="section-subtitle" style="margin-top:20px;">V) CO-CURRICULAR</div>
+                <p style="font-size:0.8rem; color:var(--gray-500); margin-bottom:10px;">
+                    Which co-curricular activity are you best at?
+                </p>
+
+                <div class="form-group">
+                    <label for="sports">Sports</label>
+                    <div class="input-wrapper">
+                        <input type="text" name="sports" id="sports" placeholder="e.g. Football, Athletics" />
+                        <span class="icon"><i class="fas fa-futbol"></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="dramaMusic">Drama/Music</label>
+                    <div class="input-wrapper">
+                        <input type="text" name="dramaOrMusic" id="dramaMusic" placeholder="e.g. Guitar, Acting" />
+                        <span class="icon"><i class="fas fa-music"></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="clubs">Clubs</label>
+                    <div class="input-wrapper">
+                        <input type="text" name="clubs" id="clubs" placeholder="e.g. Debate Club, Science Club" />
+                        <span class="icon"><i class="fas fa-users"></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="otherActivities">Any Other</label>
+                    <div class="input-wrapper">
+                        <input type="text" name="anyOther" id="otherActivities" placeholder="Any other activities" />
+                        <span class="icon"><i class="fas fa-plus-circle"></i></span>
+                    </div>
+                </div>
+
+                <!-- VI) DISCIPLINE -->
+                <div class="section-subtitle" style="margin-top:20px;">VI) DISCIPLINE</div>
+
+                <div class="form-group">
+                    <label>Have you ever been Suspended or Expelled from any previous school?</label>
+                    <div class="inline-group">
+                        <label><input type="radio" name="suspended" value="Yes" /> Yes</label>
+                        <label><input type="radio" name="suspended" value="No" checked /> No</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="suspensionReason">If YES, what was the reason?</label>
+                    <div class="input-wrapper">
+                        <input type="text" name="resonForSuspension" id="suspensionReason" placeholder="Reason for suspension/expulsion" />
+                        <span class="icon"><i class="fas fa-exclamation-triangle"></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Have you ever been convicted in a court of law for Civil/Criminal Offence?</label>
+                    <div class="inline-group">
+                        <label><input type="radio" name="convicted" value="Yes" /> Yes</label>
+                        <label><input type="radio" name="convicted" value="No" checked /> No</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="crimeType">If YES, what type of offence/crime?</label>
+                    <div class="input-wrapper">
+                        <input type="text" name="resonForOffence" id="crimeType" placeholder="Type of offence" />
+                        <span class="icon"><i class="fas fa-gavel"></i></span>
+                    </div>
+                </div>
+
+                <!-- VII) RULES & SIGNATURE -->
+                <div class="section-subtitle" style="margin-top:20px;">VII) RULES AND REGULATIONS</div>
+
+                <div class="rules-box">
+                    <p>
+                        <i class="fas fa-check-circle"></i>
+                        I have read and understood the Nakuru Vocational Training Centre Rules and Regulations (as attached) and agree to abide by them.
+                    </p>
+                </div>
+
+                <div class="rules-regulation-link">
+                    <a href="/rules-and-regulations" target="_blank">View Rules and Regulations</a>
+                </div>
+
+                <div class="form-group">
+                    <div class="inline-group">
+                        <label><input type="checkbox" name="agrement" id="inputField" required /> I agree to the rules and regulations <span class="required">*</span></label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="applicantSignature">Signature of Applicant</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="signatureOfApplicant" id="inputField" placeholder="Type your full name as signature" />
+                            <span class="icon"><i class="fas fa-pen"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="applicantDate">Date</label>
+                        <div class="input-wrapper">
+                            <input type="date" name="signatureDate" id="inputField" />
+                            <span class="icon"><i class="fas fa-calendar-check"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PART 2 ===== -->
+            <div class="form-card">
+                <div class="section-title">
+                    <i class="fas fa-user-friends"></i> PART 2: PARENTS / GUARDIAN INFORMATION
+                </div>
+
+                <div class="section-subtitle">I PARENT / GUARDIAN DETAILS</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="guardianName">Name <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" name="parentOrGuadianName" id="inputField" placeholder="Full name of parent/guardian" required />
+                            <span class="icon"><i class="fas fa-user"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="guardianId">ID No./Passport <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" name="parentOrGuadianId" id="inputField" placeholder="ID or Passport number" required />
+                            <span class="icon"><i class="fas fa-id-card"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="guardianAddress">Postal Address</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="parentOrGuadianPostalAdress" id="guardianAddress" placeholder="e.g. P.O. Box 123" />
+                            <span class="icon"><i class="fas fa-envelope"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="guardianPhone">Tel./Mobile No. <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="tel" name="parentOrGuadianTel" id="inputField" placeholder="e.g. 0712 345 678" required />
+                            <span class="icon"><i class="fas fa-phone"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="guardianAltContact">Alternative Contact</label>
+                        <div class="input-wrapper">
+                            <input type="tel" name="parentOrGuadianAlternativeContact" id="guardianAltContact" placeholder="Alternative phone number" />
+                            <span class="icon"><i class="fas fa-phone-alt"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="guardianEmail">Email</label>
+                        <div class="input-wrapper">
+                            <input type="email" name="parentOrGuadianEmail" id="inputField" placeholder="guardian@example.com" />
+                            <span class="icon"><i class="fas fa-at"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PART 3 ===== -->
+            <div class="form-card">
+                <div class="section-title">
+                    <i class="fas fa-money-bill-wave"></i> PART 3: FEES PAYMENT
+                </div>
+
+                <p style="font-size:0.85rem; color:var(--gray-600); margin-bottom:14px;">
+                    If accepted and admitted to Nakuru Vocational Training Centre, who will pay for your fees?
+                </p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="parentName">Parent Name</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="ParentName" id="parentName" placeholder="Parent's full name" />
+                            <span class="icon"><i class="fas fa-user"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentContact">Contact</label>
+                        <div class="input-wrapper">
+                            <input type="tel" name="parentContat" id="parentContact" placeholder="Parent's phone number" />
+                            <span class="icon"><i class="fas fa-phone"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="guardianPayerName">Guardian Name</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="guardianName" id="guardianPayerName" placeholder="Guardian's full name" />
+                            <span class="icon"><i class="fas fa-user"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="guardianPayerContact">Contact</label>
+                        <div class="input-wrapper">
+                            <input type="tel" name="guardianContact" id="guardianPayerContact" placeholder="Guardian's phone number" />
+                            <span class="icon"><i class="fas fa-phone"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sponsorName">Sponsor Name</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="sponsorName" id="sponsorName" placeholder="Sponsor's full name" />
+                            <span class="icon"><i class="fas fa-user"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sponsorContact">Contact</label>
+                        <div class="input-wrapper">
+                            <input type="tel" name="sponsorContact" id="sponsorContact" placeholder="Sponsor's phone number" />
+                            <span class="icon"><i class="fas fa-phone"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PART 4 ===== -->
+            <div class="form-card">
+                <div class="section-title">
+                    <i class="fas fa-handshake"></i> PART 4: COMMITMENT – PARENT/GUARDIAN/SPONSOR
+                </div>
+
+                <div class="form-group">
+                    <label for="commitmentName">I, <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <input type="text" name="parentGuardianOrSponsorCommitment" id="inputField" placeholder="Enter your full name" required />
+                        <span class="icon"><i class="fas fa-pen"></i></span>
+                    </div>
+                    <div class="error-msg" id="commitmentNameError">Commitment name is required.</div>
+                </div>
+
+                <div class="rules-box">
+                    <p>
+                        <i class="fas fa-check-circle"></i>
+                        Shall be responsible for the payment of School fees in full for the above trainee as stipulated in the Institution Fees Structure.
+                    </p>
+                    <p style="margin-top:6px;">
+                        <i class="fas fa-check-circle"></i>
+                        I shall be responsible for making the Trainee understand that continued stay in the Polytechnic depends on his/her obedience to the Institution Authorities and School Rules and Regulations.
+                    </p>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="commitmentSignature">SIGNED BY PARENT/GUARDIAN/SPONSOR</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="parentGuardianOrSponsorName" id="inputField" placeholder="Type your full name" />
+                            <span class="icon"><i class="fas fa-pen-fancy"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="commitmentSign">Sign</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="parentGuardianOrSponsorSign" id="inputField" placeholder="Type your signature" />
+                            <span class="icon"><i class="fas fa-signature"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="commitmentPhone">Tel. No.</label>
+                        <div class="input-wrapper">
+                            <input type="tel" name="parentGuardianOrSponsorTel" id="inputField" placeholder="Phone number" />
+                            <span class="icon"><i class="fas fa-phone"></i></span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- ===== BUTTONS ===== -->
+            <div class="btn-group" style="margin:20px 0 12px;">
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> Submit Application
+                </button>
+                <button type="reset" class="btn btn-secondary">
+                    <i class="fas fa-undo-alt"></i> Reset Form
+                </button>
+            </div>
+        </form>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="footer">
+            <p>
+                <i class="fas fa-shield-alt" style="color:var(--primary);"></i>
+                County Government of Nakuru – Department of Education, ICT & eGovernment
+            </p>
+            <p style="margin-top:4px;">
+                <a href="/"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- ===== TOAST ===== -->
+    <div class="MessageError" id="toast">
+        <span id="toastMsg"><i class="fas fa-check-circle"></i> Application submitted successfully!</span>
+        <span id="errorMsg"><i class="fas fa-exclamation-triangle"></i> Fix the highlighted fields.</span>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="/script-admission.js"></script>
+</body>
+</html>

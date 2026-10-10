@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>NVTC Admin Dashboard</title>
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/dashboad.css">
+</head>
+<body>
+
+    <!-- ===== MOBILE MENU TOGGLE CHECKBOX ===== -->
+    <input type="checkbox" id="menu-toggle-checkbox" />
+
+    <!-- ===== SIDEBAR OVERLAY ===== -->
+    <label for="menu-toggle-checkbox" class="sidebar-overlay"></label>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="logo">
+                <div class="logo-img"></div>
+                <div>
+                    <h1>NVTC<span>.</span></h1>
+                    <div class="sub">Nakuru Vocational Training</div>
+                </div>
+            </div>
+        </div>
+
+        
+        <nav class="sidebar-nav" style="overflow-y: auto; scrollbar-width: none;">
+            <div class="scroll">
+                <div class="nav-label">Main</div>
+                <button class="nav-item active" data-section="dashboard" onclick="navigateTo('dashboard')">
+                    <i class="fas fa-th-large"></i> Dashboard
+                </button>
+
+                <div class="nav-label" style="margin-top:12px;">Student Managment</div>
+                <button class="nav-item" data-section="candidates" onclick="navigateTo('candidates')">
+                    <i class="fas fa-user-plus"></i> Upload Exam Report
+                </button>
+                <button class="nav-item" data-section="domitry" onclick="navigateTo('domitry')">
+                    <i class="fa-solid fa-bed"></i> Students Dorm request's
+                </button>
+                <button class="nav-item" data-section="differ" onclick="navigateTo('differ')">
+                    <i class="fa-solid fa-user-graduate"></i> Students Deffer request's
+                </button>
+                
+                <div class="nav-label" style="margin-top:12px;">Communication</div>
+                <button class="nav-item" data-section="messages" onclick="navigateTo('messages')">
+                    <i class="fa-solid fa-message"></i> Message's / Inbox 
+                    <% if(messagedata.length > 0){%>
+                        <span style="background-color: rgba(237, 49, 49, 0.94);
+                        border-radius: 50%; 
+                        padding: 0px;
+                        width: 0.8cm;
+                        height: 0.8cm;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;"><%= messagedata.length %></span>
+                    <%}%>
+                </button>
+                <button class="nav-item" data-section="memo" onclick="navigateTo('memo')">
+                    <i class="fa-solid fa-clipboard"></i> Memo
+                </button>
+
+                <!--form enrollment-->
+                <div class="nav-label" style="margin-top:12px;">Enrollment</div>
+                <button class="nav-item" data-section="students" onclick="navigateTo('students')">
+                    <i class="fas fa-user-graduate"></i> Add Student's
+                </button>
+                <button class="nav-item" data-section="formsubmits" onclick="navigateTo('formsubmits')">
+                    <i class="fa-solid fa-file"></i> Form's Submited online
+                </button>
+                <button class="nav-item" data-section="studentenrolld" onclick="navigateTo('studentenrolld')">
+                    <i class="fas fa-user-graduate"></i> Students Enrolled
+                </button>
+                <!--form enrollment-->
+
+                <div class="nav-label" style="margin-top:12px;">Voting</div>
+
+                <button class="nav-item" data-section="monitor" onclick="navigateTo('monitor')">
+                    <i class="fas fa-chart-line"></i> Monitor Vote
+                    <% if(thelength > 0 ){ %><span class="badge">LIVE</span><%} %>
+                </button>
+                <button class="nav-item" data-section="results" onclick="navigateTo('results')">
+                    <i class="fas fa-trophy"></i> Results
+                </button>
+            </div>
+        </nav>
+        
+
+        <!-- ===== LOGOUT BUTTON ===== -->
+        <div class="sidebar-logout">
+            <a href="/admin-dashboad/admin-logout/<%= user%>">
+                <button class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="logout-text">Logout</span>
+                    <span class="logout-icon-right"><i class="fas fa-arrow-right"></i></span>
+                </button>
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            &copy; <%= date %> NVTC Admin
+        </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="main-content">
+
+        <!-- ===== HEADER ===== -->
+        <header class="page-header">
+            <div class="header-left">
+                <label for="menu-toggle-checkbox" class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </label>
+                <h2 id="pageTitle">
+                    Dashboard
+                    <small>Nakuru VTC</small>
+                </h2>
+            </div>
+            <div class="header-actions">
+                <div class="date-badge">
+                    <i class="fas fa-calendar-day"></i>
+                    <span><%= date %></span>
+                </div>
+                <div class="admin-avatar" onclick="navigateTo('admin')">
+                    <div class="avatar" id="headerAvatar">
+                        <img src="/img/logo.png" alt="Admin" style="width: 36px; height: 36px; border-radius: 50%;">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: DASHBOARD                                            -->
+        <!-- ============================================================ -->
+        <section class="section visible" id="section-dashboard">
+
+            <div class="toast-demo">
+                <i class="fas fa-circle-check"></i>
+                Admin session: <strong>active</strong> · <%= name %>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number"><%= studentlength + enrolled.length %></div>
+                    <div class="stat-label">Total Students</div>
+                    <div class="stat-change"><i class="fas fa-arrow-up"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><%= thelength %></div>
+                    <div class="stat-label">Active student council Candidates</div>
+                    <div class="stat-change"><i class="fas fa-plus"></i> <%= thelength %></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><%= activeadmin %></div>
+                    <div class="stat-label">Active Admin</div>
+                    <div class="stat-change"><i class="fas fa-arrow-up"></i></div>
+                </div>
+                <div class="stat-card">
+                    <time datetime="" class="stat-number"><%= time %></time>
+                    <div class="stat-label">East African Time</div>
+                    <div class="stat-change" style="background:#fef3c7;color:#d97706;">
+                        <i class="fas fa-hourglass-half"></i> Timer
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-grid">
+                <div class="quick-card" onclick="navigateTo('candidates')">
+                    <div class="qc-icon blue"><i class="fas fa-user-plus"></i></div>
+                    <div class="qc-title">Add Candidate</div>
+                    <div class="qc-desc">Register nominee</div>
+                    <div class="qc-link"><i class="fas fa-arrow-right"></i> Go</div>
+                </div>
+                <div class="quick-card" onclick="navigateTo('students')">
+                    <div class="qc-icon blue"><i class="fas fa-user-graduate"></i></div>
+                    <div class="qc-title">Add Student</div>
+                    <div class="qc-desc">Enroll voter</div>
+                    <div class="qc-link"><i class="fas fa-arrow-right"></i> Go</div>
+                </div>
+                <div class="quick-card" onclick="navigateTo('monitor')">
+                    <div class="qc-icon blue"><i class="fas fa-check-circle"></i></div>
+                    <div class="qc-title">Monitor Vote</div>
+                    <div class="qc-desc">Live updates</div>
+                    <div class="stat-icon green"></div>
+                </div>
+            </div>
+            <div class="stat-card twoo" style="margin-top:0.3cm;">
+                <h3>Exam body registrations</h3>
+                <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
+                    <div class="stat-card small">
+                        <div class="stat-number"><%= (examStats && examStats.cbet) ? examStats.cbet + examStats.cbetenrollment : 0 %></div>
+                        <div class="stat-label">CBET Registrations</div>
+                    </div>
+                    <div class="stat-card small">
+                        <div class="stat-number"><%= (examStats && examStats.nita) ? examStats.nita + examStats.nitaenrollment : 0 %></div>
+                        <div class="stat-label">NITA Registrations</div>
+                    </div>
+                    <div class="stat-card small">
+                        <div class="stat-number"><%= (examStats && examStats.total) ? examStats.total + enrolled.length : 0 %></div>
+                        <div class="stat-label">Total Exam Registrations</div>
+                    </div>
+                </div>
+            </div>
+            
+            <% if(Admininfo.prevlage == "MainAdmin"){ %>
+                <div class="candadate-managment">
+                    <a href="/admin-dashboad/new-admin/<%= user %>"><i class="fas fa-user-plus"></i> Admin Management </a>
+                </div>
+            <% } %>
+
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: ADD EXAM REPORT                                       -->
+        <!-- ============================================================ -->
+        <section class="section" id="section-candidates">
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-user-plus"></i> Candidate
+                    <span class="subtitle">Fill in the details</span>
+                </div>
+                <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-file-alt"></i> Exam Reports 
+                    <span class="subtitle">Add exam report and view exam registrations by body</span>
+                </div>
+
+                <form action="/admin-dashboad/exam-report" method="post" onsubmit="return confirm('Submit exam report?');">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label><i class="fas fa-id-card"></i> Student Admission No. <span class="required">*</span></label>
+                            <input type="number" name="admissionno" placeholder="e.g. 12345" required />
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Name <span class="required">*</span></label>
+                            <input type="text" name="studentname" placeholder="e.g. Grace Wanjiku" required />
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-building"></i> Examination Body</label>
+                            <select name="examBody" required>
+                                <option value="">Select body...</option>
+                                <option value="CBET">CBET</option>
+                                <option value="NITA">NITA</option>
+                            </select>
+            
+                            <label><i class="fas fa-building"></i> Level</label>
+                            <select name="level" required>
+                                <option value="">Select level...</option>
+                                <option  value="3">Level 3</option>
+                                <option type="number" value="4">Level 4</option>
+                                <option type="number" value="5">Level 5</option>
+                            </select>
+
+                            <label><i class="fas fa-building"></i> Modules</label>
+                            <select name="modules" required>
+                                <option value="">Select module...</option>
+                                <option value="1">Module 1</option>
+                                <option value="2">Module 2</option>
+                                <option value="3">Module 3</option>
+                                <option value="4">Module 4</option>
+                            </select>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-book"></i> Exam Name</label>
+                            <input type="text" name="examName" placeholder="e.g. Mathematics" required/>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Exam Date</label>
+                            <input type="date" name="examDate" required />
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-chart-line"></i> Score / Status</label>
+                            <input type="text" name="score" placeholder="e.g. 78 or Pass/Fail" required />
+                        </div>
+                        <input style="display:none" type="text" name="id" value="<%= user %>">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-accent"><i class="fas fa-save"></i> Save Report</button>
+                        <button type="reset" class="btn btn-outline"><i class="fas fa-undo"></i> Clear</button>
+                    </div>
+                </form>
+
+                <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
+                    <div class="stat-card small">
+                       
+                        <div class="stat-number"><%= (examStats && examStats.cbet) ? examStats.cbet + examStats.cbetenrollment : 0 %></div>
+                        <div class="stat-label">CBET Registrations</div>
+                    </div>
+                    <div class="stat-card small">
+                       
+                        <div class="stat-number"><%= (examStats && examStats.nita) ? examStats.nita + examStats.nitaenrollment : 0 %></div>
+                        <div class="stat-label">NITA Registrations</div>
+                    </div>
+                    <div class="stat-card small">
+                        
+                        <div class="stat-number"><%= (examStats && examStats.total) ? examStats.total + enrolled.length : 0 %></div>
+                        <div class="stat-label">Total Exam Registrations</div>
+                    </div>
+                </div>
+
+            </div>
+
+                
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: ADD STUDENT                                          -->
+        <!-- ============================================================ -->
+        <section class="section" id="section-students">
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-user-graduate"></i> Enroll Student
+                    <span class="subtitle">Add to Database</span>
+                </div>
+
+                <form action="/admin-dashboad/student-data" method="post" onsubmit="confirm('Student Uploaded!');">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> First Name <span class="required">*</span></label>
+                            <input type="text" name="firstname" placeholder="e.g. Grace" required />
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Second Name <span class="required">*</span></label>
+                            <input type="text" name="secondname" placeholder="e.g. Wanjiru" required />
+                            <div class="helper">Middle name or second surname</div>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-id-card"></i> Registration No. <span class="required">*</span></label>
+                            <input type="number" name="admissionno" placeholder="e.g. NVTC-20024" required />
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-envelope"></i> Email <span class="required">*</span></label>
+                            <input type="email" name="email" placeholder="e.g. grace.wanjiru@example.com" required />
+                        </div>
+                        <!--check this first promise-->
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-envelope"></i> Gender <span class="required">*</span></label>
+                            <input type="text" name="gender" placeholder="e.g. Female" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-book"></i> Course / Department</label>
+                            <select name="cource" required>
+                                <option value="">Select course...</option>
+                                <option value="Electrical Engineering">Electrical Engineering</option>
+                                <option value="Plumbing & Pipefitting">Plumbing &amp; Pipefitting</option>
+                                <option value="Welding & Fabrication">Welding &amp; Fabrication</option>
+                                <option value="Automotive Mechanics">Automotive Mechanics</option>
+                                <option value="ICT & Computer Science">ICT &amp; Computer Science</option>
+                                <option value="Carpentry & Joinery">Carpentry &amp; Joinery</option>
+                                <option value="Fashion & Design">Fashions &amp; Design</option>
+                                <option value="Building & Construction">Building &amp; Construction</option>
+                                <option value="Food & Bevarage">Food &amp; Bevarage</option>
+                                <option value="Business Administration">Business Administration</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Year of Study</label>
+                            <select name="yearofstudy" required>
+                                <option value="">Select year...</option>
+                                <option value="Year 1">Year 1</option>
+                                <option value="Year 2">Year 2</option>
+                                <option value="Year 3">Year 3</option>
+                                <option value="Year 4">Year 4</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-book"></i> Exam Body</label>
+                            <select name="exambody" required>
+                                <option value="">Select Exam Body...</option>
+                                <option value="CBET">CBET</option>
+                                <option value="NITA">NITA</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Intake date. <span class="required">*</span></label>
+                            <input type="date" name="intakedate"  required />
+                        </div>
+                        <input style="display: none;" type="text" name="id" value="<%= user %>">
+                        
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-accent">
+                            <i class="fas fa-save"></i> Submit
+                        </button>
+                        <button type="reset" class="btn btn-outline">
+                            <i class="fas fa-undo"></i> Clear
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- ============================================================ -->
+            <!-- PANEL: Student Search                                        -->
+            <!-- ============================================================ -->
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-search"></i> Find Student
+                    <span class="subtitle">Search students in the database</span>
+                </div>
+
+                <form action="/admin-dashboad/student-search" method="get">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label><i class="fas fa-id-card"></i> Admission No.</label>
+                            <input type="text" name="admissionno" placeholder="e.g. NVTC-20024" />
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> First Name</label>
+                            <input type="text" name="firstname" placeholder="e.g. Grace" />
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Second Name</label>
+                            <input type="text" name="secondname" placeholder="e.g. Wanjiru" />
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-building"></i> Exam Body</label>
+                            <select name="examBody">
+                                <option value="">Any</option>
+                                <option>CBET</option>
+                                <option>NITA</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="name" value="<%= name %>">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-accent"><i class="fas fa-search"></i> Search</button>
+                        <button type="reset" class="btn btn-outline"><i class="fas fa-undo"></i> Clear</button>
+                    </div>
+                </form>
+
+                <% if (typeof searchResults !== 'undefined' && searchResults && searchResults.length > 0) { %>
+                    <div style="margin-top:12px;">
+                        <h4>Search Results (<%= searchResults.length %>)</h4>
+                        <% searchResults.forEach(s => { %>
+                            <div class="candidate-chip" style="display:flex;justify-content:space-between;">
+                                <div>
+                                    <strong><%= s.name.firstName %> <%= s.name.secondName %></strong>
+                                    — <%= s.adimmisionNumber %>
+                                    <span style="color:var(--text-light);">(<%= s.cource %> | <%= s.intake.toDateString() %> | <%= s.exambody %> )</span>
+                                    <a href="/admin-dashboad/detete-student/<%= s.adimmisionNumber %>/<%= user %>" style="color: rgba(240, 34, 34, 0.905);"><i class="fas fa-trash-alt"></i></a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                <% } else if (typeof searchResults !== 'undefined') { %>
+                    <div style="margin-top:12px;color:var(--text-light);">No students found for the query.</div>
+                <% } %>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: MONITOR VOTE                                        -->
+        <!-- ============================================================ -->
+        <section class="section" id="section-monitor">
+
+            <div class="total-votes-summary">
+                <div class="tv-item">
+                    <span class="tv-label"><i class="fas fa-users"></i> Voters</span>
+                    <span class="tv-number"><%= studentlength %></span>
+                </div>
+                
+                <div class="tv-item">
+                    <span class="tv-label"><i class="fas fa-clock"></i> Status</span>
+                    <span class="tv-number" style="font-size:20px;display:flex;align-items:center;gap:6px;">
+                        <% if (thelength > 0){%>
+                        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#22c55e;animation:pulse-dot 1.2s infinite;"></span>
+                        LIVE 
+                        <%}%>
+                        <% if (thelength <= 0){%>
+                            <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#da5026;animation:pulse-dot 1.2s infinite;"></span>
+                        OFFLINE
+                        <%} %>
+                    </span>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-chart-simple"></i> Live Monitoring
+                    <span class="subtitle"><i class="fas fa-sync-alt fa-spin"></i> Auto-refresh</span>
+                </div>
+
+                <div class="monitor-table-wrap">
+                    <table class="monitor-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Candidate</th>
+                                <th>Position</th>
+                                <th>Votes</th>
+                                <th>Progress</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <% candite.forEach((element)=>{ %>
+                                <tr>
+                                    <td><i class="fas fa-circle" style="color:#3b82f6;font-size:8px;"></i></td>
+                                    <td>
+                                        <div class="candidate-info">
+                                            <div>
+                                                <div class="candidate-name"><h3><%= element.name.presidentName %></h3></div>
+                                                <div class="candidate-name"><p style="color: rgb(117, 116, 116);">With: <%= element.name.runingMateName %></p></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span style="font-size:12px;color:var(--text-light);"><%= element.position%></span></td>
+                                    <td><span class="vote-count"><%= element.votes %></span></td>
+                                    <td>
+                                        <div class="vote-bar-wrap">
+                                            <div class="vote-bar-track">
+                                                <div class="vote-bar-fill" style="width:<%= ((element.votes/studentlength)*100).toFixed(2) %>%;"></div>
+                                            </div>
+                                            <span style="font-size:12px;font-weight:600;color:var(--text-light);"><%= ((element.votes/studentlength)*100).toFixed(2) %> %</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="status-badge live">Live</span></td>
+                                    
+                                </tr>
+                            <% }) %>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                
+                <form style="margin-top: 0.5cm; background-color: rgba(248, 247, 247, 0.859); padding: 10px; border-radius: 20px;" action="/admin-dashboad/candidates" method="post" onsubmit="confirm('Candidate Uploaded!');">
+                    <h3 style="margin-bottom: 20px; padding: 10px;">Upload candidates</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Candidate's Name <span class="required">*</span></label>
+                            <input type="text" name="cadidatename" placeholder="e.g. James Kiprop" required />
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-id-card"></i> Candidate's Admission No. <span class="required">*</span></label>
+                            <input type="number" name="cadidateadmision" placeholder="e.g. 20078" required />
+                            <div class="helper">Student admission number</div>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-briefcase"></i> Position <span class="required">*</span></label>
+                            <select name="position" required>
+                                <option value="">Select position...</option>
+                                <option>President</option>
+                                <option>Environment</option>
+                                <option>Sports </option>
+                                
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-user-friends"></i> Running Mate's Name</label>
+                            <input type="text" name="runingmatename" placeholder="e.g. Grace Wanjiru" required />
+                            <div class="helper">Running mate</div>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-id-card"></i>Running Mate's Admission No. <span class="required">*</span></label>
+                            <input type="number" name="runingmateadmition" placeholder="e.g. 20078" required />
+                            <div class="helper">Student admission number</div>
+                        </div>
+                        <input style="display: none;" type="text" name="id" value="<%= user %>">
+                    </div>
+                    <div class="form-actions">
+                        <button  type="submit" class="btn btn-accent">
+                            <i class="fas fa-save"></i> Register
+                        </button>
+                        <button type="reset" class="btn btn-outline">
+                            <i class="fas fa-undo"></i> Clear
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title" style="margin-bottom:10px;">
+                    <i class="fas fa-list"></i> Registered Candidates
+                    <span class="subtitle"><%= thelength %> active</span>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
+
+                    <% candite.forEach((element)=>{%>
+                        <div class="candidate-chip" style="display: flex; justify-content: space-between;">
+                            <div class="chip-info">
+                                <div class="chip-name"><h2><%= element.name.presidentName %></h2></div>
+                                <div class="chip-detail"><h3>with: <%= element.name.runingMateName %></h3></div>
+                                <div class="chip-detail"><h3>(<%= element.position %>)</h3></div>
+                            </div>
+                            <a href="/admin-dashboad/delite-cadidate/<%= element._id %>/<%= user %>"><button style="background: var(--accent);
+                            border: none;
+                            border-radius: 10px;
+                            padding: 10px 20px;
+                            color: var(--primary-dark);">Delite</button></a>
+                        </div>
+                    <%})%>
+                    
+                </div>
+                <div style="margin-top:10px;font-size:11px;color:var(--text-light);">
+                    <i class="fas fa-info-circle"></i> Candidates from the database
+                </div>
+
+                <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--text-light);">
+                    <span>Conversion: (votes / number of students)*100%</span>
+                    <span><i class="fas fa-circle" style="color:var(--accent);font-size:8px;"></i> Progress</span>
+                    <span><i class="fas fa-circle" style="color:#3b82f6;font-size:8px;"></i> <%= thelength %> candidates</span>
+                    <span style="margin-left:auto;"><i class="fas fa-clock"></i>  <%= time%></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: RESULTS                                             -->
+        <!-- ============================================================ -->
+        <section class="section" id="section-results">
+
+            <div class="total-votes-summary" style="background:linear-gradient(135deg,var(--primary-dark),var(--primary));">
+                <div class="tv-item">
+                    <span class="tv-label"><i class="fas fa-vote-yea"></i> Total Voters</span>
+                    <span class="tv-number"><%= studentlength %></span>
+                </div>
+                <div class="tv-item">
+                    <span class="tv-label"><i class="fas fa-user-tie"></i> Candidates</span>
+                    <span class="tv-number"><%= thelength%></span>
+                </div>
+               
+            </div>
+
+            <div class="results-grid">
+                <!-- President -->
+                <div class="result-card">
+                    <div class="result-header">
+                        <h4><i class="fas fa-gavel" style="color:var(--accent);"></i> President</h4>
+                    </div>
+                    <% presidential.forEach((element)=>{ %>
+                        <div class="result-item">
+                            <span class="ri-name"><%= element.name.presidentName %></span>
+                            <div class="ri-bar"><div class="ri-fill" style="width:<%= ((element.votes/studentlength)*100).toFixed(2) %>%;"></div></div>
+                            <span class="ri-percent"><%= ((element.votes/studentlength)*100).toFixed(2) %> %</span>
+                            <span class="ri-votes"><%= element.votes %></span>
+                        </div>
+                    <% }) %>
+                </div>
+
+                <!-- Vice President -->
+                <div class="result-card">
+                    <div class="result-header">
+                        <h4><i class="fas fa-handshake" style="color:#3b82f6;"></i> Vice President</h4>
+                    </div>
+                    <% presidential.forEach((element)=>{ %>
+                        <div class="result-item">
+                            <span class="ri-name"><%= element.name.runingMateName %></span>
+                            <div class="ri-bar"><div class="ri-fill" style="width:<%= ((element.votes/studentlength)*100).toFixed(2) %>%;"></div></div>
+                            <span class="ri-percent"><%= ((element.votes/studentlength)*100).toFixed(2) %> %</span>
+                            <span class="ri-votes"><%= element.votes %></span>
+                        </div>
+                    <% }) %>
+                </div>
+
+                <!-- Sports General -->
+                <div class="result-card">
+                    <div class="result-header">
+                        <h4><i class="fa-solid fa-basketball" style="color:#059669;"></i> Sport General</h4>
+                    </div>
+                    <% sport.forEach((element)=>{ %>
+                        <div class="result-item">
+                            <span class="ri-name"><%= element.name.presidentName %></span>
+                            <div class="ri-bar"><div class="ri-fill" style="width:<%= ((element.votes/studentlength)*100).toFixed(2) %>%;"></div></div>
+                            <span class="ri-percent"><%= ((element.votes/studentlength)*100).toFixed(2) %> %</span>
+                            <span class="ri-votes"><%= element.votes %></span>
+                        </div>
+                    <% }) %>
+                </div>
+
+                <!-- Sports Vice General -->
+                <div class="result-card">
+                    <div class="result-header">
+                        <h4><i class="fa-solid fa-basketball" style="color:#059669;"></i> Sport Deputy General</h4>
+                    </div>
+                    <% sport.forEach((element)=>{ %>
+                        <div class="result-item">
+                            <span class="ri-name"><%= element.name.runingMateName %></span>
+                            <div class="ri-bar"><div class="ri-fill" style="width:<%= ((element.votes/studentlength)*100).toFixed(2) %>%;"></div></div>
+                            <span class="ri-percent"><%= ((element.votes/studentlength)*100).toFixed(2) %> %</span>
+                            <span class="ri-votes"><%= element.votes %></span>
+                        </div>
+                    <% }) %>
+                </div>
+
+                <!-- Environment General -->
+                <div class="result-card">
+                    <div class="result-header">
+                        <h4><i class="fa-solid fa-recycle" style="color:#7c3aed;"></i> Environment General</h4>
+                    </div>
+                    <% environment.forEach((element)=>{ %>
+                        <div class="result-item">
+                            <span class="ri-name"><%= element.name.presidentName %></span>
+                            <div class="ri-bar"><div class="ri-fill" style="width:<%= ((element.votes/studentlength)*100).toFixed(2) %>%;"></div></div>
+                            <span class="ri-percent"><%= ((element.votes/studentlength)*100).toFixed(2) %> %</span>
+                            <span class="ri-votes"><%= element.votes %></span>
+                        </div>
+                    <% }) %>
+                </div>
+
+                <!-- Environment Vice General -->
+                <div class="result-card">
+                    <div class="result-header">
+                        <h4><i class="fa-solid fa-recycle" style="color:#7c3aed;"></i> Environment Vice General</h4>
+                    </div>
+                    <% environment.forEach((element)=>{ %>
+                        <div class="result-item">
+                            <span class="ri-name"><%= element.name.runingMateName %></span>
+                            <div class="ri-bar"><div class="ri-fill" style="width:<%= ((element.votes/studentlength)*100).toFixed(2) %>%;"></div></div>
+                            <span class="ri-percent"><%= ((element.votes/studentlength)*100).toFixed(2) %> %</span>
+                            <span class="ri-votes"><%= element.votes %></span>
+                        </div>
+                    <% }) %>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: MESSAGES                                        -->
+        <!-- ============================================================ -->
+        <section class="section" id="section-messages">
+            <div class="messagecontainer">
+                <div class="message--container">
+                    <h2>Messages: <span style="color: rgb(108, 97, 156);">+<%= messagedata.length %></span></h2>
+                    <% messagedata.length > 0 && messagedata.forEach((element)=>{ %> 
+                        <div class="massage-contain">
+                            <div class="container-msg">
+                                <h5>Name: <span style="color: rgb(111, 111, 121);"><%= element.name %></span></h5>
+                                <h5>Email Adress: <span style="color: rgb(111, 111, 121);"><%= element.email %></span></h5>
+                                <h5>Phone Number: <span style="color: rgb(111, 111, 121);"><%= element.phoneNumber %></span></h5>
+                                <h5>Date: <span style="color: rgb(111, 111, 121);"><%= element.date.toDateString() %></span></h5>
+                                <div class="message">
+                                    <p><%= element.message %></p>
+                                </div>
+                            </div>
+                            <a href="/admin-dashboad/massage-delete?date=<%= element.date %>&id=<%= element._id %>&data=<%= user %>"><button class="delete-btn">Delete</button></a>
+                        </div>
+                    <%}) %>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: ENROLLMENT FORM NOTIFICATION                        -->
+        <!-- ============================================================ -->
+        <section class="section" id="data-form-notification">
+            <div class="stat-card enrollment-container">
+                <div class="enrollment-subcontainer">
+                    <div class="micro-nav">
+                        <h3 class="header-text">Total Forms Submited <span style="color: rgb(7, 12, 58); height:20px; width:25px; border-radius: 25px; font-size: 1rem; padding:5px; background-color:white;"><%= enrollment.length %> </span></h3>
+                        <button class="header-text enroll-btn"><i class="fas fa-user-plus"></i> </button>
+                    </div>
+                    <div class="micro-nav forms-container">
+                        <% enrollment.length > 0 && enrollment.forEach((element)=>{%>
+                            <div class="new-data-card card-ctn">
+                                <div class="tittle-container">
+                                    <h2 class="header-text">Submition Date <span style="font-size: small; border-radius: 25px; padding:5px 10px; background-color:white;"><%= element.TraineeData.rulesAndRegulations.date.toDateString() %></span></h2>
+                                    <a href="Enroll_Student?id=<%= element._id %>&data=<%= user %>"><button class="header-text enroll-btn view"><span style="font-size: small; border-radius: 25px; padding:5px 10px; background-color:white;"><i class="fas fa-user-plus"></i></span> Enroll Student</button></a>
+                                </div> 
+                                <div class="contain-usr-data">
+                                    
+                                    <div class="stat-card data-card">
+                                        <h2 class="header-text">Student Data</h2>
+                                        <div class="data">
+                                            <h5><span style="color: rgb(180, 175, 175);">Full Name:</span> <%= element.TraineeData.Name.firstName %> <%= element.TraineeData.Name.middleName %> <%= element.TraineeData.Name.sureName %></h5>
+                                            <h5><span style="color: rgb(180, 175, 175);">Date of Birth:</span> <%= element.TraineeData.PersonalDetails.dateOfBirth.toDateString() %></h5>
+                                            <h5><span style="color: rgb(180, 175, 175);">Nationality:</span> <%= element.TraineeData.PersonalDetails.nationality %></h5>
+                                            <h5><span style="color: rgb(180, 175, 175);">Gender:</span> <%= element.TraineeData.PersonalDetails.Gender %></h5>
+                                            <h5><span style="color: rgb(180, 175, 175);">Telephone No:</span> <%= element.TraineeData.ContactDetails.studentTel %></h5>
+                                            <h5><span style="color: rgb(180, 175, 175);">Email:</span> <%= element.TraineeData.ContactDetails.studentEmail %></h5>
+                                        </div>
+                                    </div>
+
+                                    <div class="stat-card data-card">
+                                        <h2 class="header-text">Course Details</h2>
+                                        <div class="data">
+                                            <h5><span style="color: rgb(180, 175, 175);">Course:</span> <%= element.TraineeData.CourseDetails.courseApplied %></h5>
+                                            <h5><span style="color: rgb(180, 175, 175);">Level:</span> <%= element.TraineeData.CourseDetails.level %></h5>
+                                            <h5><span style="color: rgb(180, 175, 175);">Mode of study:</span> <%= element.TraineeData.CourseDetails.modeOfStudy %></h5>
+                                            <h5><span style="color: rgb(180, 175, 175);">Type:</span> <%= element.TraineeData.CourseDetails.type %></h5>
+                                        </div>
+                                    </div>
+
+                                    <div class="stat-card data-card">
+                                        <h2 class="header-text">Education Details</h2>
+                                        <div class="data">
+                                            <h5><span style="color: rgb(180, 175, 175);">last school attended:</span> <%= element.TraineeData.EducationDetails.lastSchoolAttended %></h5>
+                                            <h5><span style="color: rgb(180, 175, 175);">Education level:</span> <%= element.TraineeData.EducationDetails.educationLevel %></h5>
+                                            <h5><span style="color: rgb(180, 175, 175);">Grade attained:</span> <%= element.TraineeData.EducationDetails.gradeAttained %></h5>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                                <div class="tittle-container">
+                                    <div class="btn-container">
+                                        <a href="view_Enrollment_Form?id=<%= element._id %>&data=<%= user %>"><button class="header-text enroll-btn view"><span style="font-size: small; border-radius: 25px; padding:5px 10px; background-color:white;"><i class="fa-solid fa-table"></i></span> View</button></a>
+                                        <a href="student_anrolled_delete?id=<%= element._id %>&data=<%= user %>"><button class="header-text enroll-btn delete"><span style="font-size: small; border-radius: 25px; padding:5px 10px; background-color:white;"><i class="fas fa-trash-alt"></i></span> Delete</button></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        <%})%>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================================ -->
+        <!-- SECTION: ENROLLMENT FORM NOTIFICATION                        -->
+        <!-- ============================================================ -->
+
+        <section class="section" id="Students-admided">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number"><%= enrolled.length %></div>
+                    <div class="stat-label">Total Students Enrolled</div>
+                    <div class="stat-change"><i class="fas fa-arrow-up"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Courses</div>
+                    <div class="stat-change"><i class="fas fa-plus"></i> 9</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><%= Admins.length %></div>
+                    <div class="stat-label">Total Admin</div>
+                    <div class="stat-change"><i class="fas fa-arrow-up"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><%= instuctors.length %></div>
+                    <div class="stat-label">Total Instructors</div>
+                    <div class="stat-change"><i class="fas fa-plus"></i> <%= instuctors.length %></div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-wrapper">
+                    <table class="tbl-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Admission No</th>
+                                <th>Full Name</th>
+                                <th>Gender</th>
+                                <th>Course</th>
+                                <th>Level</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%  enrolled.length > 0 && enrolled.forEach((element,num) => { %>
+                                <tr>
+                                    <td><%= num+1  %></td>
+                                    <td>2007</td>
+                                    <td><%= element.TraineeData.Name.firstName %> <%= element.TraineeData.Name.middleName %> <%= element.TraineeData.Name.sureName %></td>
+                                    <td><%= element.TraineeData.PersonalDetails.Gender %></td>
+                                    <td><%= element.TraineeData.CourseDetails.courseApplied %></td>
+                                    <td><%= element.TraineeData.CourseDetails.level %></td>
+                                    <td>+254 <%= element.TraineeData.ContactDetails.studentTel %></td>
+                                    <td><%= element.TraineeData.ContactDetails.studentEmail %></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <span class="btn-icon" style="font-size: small; border-radius: 25px; padding:5px 10px; background-color:white;"><a href="#"  title="View"><i class="fas fa-eye"></i></a></span>
+                                            <span class="btn-icon" style="font-size: small; border-radius: 25px; padding:5px 10px; background-color:white;"><a href="student_anrolled_delete?id=<%= element._id %>&data=<%= user %>"  title="Delete"><i class="fas fa-trash-alt"></i></a></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: STUDENT DORM BOOKING SECTION                        -->
+        <!-- ============================================================ -->
+        <section class="section" id="Students-Dorms">
+
+            <!-- ===== STATS ===== -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number"><%= dormRequests.length %></div>
+                    <div class="stat-label">Total Requests</div>
+                    <div class="stat-change"><i class="fas fa-clipboard-list"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><%= dormRequests.filter(r => (r.status || 'Pending') === 'Pending').length %></div>
+                    <div class="stat-label">Pending</div>
+                    <div class="stat-change" style="background:#fef3c7;color:#d97706;">
+                        <i class="fas fa-clock"></i> Awaiting
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><%= dormRequests.filter(r => r.status === 'Approved').length %></div>
+                    <div class="stat-label">Approved</div>
+                    <div class="stat-change" style="background:#dcfce7;color:#059669;">
+                        <i class="fas fa-check-circle"></i> Allocated
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><%= dormRequests.filter(r => r.status === 'Denied').length %></div>
+                    <div class="stat-label">Denied</div>
+                    <div class="stat-change" style="background:#fee2e2;color:#dc2626;">
+                        <i class="fas fa-times-circle"></i> Rejected
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== FILTER TABS ===== -->
+            <div class="dorm-filter-tabs">
+                <button class="dorm-filter-tab active" onclick="filterDormRequests('all', this)">
+                    <i class="fas fa-list"></i> All
+                    <span class="filter-count"><%= dormRequests.length %></span>
+                </button>
+                <button class="dorm-filter-tab" onclick="filterDormRequests('Pending', this)">
+                    <i class="fas fa-clock"></i> Pending
+                    <span class="filter-count"><%= dormRequests.filter(r => (r.status || 'Pending') === 'Pending').length %></span>
+                </button>
+                <button class="dorm-filter-tab" onclick="filterDormRequests('Approved', this)">
+                    <i class="fas fa-check-circle"></i> Approved
+                    <span class="filter-count"><%= dormRequests.filter(r => r.status === 'Approved').length %></span>
+                </button>
+                <button class="dorm-filter-tab" onclick="filterDormRequests('Denied', this)">
+                    <i class="fas fa-times-circle"></i> Denied
+                    <span class="filter-count"><%= dormRequests.filter(r => r.status === 'Denied').length %></span>
+                </button>
+            </div>
+
+            <!-- ===== TABLE ===== -->
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-bed"></i> Dorm Booking Requests
+                    <span class="subtitle"><%= dormRequests.length %> total requests</span>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-wrapper">
+                        <table class="tbl-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Student Name</th>
+                                    <th>Admission No.</th>
+                                    <th>Dorm Block</th>
+                                    <th>Room Type</th>
+                                    <th>Move In</th>
+                                    <th>Move Out</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (dormRequests.length > 0) { %>
+                                    <% dormRequests.forEach((req, index) => { %>
+                                        <tr class="dorm-row" data-status="<%= req.status || 'Pending' %>">
+                                            <td><%= index + 1 %></td>
+                                            <td>
+                                                <div class="dorm-student-cell">
+                                                    <div class="dorm-avatar">
+                                                        <%= req.studentName ? req.studentName.charAt(0).toUpperCase() : '?' %>
+                                                    </div>
+                                                    <div class="dorm-student-detail">
+                                                        <strong><%= req.studentName || 'Unknown' %></strong>
+                                                        <span>Adm: <%= req.admissionNo || '—' %></span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><span class="dorm-tag"><%= req.admissionNo || '—' %></span></td>
+                                            <td><%= req.dormBlock || '—' %></td>
+                                            <td>
+                                                <span class="dorm-tag">
+                                                    <i class="fas fa-door-closed"></i> <%= req.roomType || '—' %>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <%= req.moveInDate ? new Date(req.moveInDate).toDateString() : '—' %>
+                                            </td>
+                                            <td>
+                                                <%= req.moveOutDate ? new Date(req.moveOutDate).toDateString() : '—' %>
+                                            </td>
+                                            <td>
+                                                <% if ((req.status || 'Pending') === 'Pending') { %>
+                                                    <span class="dorm-status pending">
+                                                        <i class="fas fa-clock"></i> Pending
+                                                    </span>
+                                                <% } else if (req.status === 'Approved') { %>
+                                                    <span class="dorm-status approved">
+                                                        <i class="fas fa-check-circle"></i> Approved
+                                                    </span>
+                                                <% } else { %>
+                                                    <span class="dorm-status denied">
+                                                        <i class="fas fa-times-circle"></i> Denied
+                                                    </span>
+                                                <% } %>
+                                            </td>
+                                            <td>
+                                                <div class="dorm-actions">
+                                                    <% if ((req.status || 'Pending') === 'Pending') { %>
+                                                        <a href="/admin-dashboad/approve-dorm/<%= req._id %>/<%= user %>"
+                                                        onclick="return confirm('Approve dorm booking for <%= req.studentName %>?');"
+                                                        class="dorm-btn approve" title="Approve">
+                                                            <i class="fas fa-check"></i> Approve
+                                                        </a>
+                                                        <a href="/admin-dashboad/deny-dorm/<%= req._id %>/<%= user %>"
+                                                        onclick="return confirm('Deny dorm booking for <%= req.studentName %>?');"
+                                                        class="dorm-btn deny" title="Deny">
+                                                            <i class="fas fa-times"></i> Deny
+                                                        </a>
+                                                    <% } else if (req.status === 'Approved') { %>
+                                                        <a href="/admin-dashboad/revoke-dorm/<%= req._id %>/<%= user %>"
+                                                        onclick="return confirm('Revoke approval?');"
+                                                        class="dorm-btn revoke" title="Revoke">
+                                                            <i class="fas fa-undo"></i> Revoke
+                                                        </a>
+                                                    <% } else { %>
+                                                        <a href="/admin-dashboad/approve-dorm/<%= req._id %>/<%= user %>"
+                                                        onclick="return confirm('Re-approve this request?');"
+                                                        class="dorm-btn approve" title="Re-approve">
+                                                            <i class="fas fa-redo"></i> Re-approve
+                                                        </a>
+                                                    <% } %>
+                                                    <a href="/admin-dashboad/delete-dorm/<%= req._id %>/<%= user %>"
+                                                    onclick="return confirm('Delete this request permanently?');"
+                                                    class="dorm-btn delete" title="Delete">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="9">
+                                            <div class="dorm-empty-state">
+                                                <i class="fas fa-inbox"></i>
+                                                <h4>No Dorm Booking Requests</h4>
+                                                <p>There are currently no dorm booking requests from students.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--text-light);">
+                    <span><i class="fas fa-info-circle"></i> Approving a request allocates the dorm to the student.</span>
+                    <span style="margin-left:auto;"><i class="fas fa-clock"></i> <%= time %></span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: STUDENT DIFFER SECTION                              -->
+        <!-- ============================================================ -->
+        <section class="section" id="Students-Differ">
+
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: MEMO                                                 -->
+        <!-- ============================================================ -->
+        <section class="section" id="Memo">
+
+            <!-- ===== MEMO STATS ===== -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number"><%= memos.length %></div>
+                    <div class="stat-label">Total Memos</div>
+                    <div class="stat-change"><i class="fas fa-envelope-open-text"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><%= memos.filter(m => m.senderName === name).length %></div>
+                    <div class="stat-label">Sent by You</div>
+                    <div class="stat-change" style="background:#dbeafe;color:#2563eb;">
+                        <i class="fas fa-paper-plane"></i> Sent
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><%= memos.filter(m => m.senderName !== name && !m.readBy.includes(name)).length %></div>
+                    <div class="stat-label">Unread</div>
+                    <div class="stat-change" style="background:#fee2e2;color:#dc2626;">
+                        <i class="fas fa-circle"></i> New
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><%= memos.filter(m => m.priority === 'Urgent').length %></div>
+                    <div class="stat-label">Urgent</div>
+                    <div class="stat-change" style="background:#fef3c7;color:#d97706;">
+                        <i class="fas fa-exclamation-triangle"></i> Attention
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SEND MEMO FORM ===== -->
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-pen-to-square"></i> Compose New Memo
+                    <span class="subtitle">Send a memo to admins and/or students</span>
+                </div>
+
+                <form action="/admin-dashboad/send-memo" method="post" onsubmit="return confirm('Send this memo?');">
+                    <div class="form-grid">
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label><i class="fas fa-heading"></i> Subject <span class="required">*</span></label>
+                            <input type="text" name="subject" placeholder="e.g. End of Term Examination Schedule" required maxlength="150" />
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fas fa-users"></i> Recipients <span class="required">*</span></label>
+                            <select name="recipients" required>
+                                <option value="">Select recipients...</option>
+                                <option value="Both">Both Admins &amp; Students</option>
+                                <option value="Admins">Admins Only</option>
+                                <option value="Students">Students Only</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fas fa-exclamation-triangle"></i> Priority</label>
+                            <select name="priority">
+                                <option value="Normal">Normal</option>
+                                <option value="Important">Important</option>
+                                <option value="Urgent">Urgent</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label><i class="fas fa-message"></i> Memo Message <span class="required">*</span></label>
+                            <textarea name="message" rows="6"
+                                    placeholder="Type your memo message here..."
+                                    required maxlength="2000"
+                                    style="width:100%;padding:12px;border-radius:10px;border:2px solid #e5e7eb;font-family:inherit;font-size:13px;resize:vertical;outline:none;"></textarea>
+                            <div class="helper">Maximum 2000 characters</div>
+                        </div>
+
+                        <input style="display:none;" type="text" name="id" value="<%= user %>">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-accent">
+                            <i class="fas fa-paper-plane"></i> Send Memo
+                        </button>
+                        <button type="reset" class="btn btn-outline">
+                            <i class="fas fa-undo"></i> Clear
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ===== FILTER TABS ===== -->
+            <div class="memo-filter-tabs">
+                <button class="memo-filter-tab active" onclick="filterMemos('all', this)">
+                    <i class="fas fa-list"></i> All Memos
+                    <span class="filter-count"><%= memos.length %></span>
+                </button>
+                <button class="memo-filter-tab" onclick="filterMemos('inbox', this)">
+                    <i class="fas fa-inbox"></i> Inbox
+                    <span class="filter-count"><%= memos.filter(m => m.senderName !== name).length %></span>
+                </button>
+                <button class="memo-filter-tab" onclick="filterMemos('sent', this)">
+                    <i class="fas fa-paper-plane"></i> Sent
+                    <span class="filter-count"><%= memos.filter(m => m.senderName === name).length %></span>
+                </button>
+                <button class="memo-filter-tab" onclick="filterMemos('urgent', this)">
+                    <i class="fas fa-exclamation-triangle"></i> Urgent
+                    <span class="filter-count"><%= memos.filter(m => m.priority === 'Urgent').length %></span>
+                </button>
+            </div>
+
+            <!-- ===== MEMO LIST ===== -->
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-envelope-open-text"></i> Memo Board
+                    <span class="subtitle"><%= memos.length %> memos</span>
+                </div>
+
+                <div class="memo-list">
+                    <% if (memos.length > 0) { %>
+                        <% memos.forEach((memo) => { %>
+                            <%
+                                const isOwn = memo.senderName === name;
+                                const isUnread = !isOwn && !memo.readBy.includes(name);
+                                const priorityClass = memo.priority === 'Urgent' ? 'urgent'
+                                                    : memo.priority === 'Important' ? 'important'
+                                                    : 'normal';
+                            %>
+                            <div class="memo-card <%= priorityClass %> <%= isUnread ? 'unread' : '' %>"
+                                data-owner="<%= isOwn ? 'sent' : 'inbox' %>"
+                                data-priority="<%= memo.priority %>">
+
+                                <div class="memo-card-header">
+                                    <div class="memo-header-left">
+                                        <div class="memo-sender-avatar">
+                                            <%= memo.senderName.charAt(0).toUpperCase() %>
+                                        </div>
+                                        <div class="memo-sender-info">
+                                            <div class="memo-subject">
+                                                <% if (memo.priority === 'Urgent') { %>
+                                                    <i class="fas fa-exclamation-triangle" style="color:#dc2626;"></i>
+                                                <% } else if (memo.priority === 'Important') { %>
+                                                    <i class="fas fa-exclamation-circle" style="color:#d97706;"></i>
+                                                <% } %>
+                                                <%= memo.subject %>
+                                            </div>
+                                            <div class="memo-meta">
+                                                <span><i class="fas fa-user"></i> <%= memo.senderName %></span>
+                                                <span>•</span>
+                                                <span><i class="fas fa-user-tag"></i> <%= memo.senderRole %></span>
+                                                <span>•</span>
+                                                <span><i class="fas fa-users"></i> To: <%= memo.recipients %></span>
+                                                <span>•</span>
+                                                <span><i class="fas fa-calendar"></i> <%= new Date(memo.createdAt).toDateString() %></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="memo-header-right">
+                                        <% if (memo.priority === 'Urgent') { %>
+                                            <span class="memo-priority urgent">
+                                                <i class="fas fa-exclamation-triangle"></i> Urgent
+                                            </span>
+                                        <% } else if (memo.priority === 'Important') { %>
+                                            <span class="memo-priority important">
+                                                <i class="fas fa-exclamation-circle"></i> Important
+                                            </span>
+                                        <% } else { %>
+                                            <span class="memo-priority normal">
+                                                <i class="fas fa-info-circle"></i> Normal
+                                            </span>
+                                        <% } %>
+
+                                        <% if (isUnread) { %>
+                                            <span class="memo-new-badge">NEW</span>
+                                        <% } %>
+                                    </div>
+                                </div>
+
+                                <div class="memo-body">
+                                    <%= memo.message %>
+                                </div>
+
+                                <div class="memo-card-footer">
+                                    <div class="memo-actions">
+                                        <% if (!isOwn && isUnread) { %>
+                                            <a href="/admin-dashboad/read-memo/<%= memo._id %>/<%= user %>"
+                                            class="memo-btn mark-read">
+                                                <i class="fas fa-check"></i> Mark as Read
+                                            </a>
+                                        <% } %>
+                                        <% if (isOwn) { %>
+                                            <a href="/admin-dashboad/delete-memo/<%= memo._id %>/<%= user %>"
+                                            onclick="return confirm('Delete this memo permanently?');"
+                                            class="memo-btn delete">
+                                                <i class="fas fa-trash-alt"></i> Delete
+                                            </a>
+                                        <% } %>
+                                    </div>
+                                    <div class="memo-recipients-info">
+                                        <i class="fas fa-eye"></i> Read by <%= memo.readBy.length %> admin(s)
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <div class="memo-empty-state">
+                            <i class="fas fa-envelope-open"></i>
+                            <h4>No Memos Yet</h4>
+                            <p>Start by composing your first memo above.</p>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION: ADMIN PROFILE                                       -->
+        <!-- ============================================================ -->
+        <section class="section" id="Admin">
+
+            <!-- ===== PROFILE HEADER ===== -->
+            <div class="profile-header-card">
+                <div class="profile-cover">
+                    <img src="/img/images.jpg" alt="NVTC Campus Cover" />
+                    <label class="cover-upload-btn">
+                        <i class="fas fa-camera"></i> Change Cover
+                        <input type="file" accept="image/*" />
+                    </label>
+                </div>
+
+                <div class="profile-body">
+                    <div class="profile-avatar-wrapper">
+                        <div class="profile-avatar-large">
+                            <img src="/img/logo.png" alt="Admin" />
+                        </div>
+                        <label class="avatar-upload-btn" title="Change profile picture">
+                            <i class="fas fa-camera"></i>
+                            <input type="file" accept="image/*" />
+                        </label>
+                    </div>
+
+                    <div class="profile-meta">
+                        <div class="profile-name-block">
+                            <h1><%= name %></h1>
+                            <p><i class="fas fa-envelope"></i> <%= Admininfo.email || 'admin@nvct.ac.ke' %> &nbsp;•&nbsp; <i class="fas fa-phone"></i> <%= Admininfo.phone || '0702 474 169' %></p>
+                            <div class="role-badges">
+                                <span class="role-badge super-admin">
+                                    <i class="fas fa-crown"></i> <%= Admininfo.prevlage || 'Admin' %>
+                                </span>
+                                <span class="role-badge verified">
+                                    <i class="fas fa-check-circle"></i> Verified
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="profile-quick-stats">
+                            <div class="qs-item">
+                                <h4><%= messagedata.length %></h4>
+                                <p>Messages</p>
+                            </div>
+                            <div class="qs-item">
+                                <h4><%= studentlength + enrolled.length %></h4>
+                                <p>Students</p>
+                            </div>
+                            <div class="qs-item">
+                                <h4><%= Admins.length %></h4>
+                                <p>Admins</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== MESSAGES FROM OTHER ADMINS ===== -->
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-inbox"></i> Messages from Other Admins
+                    <span class="subtitle">Recent notifications and messages</span>
+                </div>
+
+                <div class="admin-messages-list">
+
+                    <div class="admin-message-item unread">
+                        <div class="admin-message-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Peter Kamau" />
+                        </div>
+                        <div class="admin-message-content">
+                            <div class="admin-message-header">
+                                <div>
+                                    <span class="admin-message-sender">Peter Kamau</span>
+                                    <span class="admin-message-role">Registrar</span>
+                                </div>
+                                <span class="admin-message-time">2 hours ago</span>
+                            </div>
+                            <div class="admin-message-subject">New Enrollment Approvals</div>
+                            <p class="admin-message-text">
+                                We have received 5 new enrollment forms today. Please review and approve them so we can assign admission numbers.
+                            </p>
+                            <div class="admin-message-actions">
+                                <a href="#" class="btn btn-outline" style="padding:6px 14px;font-size:12px;">
+                                    <i class="fas fa-reply"></i> Reply
+                                </a>
+                                <a href="javascript:void(0)" onclick="navigateTo('formsubmits')" class="btn btn-accent" style="padding:6px 14px;font-size:12px;">
+                                    <i class="fas fa-eye"></i> View Records
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ===== ACCOUNT SETTINGS ===== -->
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-user-cog"></i> Account Settings
+                    <span class="subtitle">Update your username and password</span>
+                </div>
+
+                <!-- Change Username -->
+                <form action="/admin-dashboad/update-username" method="post" onsubmit="return confirm('Update your username?');">
+                    <h4 style="margin:8px 0 12px;color:var(--primary-dark);font-size:14px;">
+                        <i class="fas fa-user-tag"></i> Change Username
+                    </h4>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Current Username</label>
+                            <input type="text" value="<%= name %>" readonly style="background:#f3f4f6;cursor:not-allowed;" />
+                            <div class="helper">Your current login username</div>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-user-edit"></i> New Username <span class="required">*</span></label>
+                            <input type="text" name="newUsername" placeholder="Enter new username" required minlength="4" />
+                            <div class="helper">Minimum 4 characters, no spaces</div>
+                        </div>
+                        <input type="hidden" name="id" value="<%= user %>" />
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-accent">
+                            <i class="fas fa-save"></i> Update Username
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Change Password -->
+                <form action="/admin-dashboad/update-password" method="post" onsubmit="return confirm('Update your password?');" style="margin-top:24px;padding-top:24px;border-top:2px dashed #e5e7eb;">
+                    <h4 style="margin:0 0 12px;color:var(--primary-dark);font-size:14px;">
+                        <i class="fas fa-lock"></i> Change Password
+                    </h4>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label><i class="fas fa-lock"></i> Current Password <span class="required">*</span></label>
+                            <input type="password" name="currentPassword" placeholder="Enter current password" required />
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-key"></i> New Password <span class="required">*</span></label>
+                            <input type="password" name="newPassword" placeholder="Enter new password" required minlength="8" />
+                            <div class="helper">Minimum 8 characters with a number and symbol</div>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-key"></i> Confirm New Password <span class="required">*</span></label>
+                            <input type="password" name="confirmPassword" placeholder="Re-enter new password" required minlength="8" />
+                        </div>
+                        <input type="hidden" name="id" value="<%= user %>" />
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-accent">
+                            <i class="fas fa-save"></i> Update Password
+                        </button>
+                        <button type="reset" class="btn btn-outline">
+                            <i class="fas fa-undo"></i> Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </section>
+
+
+    </div>
+    
+    <script src="/admin.js"></script>
+</body>
+</html>

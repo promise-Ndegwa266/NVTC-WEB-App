@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Two-Factor Authentication – NVTC</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/style-2fa.css" />
+</head>
+<body>
+
+    <div class="container">
+
+
+        <!-- ===== 2FA CARD ===== -->
+        <div class="card">
+
+            <div class="header">
+                <div class="icon-ring">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2>Two-Factor Authentication</h2>
+                <p>Enter the 6-digit verification code sent to your device</p>
+            </div>
+
+            <!-- ===== CODE INPUTS ===== -->
+            <form id="twoFactorForm" novalidate>
+                <div class="code-input-container" id="codeContainer">
+                    <input
+                    type="number"
+                    class="code-input"
+                    id="code1"
+                    maxlength="1"
+                    placeholder="•"
+                    inputmode="numeric"
+                    pattern="[0-9]"
+                    required
+                    />
+                    <input
+                    type="number"
+                    class="code-input"
+                    id="code2"
+                    maxlength="1"
+                    placeholder="•"
+                    inputmode="numeric"
+                    pattern="[0-9]"
+                    required
+                    />
+                    <input
+                    type="number"
+                    class="code-input"
+                    id="code3"
+                    maxlength="1"
+                    placeholder="•"
+                    inputmode="numeric"
+                    pattern="[0-9]"
+                    required
+                    />
+                    <input
+                    type="number"
+                    class="code-input"
+                    id="code4"
+                    maxlength="1"
+                    placeholder="•"
+                    inputmode="numeric"
+                    pattern="[0-9]"
+                    required
+                    />
+                    <input
+                    type="number"
+                    class="code-input"
+                    id="code5"
+                    maxlength="1"
+                    placeholder="•"
+                    inputmode="numeric"
+                    pattern="[0-9]"
+                    required
+                    />
+                    <input
+                    type="number"
+                    class="code-input"
+                    id="code6"
+                    maxlength="1"
+                    placeholder="•"
+                    inputmode="numeric"
+                    pattern="[0-9]"
+                    required
+                    />
+                </div>
+
+                <!-- ===== STATUS MESSAGE ===== -->
+                <div class="status-message" id="statusMessage">
+                    <i class="fas fa-info-circle"></i>
+                    <span id="statusText">Invalid code. Please try again.</span>
+                </div>
+
+                <!-- ===== RESEND BUTTON ===== -->
+                <div class="resend-section">
+                    <button type="button" class="resend-btn" id="resendBtn">
+                        <i class="fas fa-redo-alt"></i> Resend Code
+                    </button>
+                </div>
+
+                <!-- ===== BUTTONS ===== -->
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary" id="verifyBtn">
+                        <span class="btn-text"><i class="fas fa-check-circle"></i> Verify</span>
+                        <span class="spinner"></span>
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="clearBtn">
+                        <i class="fas fa-undo-alt"></i> Clear
+                    </button>
+                </div>
+            </form>
+            <div style="display: none;">
+                <input id="username" type="text" value="<%= name %>">
+                <input id="admition" type="number" value="<%= adNo %>">
+            </div>
+
+            <!-- ===== FOOTER ===== -->
+            <div class="footer">
+                <p>
+                    <i class="fas fa-shield-alt" style="color:var(--primary);"></i>
+                    Secure authentication
+                </p>
+                <p style="margin-top:4px;">
+                    <a href="/student-dashboad/login"><i class="fas fa-arrow-left"></i> Back to Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMsg">Success!</span>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="/script-2fa.js"></script>
+
+</body>
+</html>

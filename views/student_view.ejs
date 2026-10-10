@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Student Details – NVTC Admin</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/style-student-view.css" />
+</head>
+<body>
+    <main class="main-content">
+
+        <!-- ===== PROFILE CARD ===== -->
+        <div class="profile-card">
+
+            <!-- Header -->
+            <div class="profile-header">
+              
+                <div class="profile-info">
+                    <h1><%= studentData.TraineeData.Name.firstName %> <%= studentData.TraineeData.Name.middleName %> <%= studentData.TraineeData.Name.sureName %></h1>
+                    <% if (studentData.Enrollment == true) { %>
+                        <p><i class="fas fa-id-card"></i> Admission No: <strong>ADM-2024-001</strong></p>
+                    <% } %>
+                    
+                </div>
+                <div class="profile-status">
+                    <% if (studentData.Enrollment == true) { %>
+                        <span class="status-badge approved">Approved</span>
+                    <% }else { %>
+                        <span class="status-badge notaprove">Inprogress</span>
+                    <%}%>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <div class="quick-stat">
+                    <i class="fas fa-graduation-cap"></i>
+                    <div>
+                        <h4><%= studentData.TraineeData.CourseDetails.courseApplied %></h4>
+                        <p>Course</p>
+                    </div>
+                </div>
+                <div class="quick-stat">
+                    <i class="fas fa-layer-group"></i>
+                    <div>
+                        <h4><%= studentData.TraineeData.CourseDetails.level %></h4>
+                        <p>Level</p>
+                    </div>
+                </div>
+                <div class="quick-stat">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4><%= studentData.TraineeData.CourseDetails.modeOfStudy %></h4>
+                        <p>Mode of Study</p>
+                    </div>
+                </div>
+                <div class="quick-stat">
+                    <i class="fas fa-home"></i>
+                    <div>
+                        <h4><%= studentData.TraineeData.CourseDetails.type %></h4>
+                        <p>Type</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ===== DETAILS SECTIONS ===== -->
+
+        <!-- PART 1: TRAINEE INFORMATION -->
+        <div class="details-card">
+            <div class="section-title">
+                <i class="fas fa-user-graduate"></i> PART 1: TRAINEE INFORMATION
+            </div>
+
+            <div class="section-subtitle">I) PERSONAL DATA</div>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="detail-label">Surname</span>
+                    <span class="detail-value"><%= studentData.TraineeData.Name.sureName %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">First Name</span>
+                    <span class="detail-value"><%= studentData.TraineeData.Name.firstName %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Middle Name</span>
+                    <span class="detail-value"><%= studentData.TraineeData.Name.middleName %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Gender</span>
+                    <span class="detail-value"><%= studentData.TraineeData.PersonalDetails.Gender %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Date of Birth</span>
+                    <span class="detail-value"><%= studentData.TraineeData.PersonalDetails.dateOfBirth.toDateString() %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Nationality</span>
+                    <span class="detail-value"><%= studentData.TraineeData.PersonalDetails.nationality %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Marital Status</span>
+                    <span class="detail-value"><%= studentData.TraineeData.PersonalDetails.maritalStatus %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">ID/Passport No.</span>
+                    <span class="detail-value"><%= studentData.TraineeData.PersonalDetails.studentIdOrPassport %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Phone Number</span>
+                    <span class="detail-value"><%= studentData.TraineeData.ContactDetails.studentTel %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Email Address</span>
+                    <span class="detail-value"><%= studentData.TraineeData.ContactDetails.studentEmail %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Postal Address</span>
+                    <span class="detail-value"><%= studentData.TraineeData.ContactDetails.postalAdress %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Constituency</span>
+                    <span class="detail-value"><%= studentData.TraineeData.PersonalDetails.constituency %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Ward</span>
+                    <span class="detail-value"><%= studentData.TraineeData.PersonalDetails.Ward %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Date of Entry</span>
+                    <span class="detail-value"><%= studentData.TraineeData.PersonalDetails.entryDate.toDateString() %></span>
+                </div>
+            </div>
+
+            <!-- COURSE -->
+            <div class="section-subtitle" style="margin-top:24px;">II) COURSE</div>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="detail-label">Course Applied For</span>
+                    <span class="detail-value"><%= studentData.TraineeData.CourseDetails.courseApplied %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Level</span>
+                    <span class="detail-value"><%= studentData.TraineeData.CourseDetails.level %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Duration</span>
+                    <span class="detail-value"><%= studentData.TraineeData.CourseDetails.duration %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Mode of Study</span>
+                    <span class="detail-value"><%= studentData.TraineeData.CourseDetails.modeOfStudy %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Type</span>
+                    <span class="detail-value"><%= studentData.TraineeData.CourseDetails.type %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Exam body</span>
+                    <span class="detail-value"><%= studentData.TraineeData.CourseDetails.ExamBody %></span>
+                </div>
+            </div>
+
+            <!-- EDUCATION BACKGROUND -->
+            <div class="section-subtitle" style="margin-top:24px;">III) EDUCATION BACKGROUND</div>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="detail-label">Last School Attended</span>
+                    <span class="detail-value"><%= studentData.TraineeData.EducationDetails.lastSchoolAttended %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Education Level</span>
+                    <span class="detail-value"><%= studentData.TraineeData.EducationDetails.educationLevel %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Marks/Grade Attained</span>
+                    <span class="detail-value"><%= studentData.TraineeData.EducationDetails.gradeAttained %></span>
+                </div>
+            </div>
+
+            <!-- ATTACHMENTS -->
+            <div class="section-subtitle" style="margin-top:24px;">Attachments</div>
+            <div class="attachments">
+                <% studentData.TraineeData.EducationDetails.proofOfEducation.forEach((element)=>{%>
+                    <a href="<%= element %>" download="<%= element %>" class="attachment-item">
+                        <i class="fas fa-file-pdf"></i>
+                        <div>
+                            <h4><%= element %></h4>
+                            <p>Uploaded </p>
+                        </div>
+                        <i class="fas fa-download"></i>
+                    </a>
+                <%}) %>
+            </div>
+
+            <!-- HEALTH -->
+            <div class="section-subtitle" style="margin-top:24px;">IV) HEALTH</div>
+            <div class="details-grid">
+                <div class="detail-item full-width">
+                    <span class="detail-label">Any Health Problem?</span>
+                    <span class="detail-value"><%= studentData.TraineeData.HealthDetails.healthProblem %></span>
+                </div>
+                <div class="detail-item full-width">
+                    <span class="detail-label">Special Case / Disability</span>
+                    <span class="detail-value"><%= studentData.TraineeData.HealthDetails.disability %></span>
+                </div>
+            </div>
+
+            <!-- CO-CURRICULAR -->
+            <div class="section-subtitle" style="margin-top:24px;">V) CO-CURRICULAR</div>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="detail-label">Sports</span>
+                    <span class="detail-value"><%= studentData.TraineeData.CoCuricularActivities.sports %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Drama / Music</span>
+                    <span class="detail-value"><%= studentData.TraineeData.CoCuricularActivities.dramaOrMusic %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Clubs</span>
+                    <span class="detail-value"><%= studentData.TraineeData.CoCuricularActivities.clubs %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Any Other</span>
+                    <span class="detail-value"><%= studentData.TraineeData.CoCuricularActivities.anyOther %></span>
+                </div>
+            </div>
+
+            <!-- DISCIPLINE -->
+            <div class="section-subtitle" style="margin-top:24px;">VI) DISCIPLINE</div>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="detail-label">Ever Suspended/Expelled?</span>
+                    <span class="detail-value"><%= studentData.TraineeData.DisciplinaryDetails.schoolSuspension.suspended %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Reason (if yes)</span>
+                    <span class="detail-value"><%= studentData.TraineeData.DisciplinaryDetails.schoolSuspension.resonForSuspension  %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Ever Convicted?</span>
+                    <span class="detail-value"><%= studentData.TraineeData.DisciplinaryDetails.criminalConviction.convicted %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Offence Type (if yes)</span>
+                    <span class="detail-value"><%= studentData.TraineeData.DisciplinaryDetails.criminalConviction.resonForOffence %></span>
+                </div>
+            </div>
+
+            <!-- RULES -->
+            <div class="section-subtitle" style="margin-top:24px;">VII) RULES AND REGULATIONS</div>
+            <div class="agreement-box">
+                <i class="fas fa-check-circle"></i>
+                <p><%= studentData.TraineeData.Name.firstName %> <%= studentData.TraineeData.Name.middleName %> has agreed to the NVTC Rules and Regulations on <strong><%= studentData.TraineeData.rulesAndRegulations.date.toDateString() %></strong>.</p>
+            </div>
+        </div>
+
+        <!-- PART 2: PARENT / GUARDIAN INFORMATION -->
+        <div class="details-card">
+            <div class="section-title">
+                <i class="fas fa-user-friends"></i> PART 2: PARENTS / GUARDIAN INFORMATION
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="detail-label">Guardian Name</span>
+                    <span class="detail-value"><%= studentData.ParentOrGuardianInformation.Name %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">ID No. / Passport</span>
+                    <span class="detail-value"><%= studentData.ParentOrGuardianInformation.IdNoOrPassportNo %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Postal Address</span>
+                    <span class="detail-value"><%= studentData.ParentOrGuardianInformation.PostalAdress %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Phone Number</span>
+                    <span class="detail-value"><%= studentData.ParentOrGuardianInformation.MobileNumber %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Alternative Contact</span>
+                    <span class="detail-value"><%= studentData.ParentOrGuardianInformation.AltanativeContact %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Email Address</span>
+                    <span class="detail-value"><%= studentData.ParentOrGuardianInformation.Email %></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- PART 3: FEES PAYMENT -->
+        <div class="details-card">
+            <div class="section-title">
+                <i class="fas fa-money-bill-wave"></i> PART 3: FEES PAYMENT
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="detail-label">Parent Name</span>
+                    <span class="detail-value"><%= studentData.FeesPayment.Parent.ParentName %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Parent Contact</span>
+                    <span class="detail-value"><%= studentData.FeesPayment.Parent.ParentContact %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Guardian Name</span>
+                    <span class="detail-value"><%= studentData.FeesPayment.Guardian.GuardianName %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Guardian Contact</span>
+                    <span class="detail-value"><%= studentData.FeesPayment.Guardian.GuardianContact %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Sponsor Name</span>
+                    <span class="detail-value"><%= studentData.FeesPayment.Sponsor.SponsorName %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Sponsor Contact</span>
+                    <span class="detail-value"><%= studentData.FeesPayment.Sponsor.SponsorContact %></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- PART 4: COMMITMENT -->
+        <div class="details-card">
+            <div class="section-title">
+                <i class="fas fa-handshake"></i> PART 4: COMMITMENT
+            </div>
+
+            <div class="commitment-box">
+                <p><i class="fas fa-check-circle"></i><%= studentData.Commitment.Name %> has agreed to ensure the trainee obeys the Institution Authorities and School Rules and Regulations.</p>
+            </div>
+
+            <div class="details-grid" style="margin-top:16px;">
+                <div class="detail-item">
+                    <span class="detail-label">Signed By</span>
+                    <span class="detail-value"><%= studentData.Commitment.Name %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Sign</span>
+                    <span class="detail-value"><%= studentData.Commitment.ParentOrGuardianSighn %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Phone</span>
+                    <span class="detail-value"><%= studentData.Commitment.TellphoneNumber %></span>
+                </div>
+                
+            </div>
+        </div>
+        <% if (studentData.Enrollment == true) { %>
+            <!-- OFFICIAL USE -->
+            <div class="details-card official-card">
+                <div class="section-title">
+                    <i class="fas fa-stamp"></i> OFFICIAL USE ONLY
+                </div>
+
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <span class="detail-label">Authorized By</span>
+                        <span class="detail-value">Mr. Peter Kamau</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Designation</span>
+                        <span class="detail-value">Registrar</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Date</span>
+                        <span class="detail-value">02 September 2024</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Sign</span>
+                        <span class="detail-value">P. Kamau</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Trainee Admission No.</span>
+                        <span class="detail-value">ADM-2024-001</span>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+        
+
+        <!-- ===== ACTION BUTTONS ===== -->
+        <div class="action-bar">
+            <% if (studentData.Enrollment == true) { %>
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-print"></i> Print Details
+                </a>
+            <% } else { %>
+                <a href="Enroll_Student?id=<%= studentData._id %>&data=<%= user %>" target="_blank" class="btn btn-warning">
+                    <i class="fas fa-user-plus"></i> Enroll Student
+                </a>
+            <% } %>
+            <a href="student_anrolled_delete?id=<%= studentData._id %>&data=<%= user %>" class="btn btn-danger">
+                <i class="fas fa-trash-alt"></i> Delete 
+            </a>
+        </div>
+
+    </main>
+
+</body>
+</html>

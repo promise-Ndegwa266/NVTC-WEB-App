@@ -1,0 +1,234 @@
+/* style.css — all styles for the login form */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+  background: linear-gradient(145deg, #f6f9fc 0%, #e9f1f8 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* card container */
+.login-wrapper {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 36px;
+  padding: 2.5rem 2rem 2.2rem;
+  box-shadow: 0 20px 45px -12px rgba(0, 20, 40, 0.25),
+              0 4px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+.login-card:hover {
+  box-shadow: 0 28px 55px -14px rgba(0, 30, 60, 0.30);
+}
+
+/* brand icon */
+.brand-icon {
+  font-size: 2.6rem;
+  text-align: center;
+  display: block;
+  margin-bottom: 0.3rem;
+  line-height: 1;
+}
+
+.login-card h2 {
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: #0b1e33;
+  text-align: center;
+  letter-spacing: -0.4px;
+  margin-top: 0.2rem;
+}
+
+.subtitle {
+  text-align: center;
+  color: #4a5b6e;
+  font-size: 0.95rem;
+  margin-top: -0.1rem;
+  margin-bottom: 1.8rem;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+/* form fields */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.field-group label {
+  font-size: 0.88rem;
+  font-weight: 550;
+  color: #1a2c44;
+  letter-spacing: 0.2px;
+  margin-left: 0.25rem;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 60px;
+  border: 1.5px solid #dce4ed;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  padding: 0 0.8rem;
+  background: #ffffff;
+}
+
+.input-wrapper:focus-within {
+  border-color: #2a6df4;
+  box-shadow: 0 0 0 4px rgba(42, 109, 244, 0.12);
+}
+
+.input-icon {
+  font-size: 1.1rem;
+  color: #6f7f92;
+  padding-right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.input-wrapper:focus-within .input-icon {
+  opacity: 1;
+  color: #2a6df4;
+}
+
+.input-wrapper input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0.9rem 0.2rem 0.9rem 0.1rem;
+  font-size: 1rem;
+  color: #0b1e33;
+  outline: none;
+  font-weight: 450;
+}
+
+.input-wrapper input::placeholder {
+  color: #a8b9ce;
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+/* options row: remember + forgot */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.2rem 0 0.2rem;
+  font-size: 0.88rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #1f344b;
+  cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: #2a6df4;
+  cursor: pointer;
+}
+
+.forgot-link {
+  color: #2a6df4;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.88rem;
+  transition: color 0.15s;
+}
+
+.forgot-link:hover {
+  color: #0f4bc0;
+  text-decoration: underline;
+}
+
+/* login button */
+.login-btn {
+  background: #1a2c44;
+  border: none;
+  padding: 0.9rem 0;
+  border-radius: 80px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  margin-top: 0.5rem;
+  letter-spacing: 0.3px;
+  box-shadow: 0 6px 14px rgba(26, 44, 68, 0.20);
+}
+
+.login-btn:hover {
+  background: #0f1f33;
+  box-shadow: 0 8px 20px rgba(15, 31, 51, 0.30);
+  transform: scale(1.01);
+}
+
+.login-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* signup prompt */
+.signup-prompt {
+  text-align: center;
+  margin-top: 1.8rem;
+  font-size: 0.95rem;
+  color: #2f445c;
+}
+
+.signup-prompt a {
+  color: #2a6df4;
+  text-decoration: none;
+  font-weight: 550;
+  transition: color 0.15s;
+}
+
+.signup-prompt a:hover {
+  color: #0f4bc0;
+  text-decoration: underline;
+}
+
+/* small screen adjustments */
+@media (max-width: 450px) {
+  .login-card {
+    padding: 2rem 1.25rem 1.8rem;
+  }
+  .login-card h2 {
+    font-size: 1.7rem;
+  }
+  .form-options {
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+}

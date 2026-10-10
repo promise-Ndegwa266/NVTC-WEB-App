@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login form · NVTC</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/form.css">
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-card">
+    
+      <div class="brand-icon"><i class="fa-solid fa-fingerprint"></i></div>
+      <h2>N.V.T.C</h2>
+      <p class="subtitle">Sign in to student dashboad</p>
+
+      
+      <form class="login-form" action="/student-dashboad/data" method="post">
+    
+        <div class="field-group">
+          <label for="username">Student name</label>
+          <div class="input-wrapper">
+            <span class="input-icon"><i class="fa-regular fa-user"></i></span>
+            <input type="text" id="username" name="username" placeholder="Enter your student name" required autofocus>
+          </div>
+        </div>
+
+        
+        <div class="field-group">
+          <label for="password">Admission Number</label>
+          <div class="input-wrapper">
+            <span class="input-icon"><i class="fa-brands fa-keycdn"></i></span>
+            <input type="password" id="password" name="password" placeholder="Enter your admission No" required>
+          </div>
+        </div>
+
+    
+        <div class="form-options">
+          <label class="remember-me">
+            <input type="checkbox" name="remember"> Remember me
+          </label>
+         
+        </div>
+
+    
+        <button type="submit" class="login-btn">Sign in</button>
+        <p style="text-align: center;
+         color: rgb(230, 41, 41);
+         background-color: aliceblue;
+         border-radius: 20px;
+         padding: 10px 15px;"><%= errormessage%></p>
+      </form>
+
+    </div>
+  </div>
+</body>
+</html>

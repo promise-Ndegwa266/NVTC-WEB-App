@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Enroll Student – NVTC Admin</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/style-admin-enroll.css" />
+</head>
+<body>
+
+    <main class="main-content">
+        <!-- ===== APPLICANT SUMMARY ===== -->
+        <div class="applicant-summary">
+            <div class="summary-info">
+                <h2>John Doe</h2>
+                <p>
+                    <i class="fas fa-graduation-cap"></i> Mechanical Engineering
+                    <span class="dot">•</span>
+                    <i class="fas fa-layer-group"></i> Level I
+                    <span class="dot">•</span>
+                    <i class="fas fa-phone"></i> 0712 345 678
+                </p>
+                <span class="status-tag pending">
+                    <i class="fas fa-clock"></i> Pending Admission
+                </span>
+            </div>
+        </div>
+
+        <!-- ===== ENROLLMENT FORM ===== -->
+        <form id="enrollForm" class="enroll-form">
+
+            <!-- ===== ADMISSION DETAILS ===== -->
+            <div class="form-card">
+                <div class="section-title">
+                    <i class="fas fa-id-card"></i> Admission Details
+                </div>
+                <p class="section-subtitle">Assign the student's official admission information</p>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="admissionNumber">Admission Number <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" id="admissionNumber" value="ADM-2024-001" placeholder="ADM-2024-XXX" required />
+                            <span class="icon"><i class="fas fa-hashtag"></i></span>
+                        </div>
+                        <p class="helper-text">Auto-generated based on enrollment order</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="admissionDate">Admission Date <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="date" id="admissionDate" value="2024-09-01" required />
+                            <span class="icon"><i class="fas fa-calendar-check"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="academicYear">Academic Year <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select id="academicYear" required>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                            </select>
+                            <span class="icon"><i class="fas fa-calendar-alt"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="intake">Intake / Term <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select id="intake" required>
+                                <option value="Term 1">Term 1 (Jan – Apr)</option>
+                                <option value="Term 2">Term 2 (May – Aug)</option>
+                                <option value="Term 3" selected>Term 3 (Sep – Dec)</option>
+                            </select>
+                            <span class="icon"><i class="fas fa-calendar-week"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CLASS ASSIGNMENT ===== -->
+            <div class="form-card">
+                <div class="section-title">
+                    <i class="fas fa-school"></i> Class Assignment
+                </div>
+                <p class="section-subtitle">Assign the student to a class, stream, and instructor</p>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="department">Department <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select id="department" required>
+                                <option value="">Select Department</option>
+                                <option value="Engineering" selected>Engineering</option>
+                                <option value="ICT">ICT &amp; Computer Studies</option>
+                                <option value="Construction">Building &amp; Construction</option>
+                                <option value="Hospitality">Hospitality</option>
+                                <option value="Creative Arts">Creative Arts</option>
+                                <option value="Beauty">Cosmetology &amp; Beauty</option>
+                            </select>
+                            <span class="icon"><i class="fas fa-building"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="courseAssigned">Course Assigned <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" id="courseAssigned" value="Mechanical Engineering" required />
+                            <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="classStream">Class / Stream <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select id="classStream" required>
+                                <option value="">Select Class</option>
+                                <option value="ME-1A" selected>ME-1A (Morning)</option>
+                                <option value="ME-1B">ME-1B (Afternoon)</option>
+                                <option value="ME-1C">ME-1C (Evening)</option>
+                            </select>
+                            <span class="icon"><i class="fas fa-users"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="instructor">Assigned Instructor <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select id="instructor" required>
+                                <option value="">Select Instructor</option>
+                                <option value="Mr. Peter Kamau" selected>Mr. Peter Kamau</option>
+                                <option value="Ms. Grace Wanjiku">Ms. Grace Wanjiku</option>
+                                <option value="Mr. David Otieno">Mr. David Otieno</option>
+                                <option value="Mrs. Jane Mwangi">Mrs. Jane Mwangi</option>
+                            </select>
+                            <span class="icon"><i class="fas fa-chalkboard-teacher"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roomNumber">Room / Workshop</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="roomNumber" value="Workshop A" placeholder="e.g. Workshop A" />
+                            <span class="icon"><i class="fas fa-door-open"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="session">Session <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select id="session" required>
+                                <option value="Morning">Morning (8:00 AM – 12:00 PM)</option>
+                                <option value="Afternoon">Afternoon (1:00 PM – 5:00 PM)</option>
+                                <option value="Full Day" selected>Full Day</option>
+                            </select>
+                            <span class="icon"><i class="fas fa-clock"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== FEES & PAYMENT ===== -->
+            <div class="form-card">
+                <div class="section-title">
+                    <i class="fas fa-money-bill-wave"></i> Fees &amp; Payment
+                </div>
+                <p class="section-subtitle">Confirm the fee structure and payment mode</p>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="totalFees">Total Fees (KES) <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="number" id="totalFees" value="35000" placeholder="e.g. 35000" required />
+                            <span class="icon"><i class="fas fa-coins"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="amountPaid">Amount Paid (KES)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="amountPaid" value="15000" placeholder="e.g. 15000" />
+                            <span class="icon"><i class="fas fa-hand-holding-usd"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="balance">Balance (KES)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="balance" value="20000" readonly />
+                            <span class="icon"><i class="fas fa-balance-scale"></i></span>
+                        </div>
+                        <p class="helper-text">Auto-calculated from total fees minus amount paid</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paymentMode">Payment Mode <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select id="paymentMode" required>
+                                <option value="">Select Mode</option>
+                                <option value="Bank Transfer" selected>Bank Transfer</option>
+                                <option value="M-Pesa">M-Pesa</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Sponsor">Sponsor</option>
+                            </select>
+                            <span class="icon"><i class="fas fa-credit-card"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sponsorType">Sponsor / Payer <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select id="sponsorType" required>
+                                <option value="">Select Payer</option>
+                                <option value="Parent" selected>Parent</option>
+                                <option value="Guardian">Guardian</option>
+                                <option value="Self">Self</option>
+                                <option value="Government">Government Sponsor</option>
+                            </select>
+                            <span class="icon"><i class="fas fa-user-friends"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="feeStatus">Fee Status <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select id="feeStatus" required>
+                                <option value="Partial">Partial Payment</option>
+                                <option value="Paid">Fully Paid</option>
+                                <option value="Pending" selected>Pending</option>
+                                <option value="Sponsored">Fully Sponsored</option>
+                            </select>
+                            <span class="icon"><i class="fas fa-info-circle"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== ACCOMMODATION ===== -->
+            <div class="form-card">
+                <div class="section-title">
+                    <i class="fas fa-bed"></i> Accommodation
+                </div>
+                <p class="section-subtitle">Assign accommodation for boarding students</p>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Accommodation Type <span class="required">*</span></label>
+                        <div class="inline-group">
+                            <label class="radio-label">
+                                <input type="radio" name="accommodation" value="Day Scholar" checked />
+                                <span>Day Scholar</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="accommodation" value="Boarder" />
+                                <span>Boarder</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hostel">Hostel / Dormitory</label>
+                        <div class="input-wrapper">
+                            <select id="hostel">
+                                <option value="">Not Applicable</option>
+                                <option value="Male Hostel A">Male Hostel A</option>
+                                <option value="Male Hostel B">Male Hostel B</option>
+                                <option value="Female Hostel A">Female Hostel A</option>
+                                <option value="Female Hostel B">Female Hostel B</option>
+                            </select>
+                            <span class="icon"><i class="fas fa-building"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roomNo">Room Number</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="roomNo" placeholder="e.g. Room 12" />
+                            <span class="icon"><i class="fas fa-door-closed"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bedNo">Bed Number</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="bedNo" placeholder="e.g. Bed 4" />
+                            <span class="icon"><i class="fas fa-bed"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ===== ACTION BUTTONS ===== -->
+            <div class="action-bar">
+                <a href="student-view.html" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Cancel
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-check-circle"></i> Approve &amp; Enroll Student
+                </button>
+            </div>
+
+        </form>
+
+    </main>
+
+</body>
+</html>

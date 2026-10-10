@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Gallery & Slideshow</title>
+    <!-- Google Fonts -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Helvetica+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+
+    <!-- 1. Slideshow Section -->
+    <section class="slideshow-section" id="slideshow">
+        <div class="slide-content" id="slideContent">
+            <!-- Slide 1 -->
+            <div class="slide-image" style="background-image: url('/img/placeHolderImg.jpeg');"></div>
+            <div class="slide-text">
+                <small style="letter-spacing: 3px;">STUDIO SERIES</small>
+                <h2>Elegance</h2>
+                <p>Capturing the quiet moments of the human spirit through meticulous lighting and monochrome tones.</p>
+                <button class="slide-btn" onclick="openCustomLightbox('/img/placeHolderImg.jpeg')">View Project</button>
+            </div>
+        </div>
+        
+        <div class="slide-nav" id="slideNav">
+            <div class="slide-dot active" onclick="currentSlide(0)"></div>
+            <div class="slide-dot" onclick="currentSlide(1)"></div>
+            <div class="slide-dot" onclick="currentSlide(2)"></div>
+        </div>
+    </section>
+
+    <div class="home-div">
+        <a href="/"><i class="fa-solid fa-arrow-left"></i> </a>
+    </div>
+
+    <!-- 2. Masonry Gallery -->
+    <div class="container">
+        <h1 class="section-title">Gallery <span class="section-subtitle">Editorial Layout</span></h1>
+        <div class="masonry-gallery">
+            <div class="gallery-item" onclick="openLightbox('/img/placeHolderImg3.jpeg')">
+                <img src="/img/placeHolderImg3.jpeg" alt="Portrait">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('/img/placeHolderImg.jpeg')">
+                <img src="/img/placeHolderImg.jpeg" alt="Portrait">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('/img/placeHolderImg3.jpeg')">
+                <img src="/img/placeHolderImg3.jpeg" alt="Portrait">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('/img/placeHolderImg6.jpeg')">
+                <img src="/img/placeHolderImg6.jpeg" alt="Portrait">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('/img/placeHolderImg.jpeg')">
+                <img src="/img/placeHolderImg.jpeg" alt="Portrait">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('/img/placeHolderImg7.jpeg')">
+                <img src="/img/placeHolderImg7.jpeg" alt="Portrait">
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Interactive Collage -->
+    <section class="interactive-collage">
+        <h1 class="section-title" style="color:#1a1a1a;">Gallery <span class="section-subtitle">Interactive Gallery Layout</span></h1>
+        <div class="collage-grid">
+            <div class="collage-item" style="background-image: url('/img/placeHolderImg4.jpeg');" onclick="openLightbox('/img/placeHolderImg4.jpeg')"></div>
+            <div class="collage-item" style="background-image: url('/img/placeHolderImg7.jpeg');" onclick="openLightbox('/img/placeHolderImg7.jpeg')"></div>
+            <div class="collage-item" style="background-image: url('/img/placeHolderImg.jpeg');" onclick="openLightbox('/img/placeHolderImg.jpeg')"></div>
+            <div class="collage-item" style="background-image: url('/img/placeHolderImg2.jpeg');" onclick="openLightbox('/img/placeHolderImg2.jpeg')"></div>
+        </div>
+    </section>
+
+    <!-- 4. Gray scale-->
+    <div class="container">
+        <h1 class="section-title">Gallery <span class="section-subtitle">Editorial Layout Gray Scale</span></h1>
+        <div class="masonry-gallery">
+
+            <div class="gallery-item custom" onclick="openLightbox('/img/placeHolderImg3.jpeg')">
+                <img src="/img/placeHolderImg3.jpeg" alt="Portrait">
+            </div>
+
+            <div class="gallery-item custom" onclick="openLightbox('/img/placeHolderImg6.jpeg')">
+                <img src="/img/placeHolderImg6.jpeg" alt="Portrait">
+            </div>
+
+            <div class="gallery-item custom" onclick="openLightbox('/img/placeHolderImg.jpeg')">
+                <img src="/img/placeHolderImg.jpeg" alt="Portrait">
+            </div>
+
+            <div class="gallery-item custom" onclick="openLightbox('/img/placeHolderImg7.jpeg')">
+                <img src="/img/placeHolderImg7.jpeg" alt="Portrait">
+            </div>
+
+            <div class="gallery-item custom" onclick="openLightbox('/img/placeHolderImg4.jpeg')">
+                <img src="/img/placeHolderImg4.jpeg" alt="Portrait">
+            </div>
+
+            <div class="gallery-item custom" onclick="openLightbox('/img/placeHolderImg2.jpeg')">
+                <img src="/img/placeHolderImg2.jpeg" alt="Portrait">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 3. Interactive Collage -->
+    <section class="interactive-collage">
+        <h1 class="section-title" style="color:#1a1a1a;">Gallery <span class="section-subtitle">Interactive Gallery Layout With Gray Scale</span></h1>
+        <div class="collage-grid-container">
+            <div class="img-container" style="background-image: url('/img/placeHolderImg4.jpeg');" onclick="openLightbox('/img/placeHolderImg4.jpeg')"></div>
+            <div class="img-container" style="background-image: url('/img/placeHolderImg7.jpeg');" onclick="openLightbox('/img/placeHolderImg7.jpeg')"></div>
+            <div class="img-container" style="background-image: url('/img/placeHolderImg.jpeg');" onclick="openLightbox('/img/placeHolderImg.jpeg')"></div>
+            <div class="img-container" style="background-image: url('/img/placeHolderImg2.jpeg');" onclick="openLightbox('/img/placeHolderImg2.jpeg')"></div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img src="" class="lightbox-img" id="lightboxImg" alt="Fullscreen Image">
+    </div>
+
+    <section class="container_g">
+        <div class="carousel-container">
+            <div class="carousel-ring" id="ring">
+                <div class="card"><img src="/img/placeHolderImg2.jpeg" alt="Work 1"></div>
+                <div class="card"><img src="/img/placeHolderImg7.jpeg" alt="Work 2"></div>
+                <div class="card"><img src="/img/placeHolderImg.jpeg" alt="Work 3"></div>
+                <div class="card"><img src="/img/placeHolderImg4.jpeg" alt="Work 4"></div>
+                <div class="card"><img src="/img/placeHolderImg5.jpeg" alt="Work 5"></div>
+                <div class="card"><img src="/img/placeHolderImg6.jpeg" alt="Work 6"></div>
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <button class="hire-btn" id="nextBtn">Click to Slide</button>
+        </div>
+    </section>
+    
+
+    <!-- External JS -->
+    <script src="gallery.js"></script>
+</body>
+</html>

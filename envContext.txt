@@ -1,0 +1,12 @@
+DATABASE_URL=mongodb://127.0.0.1:27017/NVTC
+PUBLICK=mongodb+srv://promisemukunya_db_user:<db_password>@cluster0.6wbjnfx.mongodb.net/?appName=Cluster0
+REDIS_URL=redis://127.0.0.1:6379
+
+ADMIN_USER=admin
+ADMIN_PASSWORD=admin@1234
+ADMIN_EMAIL=joanalexter80@gmail.com
+ADMIN_FIRSTNAME=Default
+ADMIN_SECONDNAME=Admin
+
+SENDEREMAIL=promisemukunya@gmail.com
+APPLICATIONPASSWORD=wuherntwlwsfjpzd

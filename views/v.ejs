@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise X — Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        /* ========== RESET & BASE ========== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0e17;
+            --surface: #111827;
+            --border: #1e293b;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.25);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        /* ========== HERO ONLY ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* subtle grid background */
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1000px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ---- Profile image ---- */
+        .hero-image-wrap {
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .hero-image-wrap::after {
+            content: "";
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, var(--accent), transparent, var(--accent));
+            opacity: 0.5;
+            z-index: -1;
+            animation: spin 6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--surface);
+            background: var(--surface);
+        }
+
+        /* ---- Hero text ---- */
+        .hero-text h1 {
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-text h1 span {
+            color: var(--accent);
+        }
+
+        .role {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 1rem;
+        }
+
+        .version-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.35rem 0.85rem;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+            margin-bottom: 1.2rem;
+            background: rgba(17, 24, 39, 0.6);
+        }
+
+        .version-badge .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 720px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-image {
+                width: 170px;
+                height: 170px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HERO ONLY ===== -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-image-wrap">
+                <!--
+                  Google Drive image.
+                  File ID from your link: 15VNwyWZVecwk5jnQePkCQ2whgYzqmHhQ
+                  Make sure sharing is set to "Anyone with the link → Viewer".
+                  Fallback if it doesn't load:
+                  https://drive.google.com/thumbnail?id=15VNwyWZVecwk5jnQePkCQ2whgYzqmHhQ&sz=w1200
+                -->
+                <img
+                    class="hero-image"
+                    src="https://lh3.googleusercontent.com/d/15VNwyWZVecwk5jnQePkCQ2whgYzqmHhQ"
+                    alt="Promise X — profile photo"
+                    loading="lazy"
+                />
+            </div>
+
+            <div class="hero-text">
+                <div class="version-badge">
+                    <span class="dot"></span>
+                    Version 2026-v-001
+                </div>
+
+                <h1>Hi, I'm <span>Promise X</span></h1>
+                <div class="role">Developer</div>
+            </div>
+        </div>
+    </header>
+
+</body>
+</html>

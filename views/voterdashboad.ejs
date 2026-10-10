@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>NVTC · Student Dashboard</title>
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="/voderdashboad.css">
+</head>
+<body>
+  <div class="voter-dashboard">
+
+    <!-- ====== SIDEBAR OVERLAY (mobile) ====== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ====== SIDEBAR ====== -->
+    <aside class="sidebar" id="sidebar">
+
+      <!-- Close button (mobile) -->
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="sidebar-brand">
+        <span class="brand-icon">
+          <div class="logo-img"></div>
+        </span>
+        <span class="brand-name">
+          NVTC
+          <small>Student Dashboard</small>
+        </span>
+      </div>
+
+      <div class="voter-info">
+        <div class="voter-avatar"><i class="fa-regular fa-user"></i></div>
+        <div class="voter-details">
+          <span class="voter-name"><%= username %></span>
+          <span class="voter-id">ID: <%= adition %></span>
+        </div>
+      </div>
+
+      <!-- ====== NAV BUTTONS ====== -->
+      <nav class="nav-buttons">
+        <h5>MAIN</h5>
+        <button class="nav-btn-optio active" data-section="dashboard">
+          <i class="fas fa-home"></i>
+          <span>Dashboard</span>
+        </button>
+
+        <button class="nav-btn-optio" data-section="dorm">
+          <i class="fa-solid fa-people-roof"></i>
+          <span>Dormitory</span>
+        </button>
+
+        <button class="nav-btn-optio" data-section="vote">
+          <i class="fa-solid fa-person-booth"></i>
+          <span>Vote</span>
+        </button>
+
+        <button class="nav-btn-optio" data-section="defer">
+          <i class="fas fa-hourglass-half"></i>
+          <span>Defer Request</span>
+        </button>
+
+        <h5>EXAM'S</h5>
+        <button class="nav-btn-optio" data-section="results">
+          <i class="fas fa-file-alt"></i>
+          <span>Results</span>
+        </button>
+
+        <button class="nav-btn-optio" data-section="enroll">
+          <i class="fas fa-clipboard-check"></i>
+          <span>Enroll Exam</span>
+        </button>
+
+        <h5>PROFILE</h5>
+        <button class="nav-btn-optio" data-section="profile">
+          <i class="fas fa-user-cog"></i>
+          <span>My Profile</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="/student-dashboad/logout/<%= adition %>" class="logout-link">
+          <button class="logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+          </button>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ====== MAIN CONTENT ====== -->
+    <main class="main-content">
+
+      <!-- ====== TOP BAR ====== -->
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div>
+            <h1 id="pageTitle">Dashboard</h1>
+            <span class="subtitle">Nakuru Vocational Training Center</span>
+          </div>
+        </div>
+        <div class="top-bar-right">
+          <span class="status-badge"><i class="fa-solid fa-check"></i> Active</span>
+          <span class="date-badge"><i class="fa-solid fa-calendar"></i> <%= date %></span>
+        </div>
+      </header>
+
+      <!-- ==================================================
+           SECTION: DASHBOARD (Overview)
+           ================================================== -->
+      <section class="dashboard-section active" id="section-dashboard">
+
+        <!-- Status cards -->
+        <section class="election-status">
+          <div class="status-card">
+            <div class="status-icon"><i class="fa-regular fa-clock"></i></div>
+            <div>
+              <h3>Time</h3>
+              <div class="countdown"><%= time %></div>
+            </div>
+          </div>
+          <div class="status-card">
+            <div class="status-icon"><i class="fa-solid fa-bullhorn"></i></div>
+            <div>
+              <h3>Dashboard</h3>
+              <p>You are on the student dashboard</p>
+            </div>
+          </div>
+          <div class="status-card">
+            <div class="status-icon"><i class="fa-solid fa-check"></i></div>
+            <div>
+              <h3>Your Status</h3>
+              <p class="status-logged-in">Logged in</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quick actions grid -->
+        <section class="quick-actions">
+          <h2 class="section-title"><i class="fas fa-bolt"></i> Quick Actions</h2>
+          <div class="actions-grid">
+            <a href="#" class="action-tile" data-goto="results">
+              <div class="action-icon"><i class="fas fa-file-alt"></i></div>
+              <h4>View Results</h4>
+              <p>Check your exam reports</p>
+            </a>
+            <a href="#" class="action-tile" data-goto="dorm">
+              <div class="action-icon"><i class="fas fa-bed"></i></div>
+              <h4>Book Dorm</h4>
+              <p>Request a room</p>
+            </a>
+            <a href="#" class="action-tile" data-goto="vote">
+              <div class="action-icon"><i class="fas fa-vote-yea"></i></div>
+              <h4>Cast Your Vote</h4>
+              <p>Student elections</p>
+            </a>
+            <a href="#" class="action-tile" data-goto="defer">
+              <div class="action-icon"><i class="fas fa-hourglass-half"></i></div>
+              <h4>Defer Request</h4>
+              <p>Take a study break</p>
+            </a>
+            <a href="#" class="action-tile" data-goto="profile">
+              <div class="action-icon"><i class="fas fa-user-cog"></i></div>
+              <h4>My Profile</h4>
+              <p>Settings & account</p>
+            </a>
+          </div>
+        </section>
+      </section>
+
+      <!-- ==================================================
+          SECTION: RESULTS
+          ================================================== -->
+      <section class="dashboard-section" id="section-results">
+        <div class="info-section">
+          <div class="section-header">
+            <h2><i class="fas fa-file-alt"></i> Exam Report</h2>
+            <span class="section-badge">Your results</span>
+          </div>
+
+          <!-- Filter notice -->
+          <div class="info-banner" id="resultsFilterNotice" style="display: none;">
+            <i class="fas fa-filter"></i>
+            <p>
+              Showing results for <strong>enrolled exams only</strong>.
+              <a href="#" id="goEnrollLink" style="color: var(--primary); font-weight: 700; text-decoration: underline;">Manage enrollments</a>
+            </p>
+          </div>
+
+          <% if (examReports && examReports.length > 0) { %>
+            <div class="report-table-wrap">
+              <table class="info-table" id="resultsTable">
+                <thead>
+                  <tr>
+                    <th>Level</th>
+                    <th>Module</th>
+                    <th>Exam Body</th>
+                    <th>Exam Name</th>
+                    <th>Date</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+                <tbody id="resultsBody">
+                  <% examReports.forEach(report => { %>
+                    <% report.Level.modules.forEach(mod => { %>
+                      <tr class="exam-row"
+                          data-level="Level <%= report.Level.lvl %>"
+                          data-module="Module <%= mod.module %>"
+                          data-key="Level <%= report.Level.lvl %> - Module <%= mod.module %>">
+                        <td><span class="level-pill">Level <%= report.Level.lvl %></span></td>
+                        <td><span class="module-pill">Module <%= mod.module %></span></td>
+                        <td><%= mod.exam.examBody || 'Unknown' %></td>
+                        <td><%= mod.exam.examName || 'Untitled' %></td>
+                        <td><%= mod.exam.examDate ? new Date(mod.exam.examDate).toLocaleDateString() : 'N/A' %></td>
+                        <td><strong><%= mod.exam.score || 'N/A' %></strong></td>
+                      </tr>
+                    <% }) %>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          <% } %>
+
+          <!-- Empty: No results from server -->
+          <div class="empty-state" id="noResultsState" style="<%= examReports && examReports.length > 0 ? 'display: none;' : 'display: flex;' %>">
+            <i class="fas fa-inbox"></i>
+            No exam reports are available for your admission number yet.
+          </div>
+
+          <!-- Empty: No matching enrollments -->
+          <div class="empty-state" id="noEnrolledResultsState" style="display: none;">
+            <i class="fas fa-clipboard-list"></i>
+            <div>
+              <strong>No results to show yet.</strong>
+              <p style="margin-top: 6px; font-size: 0.88rem;">
+                You haven't enrolled in any exams, or your enrolled exams don't have results yet.
+              </p>
+              <button class="booking-submit" id="goEnrollBtn" style="margin-top: 12px;">
+                <i class="fas fa-plus-circle"></i> Enroll for Exams
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECTION: DORMITORY BOOKING
+           ================================================== -->
+      <section class="dashboard-section" id="section-dorm">
+        <div class="info-section">
+          <div class="section-header">
+            <h2><i class="fas fa-people-roof"></i> Dormitory Booking</h2>
+            <span class="section-badge">For boarders</span>
+          </div>
+
+          <% if (dormBooked) { %>
+            <div class="alert success">
+              <i class="fas fa-check-circle"></i>
+              Dormitory booking submitted successfully.
+            </div>
+          <% } %>
+
+          <% if (dormBookings && dormBookings.length > 0) { %>
+            <% dormBookings.forEach(booking => { %>
+              <div class="booking-card">
+                <div class="booking-card-header">
+                  <i class="fas fa-bed"></i>
+                  <strong>Current Booking</strong>
+                </div>
+                <div class="booking-card-grid">
+                  <div class="booking-card-item">
+                    <span class="label">Dorm Block</span>
+                    <span class="value"><%= booking.dormBlock || 'Not set' %></span>
+                  </div>
+                  <div class="booking-card-item">
+                    <span class="label">Room Type</span>
+                    <span class="value"><%= booking.roomType || 'Not set' %></span>
+                  </div>
+                  <div class="booking-card-item">
+                    <span class="label">Move-in</span>
+                    <span class="value"><%= booking.moveInDate ? new Date(booking.moveInDate).toLocaleDateString() : 'N/A' %></span>
+                  </div>
+                  <div class="booking-card-item">
+                    <span class="label">Move-out</span>
+                    <span class="value"><%= booking.moveOutDate ? new Date(booking.moveOutDate).toLocaleDateString() : 'N/A' %></span>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <p class="empty-state">
+              <i class="fas fa-bed"></i>
+              You have not booked a dormitory yet. Fill in the form below.
+            </p>
+          <% } %>
+
+          <form action="/student-dashboad/book-dorm/<%= adition %>/<%= encodeURIComponent(username) %>" method="post" class="booking-form">
+            <div class="booking-row">
+              <div class="booking-field">
+                <label for="dormBlock">Dorm Block</label>
+                <select id="dormBlock" name="dormBlock" required>
+                  <option value="">Select a block</option>
+                  <option value="A">Block A</option>
+                  <option value="B">Block B</option>
+                  <option value="C">Block C</option>
+                </select>
+              </div>
+              <div class="booking-field">
+                <label for="roomType">Room Type</label>
+                <select id="roomType" name="roomType" required>
+                  <option value="">Select type</option>
+                  <option value="Single">Single</option>
+                  <option value="Double">Double</option>
+                  <option value="Shared">Shared</option>
+                </select>
+              </div>
+            </div>
+            <div class="booking-row">
+              <div class="booking-field">
+                <label for="moveInDate">Move-in Date</label>
+                <input type="date" id="moveInDate" name="moveInDate" required />
+              </div>
+              <div class="booking-field">
+                <label for="moveOutDate">Move-out Date</label>
+                <input type="date" id="moveOutDate" name="moveOutDate" required />
+              </div>
+            </div>
+            <button type="submit" class="booking-submit">
+              <i class="fas fa-bed"></i> Book Dormitory
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECTION: VOTE
+           ================================================== -->
+      <section class="dashboard-section" id="section-vote">
+        <form action="/student-dashboad/votes/<%= adition %>/<%= encodeURIComponent(username) %>" method="post" class="voting-form" id="votingForm">
+
+          <!-- PRESIDENTIAL -->
+          <section class="position-section">
+            <div class="position-header">
+              <h2><i class="fas fa-crown"></i> Presidential</h2>
+              <span class="position-badge">Select one</span>
+            </div>
+            <div class="candidates-grid">
+              <% presidentposition.forEach(element => { %>
+                <label class="candidate-option">
+                  <input type="radio" name="president" value="<%= element._id %>" required>
+                  <div class="candidate-card">
+                    <div class="candidate-avatar"><i class="fas fa-user-tie"></i></div>
+                    <div class="candidate-info">
+                      <span class="candidate-name"><%= element.name.presidentName %></span>
+                      <span class="running-mate">with: <%= element.name.runingMateName %></span>
+                    </div>
+                    <span class="select-indicator"></span>
+                  </div>
+                </label>
+              <% }) %>
+            </div>
+          </section>
+
+          <!-- SPORTS -->
+          <section class="position-section">
+            <div class="position-header">
+              <h2><i class="fas fa-futbol"></i> Sports</h2>
+              <span class="position-badge">Select one</span>
+            </div>
+            <div class="candidates-grid">
+              <% sportposition.forEach(element => { %>
+                <label class="candidate-option">
+                  <input type="radio" name="sports" value="<%= element._id %>" required>
+                  <div class="candidate-card">
+                    <div class="candidate-avatar"><i class="fas fa-running"></i></div>
+                    <div class="candidate-info">
+                      <span class="candidate-name"><%= element.name.presidentName %></span>
+                      <span class="running-mate">with: <%= element.name.runingMateName %></span>
+                    </div>
+                    <span class="select-indicator"></span>
+                  </div>
+                </label>
+              <% }) %>
+            </div>
+          </section>
+
+          <!-- ENVIRONMENT -->
+          <section class="position-section">
+            <div class="position-header">
+              <h2><i class="fas fa-leaf"></i> Environment</h2>
+              <span class="position-badge">Select one</span>
+            </div>
+            <div class="candidates-grid">
+              <% environmentposition.forEach(element => { %>
+                <label class="candidate-option">
+                  <input type="radio" name="environment" value="<%= element._id %>" required>
+                  <div class="candidate-card">
+                    <div class="candidate-avatar"><i class="fas fa-seedling"></i></div>
+                    <div class="candidate-info">
+                      <span class="candidate-name"><%= element.name.presidentName %></span>
+                      <span class="running-mate">with: <%= element.name.runingMateName %></span>
+                    </div>
+                    <span class="select-indicator"></span>
+                  </div>
+                </label>
+              <% }) %>
+            </div>
+          </section>
+
+          <div class="form-actions">
+            <button type="reset" class="btn-reset">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Reset Choices
+            </button>
+            <% if (vote) { %>
+              <div class="voted-notice">
+                <i class="fas fa-check-circle"></i>
+                You have already voted
+              </div>
+            <% } else { %>
+              <button type="submit" class="btn-submit">
+                <i class="fa-solid fa-arrow-up-from-bracket"></i> Submit Your Vote
+              </button>
+            <% } %>
+          </div>
+
+          <div class="form-disclaimer">
+            <p>
+              <i class="fa-solid fa-lock"></i>
+              Your vote is anonymous and secure. Once submitted, you cannot change your selection.
+            </p>
+          </div>
+        </form>
+      </section>
+
+      <!-- ==================================================
+           SECTION: DEFER REQUEST
+           ================================================== -->
+      <section class="dashboard-section" id="section-defer">
+        <div class="info-section">
+          <div class="section-header">
+            <h2><i class="fas fa-hourglass-half"></i> Defer Request</h2>
+            <span class="section-badge">Take a break</span>
+          </div>
+
+          <div class="info-banner">
+            <i class="fas fa-info-circle"></i>
+            <p>
+              <strong>Please note:</strong> Defer requests must be submitted at least <strong>2 weeks before</strong> your intended defer date. All requests are subject to approval by the administration.
+            </p>
+          </div>
+
+          <!-- Existing defer requests (if any) -->
+          <% if (typeof deferRequests !== 'undefined' && deferRequests && deferRequests.length > 0) { %>
+            <% deferRequests.forEach(req => { %>
+              <div class="booking-card">
+                <div class="booking-card-header">
+                  <i class="fas fa-hourglass-half"></i>
+                  <strong>Your Defer Request</strong>
+                </div>
+                <div class="booking-card-grid">
+                  <div class="booking-card-item">
+                    <span class="label">Duration</span>
+                    <span class="value"><%= req.duration || 'N/A' %></span>
+                  </div>
+                  <div class="booking-card-item">
+                    <span class="label">Start Date</span>
+                    <span class="value"><%= req.startDate ? new Date(req.startDate).toLocaleDateString() : 'N/A' %></span>
+                  </div>
+                  <div class="booking-card-item">
+                    <span class="label">Return Date</span>
+                    <span class="value"><%= req.endDate ? new Date(req.endDate).toLocaleDateString() : 'N/A' %></span>
+                  </div>
+                  <div class="booking-card-item">
+                    <span class="label">Status</span>
+                    <span class="value status-pill <%= (req.status || 'pending').toLowerCase() %>">
+                      <%= req.status || 'Pending' %>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <p class="empty-state">
+              <i class="fas fa-inbox"></i>
+              You have not submitted any defer requests yet.
+            </p>
+          <% } %>
+
+          <!-- Defer form -->
+          <form action="/student-dashboad/defer/<%= adition %>/<%= encodeURIComponent(username) %>" method="post" class="booking-form">
+
+            <div class="booking-row">
+              <div class="booking-field">
+                <label for="deferDuration">Defer Duration</label>
+                <select id="deferDuration" name="duration" required>
+                  <option value="">Select duration</option>
+                  <option value="3 Months">3 Months</option>
+                  <option value="6 Months">6 Months</option>
+                  <option value="12 Months">12 Months</option>
+                </select>
+              </div>
+              <div class="booking-field">
+                <label for="deferReason">Reason</label>
+                <select id="deferReason" name="reason" required>
+                  <option value="">Select reason</option>
+                  <option value="Medical">Medical Reasons</option>
+                  <option value="Financial">Financial Constraints</option>
+                  <option value="Family">Family Emergency</option>
+                  <option value="Internship">Internship / Attachment</option>
+                  <option value="Personal">Personal Reasons</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="booking-row">
+              <div class="booking-field">
+                <label for="deferStartDate">Defer Start Date</label>
+                <input type="date" id="deferStartDate" name="startDate" required />
+              </div>
+              <div class="booking-field">
+                <label for="deferEndDate">Expected Return Date</label>
+                <input type="date" id="deferEndDate" name="endDate" required />
+              </div>
+            </div>
+
+            <div class="booking-field">
+              <label for="deferDetails">Additional Explanation</label>
+              <textarea id="deferDetails" name="details" rows="4" placeholder="Provide more details about your defer request..." required></textarea>
+            </div>
+
+            <button type="submit" class="booking-submit">
+              <i class="fas fa-paper-plane"></i> Submit Defer Request
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECTION: PROFILE
+           ================================================== -->
+      <section class="dashboard-section" id="section-profile">
+
+        <!-- Profile header card -->
+        <div class="profile-header-card">
+          <div class="profile-avatar-large">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="profile-header-info">
+            <h2><%= username %></h2>
+            <p><i class="fas fa-id-card"></i> ID: <%= adition %></p>
+            <div class="profile-badges">
+              <span class="profile-badge"><i class="fas fa-check-circle"></i> Active Student</span>
+              <span class="profile-badge"><i class="fas fa-home"></i> Day Scholar</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile tabs -->
+        <div class="profile-tabs">
+          <button class="profile-tab active" data-tab="tab-password">
+            <i class="fas fa-lock"></i> Change Password
+          </button>
+          <button class="profile-tab" data-tab="tab-memo">
+            <i class="fas fa-envelope-open-text"></i> Read Memo
+          </button>
+          <button class="profile-tab" data-tab="tab-type">
+            <i class="fas fa-exchange-alt"></i> Boarder / Day
+          </button>
+        </div>
+
+        <!-- Tab: Change Password -->
+        <div class="profile-tab-content active" id="tab-password">
+          <div class="info-section">
+            <div class="section-header">
+              <h2><i class="fas fa-lock"></i> Change Password</h2>
+              <span class="section-badge">Security</span>
+            </div>
+            <form action="/student-dashboad/change-password/<%= adition %>" method="post" class="profile-form">
+              <div class="booking-field">
+                <label for="currentPassword">Current Password</label>
+                <input type="password" id="currentPassword" name="currentPassword" placeholder="Enter current password" required />
+              </div>
+              <div class="booking-field">
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password" required />
+              </div>
+              <div class="booking-field">
+                <label for="confirmPassword">Confirm New Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter new password" required />
+              </div>
+              <button type="submit" class="booking-submit">
+                <i class="fas fa-save"></i> Update Password
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Tab: Read Memo -->
+        <div class="profile-tab-content" id="tab-memo">
+          <div class="info-section">
+            <div class="section-header">
+              <h2><i class="fas fa-envelope-open-text"></i> Memos & Notices</h2>
+              <span class="section-badge">From Administration</span>
+            </div>
+
+            <% if (typeof memo !== 'undefined' && memo && memo.length > 0) { %>
+              <% memo.forEach(memo => { %>
+                <div class="memo-card">
+                  <div class="memo-header">
+                    <div class="memo-icon"><i class="fas fa-bullhorn"></i></div>
+                    <div>
+                      <h4><%= memo.subject || 'Untitled Memo' %></h4>
+                      <span class="memo-date">
+                        <i class="fas fa-clock"></i>
+                        <%= memo.createdAt.toDateString() %>
+                      </span>
+                    </div>
+                  </div>
+                  <p class="memo-body"><%= memo.message || 'No content available.' %></p>
+                </div>
+              <% }) %>
+            <% } else { %>
+              
+              <div class="memo-card">
+                <p class="empty-state">
+                  <i class="fas fa-inbox"></i>
+                  No Memo have been sent to your inbox yet.
+                </p>
+              </div>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- Tab: Boarder / Day Student -->
+        <div class="profile-tab-content" id="tab-type">
+          <div class="info-section">
+            <div class="section-header">
+              <h2><i class="fas fa-exchange-alt"></i> Student Type</h2>
+              <span class="section-badge">Boarder / Day</span>
+            </div>
+
+            <p class="helper-text-block">
+              Choose how you want to attend NVTC. Boarders live on campus; Day scholars commute from home.
+            </p>
+
+            <form action="/student-dashboad/change-type/<%= adition %>" method="post" class="profile-form">
+              <div class="student-type-options">
+
+                <label class="student-type-option">
+                  <input type="radio" name="studentType" value="Day Scholar" checked>
+                  <div class="student-type-card">
+                    <div class="student-type-icon"><i class="fas fa-home"></i></div>
+                    <div>
+                      <h4>Day Scholar</h4>
+                      <p>Commute from home daily. No accommodation fees.</p>
+                    </div>
+                    <span class="select-indicator"></span>
+                  </div>
+                </label>
+
+                <label class="student-type-option">
+                  <input type="radio" name="studentType" value="Boarder">
+                  <div class="student-type-card">
+                    <div class="student-type-icon"><i class="fas fa-bed"></i></div>
+                    <div>
+                      <h4>Boarder</h4>
+                      <p>Live on campus with full accommodation.</p>
+                    </div>
+                    <span class="select-indicator"></span>
+                  </div>
+                </label>
+
+              </div>
+
+              <button type="submit" class="booking-submit">
+                <i class="fas fa-save"></i> Update Student Type
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==================================================
+            SECTION: ENROLL EXAM
+      ================================================== -->
+      <section class="dashboard-section" id="section-enroll">
+        <div class="info-section">
+          <div class="section-header">
+            <h2><i class="fas fa-clipboard-check"></i> Exam Enrollment</h2>
+            <span class="section-badge">Level 4 &amp; Level 5</span>
+          </div>
+
+          <div class="info-banner">
+            <i class="fas fa-info-circle"></i>
+            <p>
+              <strong>Enroll for your upcoming exams.</strong>
+              Select the level and module you want to be examined on. You can enroll in more than one module.
+              All <strong>Student must Enroll to their respective Exam</strong> to get thier exam report.
+            </p>
+          </div>
+
+          <!-- ===== LEVEL SWITCHER ===== -->
+          <div class="level-switcher">
+            <button class="level-tab" data-level="level3">
+              <i class="fas fa-layer-group"></i> Level 3
+            </button>
+            <button class="level-tab" data-level="level4">
+              <i class="fas fa-layer-group"></i> Level 4
+            </button>
+            <button class="level-tab" data-level="level5">
+              <i class="fas fa-layer-group"></i> Level 5
+            </button>
+          </div>
+
+          <!-- ===== LEVEL 3 MODULES ===== -->
+          <div class="level-content" id="level-level3">
+            <h3 class="level-title"><i class="fas fa-graduation-cap"></i> Level 3 — Module Enrollment</h3>
+
+            <div class="modules-grid">
+
+              <!-- MODULE 1 -->
+              <div class="module-card" data-module="Module 1" data-level="Level 4">
+                <div class="module-header">
+                  <div class="module-number">01</div>
+                  <div class="module-info">
+                    <h4>Module 1</h4>
+                    <p>Foundation &amp; Core Skills</p>
+                  </div>
+                  <div class="module-status enrolled-indicator">
+                    <i class="fas fa-circle"></i>
+                  </div>
+                </div>
+                <div class="module-body">
+                  <div class="module-meta">
+                    <span><i class="fas fa-calendar"></i> Exam: 15 Nov 2026</span>
+                    <span><i class="fas fa-clock"></i> 9:00 AM – 12:00 PM</span>
+                    <span><i class="fas fa-book"></i> 4 Papers</span>
+                    <span><i class="fas fa-coins"></i> Fee: KES 1,500</span>
+                  </div>
+                  <div class="module-progress">
+                    <div class="progress-label">
+                      <span>Enrolled</span>
+                      <strong class="progress-value">42 / 60 students</strong>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 70%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="module-footer">
+                  <button class="enroll-btn" data-exam="Level 3 - Module 1">
+                    <i class="fas fa-plus-circle"></i> Enroll Now
+                  </button>
+                </div>
+              </div>
+
+              <!-- MODULE 2 -->
+              <div class="module-card" data-module="Module 2" data-level="Level 3">
+                <div class="module-header">
+                  <div class="module-number">02</div>
+                  <div class="module-info">
+                    <h4>Module 2</h4>
+                    <p>Applied Practical Skills</p>
+                  </div>
+                  <div class="module-status enrolled-indicator">
+                    <i class="fas fa-circle"></i>
+                  </div>
+                </div>
+                <div class="module-body">
+                  <div class="module-meta">
+                    <span><i class="fas fa-calendar"></i> Exam: 22 Nov 2026</span>
+                    <span><i class="fas fa-clock"></i> 9:00 AM – 12:00 PM</span>
+                    <span><i class="fas fa-book"></i> 3 Papers</span>
+                    <span><i class="fas fa-coins"></i> Fee: KES 1,500</span>
+                  </div>
+                  <div class="module-progress">
+                    <div class="progress-label">
+                      <span>Enrolled</span>
+                      <strong class="progress-value">38 / 60 students</strong>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 63%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="module-footer">
+                  <button class="enroll-btn" data-exam="Level 3 - Module 2">
+                    <i class="fas fa-plus-circle"></i> Enroll Now
+                  </button>
+                </div>
+              </div>
+
+              <!-- MODULE 3 -->
+              <div class="module-card" data-module="Module 3" data-level="Level 3">
+                <div class="module-header">
+                  <div class="module-number">03</div>
+                  <div class="module-info">
+                    <h4>Module 3</h4>
+                    <p>Advanced Techniques</p>
+                  </div>
+                  <div class="module-status enrolled-indicator">
+                    <i class="fas fa-circle"></i>
+                  </div>
+                </div>
+                <div class="module-body">
+                  <div class="module-meta">
+                    <span><i class="fas fa-calendar"></i> Exam: 29 Nov 2026</span>
+                    <span><i class="fas fa-clock"></i> 9:00 AM – 12:00 PM</span>
+                    <span><i class="fas fa-book"></i> 4 Papers</span>
+                    <span><i class="fas fa-coins"></i> Fee: KES 1,500</span>
+                  </div>
+                  <div class="module-progress">
+                    <div class="progress-label">
+                      <span>Enrolled</span>
+                      <strong class="progress-value">25 / 60 students</strong>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 42%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="module-footer">
+                  <button class="enroll-btn" data-exam="Level 3 - Module 3">
+                    <i class="fas fa-plus-circle"></i> Enroll Now
+                  </button>
+                </div>
+              </div>
+
+              <!-- MODULE 4 -->
+              <div class="module-card" data-module="Module 4" data-level="Level 3">
+                <div class="module-header">
+                  <div class="module-number">04</div>
+                  <div class="module-info">
+                    <h4>Module 4</h4>
+                    <p>Industry Project &amp; Assessment</p>
+                  </div>
+                  <div class="module-status enrolled-indicator">
+                    <i class="fas fa-circle"></i>
+                  </div>
+                </div>
+                <div class="module-body">
+                  <div class="module-meta">
+                    <span><i class="fas fa-calendar"></i> Exam: 06 Dec 2026</span>
+                    <span><i class="fas fa-clock"></i> 9:00 AM – 12:00 PM</span>
+                    <span><i class="fas fa-book"></i> 2 Papers</span>
+                    <span><i class="fas fa-coins"></i> Fee: KES 2,000</span>
+                  </div>
+                  <div class="module-progress">
+                    <div class="progress-label">
+                      <span>Enrolled</span>
+                      <strong class="progress-value">18 / 60 students</strong>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 30%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="module-footer">
+                  <button class="enroll-btn" data-exam="Level 3 - Module 4">
+                    <i class="fas fa-plus-circle"></i> Enroll Now
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <!-- ===== LEVEL 4 MODULES ===== -->
+          <div class="level-content " id="level-level4">
+            <h3 class="level-title"><i class="fas fa-graduation-cap"></i> Level 4 — Module Enrollment</h3>
+
+            <div class="modules-grid">
+
+              <!-- MODULE 1 -->
+              <div class="module-card" data-module="Module 1" data-level="Level 4">
+                <div class="module-header">
+                  <div class="module-number">01</div>
+                  <div class="module-info">
+                    <h4>Module 1</h4>
+                    <p>Foundation &amp; Core Skills</p>
+                  </div>
+                  <div class="module-status enrolled-indicator">
+                    <i class="fas fa-circle"></i>
+                  </div>
+                </div>
+                <div class="module-body">
+                  <div class="module-meta">
+                    <span><i class="fas fa-calendar"></i> Exam: 15 Nov 2026</span>
+                    <span><i class="fas fa-clock"></i> 9:00 AM – 12:00 PM</span>
+                    <span><i class="fas fa-book"></i> 4 Papers</span>
+                    <span><i class="fas fa-coins"></i> Fee: KES 1,500</span>
+                  </div>
+                  <div class="module-progress">
+                    <div class="progress-label">
+                      <span>Enrolled</span>
+                      <strong class="progress-value">42 / 60 students</strong>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 70%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="module-footer">
+                  <button class="enroll-btn" data-exam="Level 4 - Module 1">
+                    <i class="fas fa-plus-circle"></i> Enroll Now
+                  </button>
+                </div>
+              </div>
+
+              <!-- MODULE 2 -->
+              <div class="module-card" data-module="Module 2" data-level="Level 4">
+                <div class="module-header">
+                  <div class="module-number">02</div>
+                  <div class="module-info">
+                    <h4>Module 2</h4>
+                    <p>Applied Practical Skills</p>
+                  </div>
+                  <div class="module-status enrolled-indicator">
+                    <i class="fas fa-circle"></i>
+                  </div>
+                </div>
+                <div class="module-body">
+                  <div class="module-meta">
+                    <span><i class="fas fa-calendar"></i> Exam: 22 Nov 2026</span>
+                    <span><i class="fas fa-clock"></i> 9:00 AM – 12:00 PM</span>
+                    <span><i class="fas fa-book"></i> 3 Papers</span>
+                    <span><i class="fas fa-coins"></i> Fee: KES 1,500</span>
+                  </div>
+                  <div class="module-progress">
+                    <div class="progress-label">
+                      <span>Enrolled</span>
+                      <strong class="progress-value">38 / 60 students</strong>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 63%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="module-footer">
+                  <button class="enroll-btn" data-exam="Level 4 - Module 2">
+                    <i class="fas fa-plus-circle"></i> Enroll Now
+                  </button>
+                </div>
+              </div>
+
+              <!-- MODULE 3 -->
+              <div class="module-card" data-module="Module 3" data-level="Level 4">
+                <div class="module-header">
+                  <div class="module-number">03</div>
+                  <div class="module-info">
+                    <h4>Module 3</h4>
+                    <p>Advanced Techniques</p>
+                  </div>
+                  <div class="module-status enrolled-indicator">
+                    <i class="fas fa-circle"></i>
+                  </div>
+                </div>
+                <div class="module-body">
+                  <div class="module-meta">
+                    <span><i class="fas fa-calendar"></i> Exam: 29 Nov 2026</span>
+                    <span><i class="fas fa-clock"></i> 9:00 AM – 12:00 PM</span>
+                    <span><i class="fas fa-book"></i> 4 Papers</span>
+                    <span><i class="fas fa-coins"></i> Fee: KES 1,500</span>
+                  </div>
+                  <div class="module-progress">
+                    <div class="progress-label">
+                      <span>Enrolled</span>
+                      <strong class="progress-value">25 / 60 students</strong>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 42%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="module-footer">
+                  <button class="enroll-btn" data-exam="Level 4 - Module 3">
+                    <i class="fas fa-plus-circle"></i> Enroll Now
+                  </button>
+                </div>
+              </div>
+
+              <!-- MODULE 4 -->
+              <div class="module-card" data-module="Module 4" data-level="Level 4">
+                <div class="module-header">
+                  <div class="module-number">04</div>
+                  <div class="module-info">
+                    <h4>Module 4</h4>
+                    <p>Industry Project &amp; Assessment</p>
+                  </div>
+                  <div class="module-status enrolled-indicator">
+                    <i class="fas fa-circle"></i>
+                  </div>
+                </div>
+                <div class="module-body">
+                  <div class="module-meta">
+                    <span><i class="fas fa-calendar"></i> Exam: 06 Dec 2026</span>
+                    <span><i class="fas fa-clock"></i> 9:00 AM – 12:00 PM</span>
+                    <span><i class="fas fa-book"></i> 2 Papers</span>
+                    <span><i class="fas fa-coins"></i> Fee: KES 2,000</span>
+                  </div>
+                  <div class="module-progress">
+                    <div class="progress-label">
+                      <span>Enrolled</span>
+                      <strong class="progress-value">18 / 60 students</strong>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 30%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="module-footer">
+                  <button class="enroll-btn" data-exam="Level 4 - Module 4">
+                    <i class="fas fa-plus-circle"></i> Enroll Now
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ===== LEVEL 5 MODULES ===== -->
+          <div class="level-content" id="level-level5">
+            <h3 class="level-title"><i class="fas fa-graduation-cap"></i> Level 5 — Module Enrollment</h3>
+
+            <div class="modules-grid">
+
+              <!-- MODULE 1 -->
+              <div class="module-card" data-module="Module 1" data-level="Level 5">
+                <div class="module-header">
+                  <div class="module-number">01</div>
+                  <div class="module-info">
+                    <h4>Module 1</h4>
+                    <p>Advanced Theory &amp; Analysis</p>
+                  </div>
+                  <div class="module-status enrolled-indicator">
+                    <i class="fas fa-circle"></i>
+                  </div>
+                </div>
+                <div class="module-body">
+                  <div class="module-meta">
+                    <span><i class="fas fa-calendar"></i> Exam: 13 Dec 2026</span>
+                    <span><i class="fas fa-clock"></i> 2:00 PM – 5:00 PM</span>
+                    <span><i class="fas fa-book"></i> 5 Papers</span>
+                    <span><i class="fas fa-coins"></i> Fee: KES 2,000</span>
+                  </div>
+                  <div class="module-progress">
+                    <div class="progress-label">
+                      <span>Enrolled</span>
+                      <strong class="progress-value">30 / 50 students</strong>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 60%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="module-footer">
+                  <button class="enroll-btn" data-exam="Level 5 - Module 1">
+                    <i class="fas fa-plus-circle"></i> Enroll Now
+                  </button>
+                </div>
+              </div>
+
+              <!-- MODULE 2 -->
+              <div class="module-card" data-module="Module 2" data-level="Level 5">
+                <div class="module-header">
+                  <div class="module-number">02</div>
+                  <div class="module-info">
+                    <h4>Module 2</h4>
+                    <p>Specialisation &amp; Supervision</p>
+                  </div>
+                  <div class="module-status enrolled-indicator">
+                    <i class="fas fa-circle"></i>
+                  </div>
+                </div>
+                <div class="module-body">
+                  <div class="module-meta">
+                    <span><i class="fas fa-calendar"></i> Exam: 20 Dec 2026</span>
+                    <span><i class="fas fa-clock"></i> 2:00 PM – 5:00 PM</span>
+                    <span><i class="fas fa-book"></i> 4 Papers</span>
+                    <span><i class="fas fa-coins"></i> Fee: KES 2,000</span>
+                  </div>
+                  <div class="module-progress">
+                    <div class="progress-label">
+                      <span>Enrolled</span>
+                      <strong class="progress-value">22 / 50 students</strong>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 44%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="module-footer">
+                  <button class="enroll-btn" data-exam="Level 5 - Module 2">
+                    <i class="fas fa-plus-circle"></i> Enroll Now
+                  </button>
+                </div>
+              </div>
+
+              <!-- MODULE 3 -->
+              <div class="module-card" data-module="Module 3" data-level="Level 5">
+                <div class="module-header">
+                  <div class="module-number">03</div>
+                  <div class="module-info">
+                    <h4>Module 3</h4>
+                    <p>Management &amp; Entrepreneurship</p>
+                  </div>
+                  <div class="module-status enrolled-indicator">
+                    <i class="fas fa-circle"></i>
+                  </div>
+                </div>
+                <div class="module-body">
+                  <div class="module-meta">
+                    <span><i class="fas fa-calendar"></i> Exam: 27 Dec 2026</span>
+                    <span><i class="fas fa-clock"></i> 2:00 PM – 5:00 PM</span>
+                    <span><i class="fas fa-book"></i> 3 Papers</span>
+                    <span><i class="fas fa-coins"></i> Fee: KES 2,000</span>
+                  </div>
+                  <div class="module-progress">
+                    <div class="progress-label">
+                      <span>Enrolled</span>
+                      <strong class="progress-value">15 / 50 students</strong>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 30%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="module-footer">
+                  <button class="enroll-btn" data-exam="Level 5 - Module 3">
+                    <i class="fas fa-plus-circle"></i> Enroll Now
+                  </button>
+                </div>
+              </div>
+
+              <!-- MODULE 4 -->
+              <div class="module-card" data-module="Module 4" data-level="Level 5">
+                <div class="module-header">
+                  <div class="module-number">04</div>
+                  <div class="module-info">
+                    <h4>Module 4</h4>
+                    <p>Final Project &amp; Certification</p>
+                  </div>
+                  <div class="module-status enrolled-indicator">
+                    <i class="fas fa-circle"></i>
+                  </div>
+                </div>
+                <div class="module-body">
+                  <div class="module-meta">
+                    <span><i class="fas fa-calendar"></i> Exam: 10 Jan 2027</span>
+                    <span><i class="fas fa-clock"></i> 9:00 AM – 4:00 PM</span>
+                    <span><i class="fas fa-book"></i> Project Only</span>
+                    <span><i class="fas fa-coins"></i> Fee: KES 2,500</span>
+                  </div>
+                  <div class="module-progress">
+                    <div class="progress-label">
+                      <span>Enrolled</span>
+                      <strong class="progress-value">10 / 50 students</strong>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 20%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="module-footer">
+                  <button class="enroll-btn" data-exam="Level 5 - Module 4">
+                    <i class="fas fa-plus-circle"></i> Enroll Now
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ===== ENROLLED SUMMARY ===== -->
+          <div class="enrolled-summary" id="enrolledSummary" style="display: none;">
+            <div class="summary-header">
+              <i class="fas fa-check-circle"></i>
+              <h3>Your Exam Enrollments</h3>
+            </div>
+            <ul class="enrolled-list" id="enrolledList">
+              <!-- Enrolled exams will be listed here by JavaScript -->
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ====== SUCCESS MODAL ====== -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-content">
+      <div class="modal-icon"><i class="fa-regular fa-square-check"></i></div>
+      <h2 id="modalTitle">Success!</h2>
+      <p id="modalMessage">Your action was completed successfully.</p>
+      <button class="modal-btn" onclick="closeModal()">OK, Got it</button>
+    </div>
+  </div>
+
+  <!-- External JavaScript -->
+  <script src="/voterdashboad.js"></script>
+</body>
+</html>
