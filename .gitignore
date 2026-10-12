@@ -1,3 +1,4 @@
 node_modules/
+Uploads/
 package-lock.json
 .env
