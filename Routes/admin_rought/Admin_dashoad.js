@@ -8,6 +8,7 @@ const AdminData = require("../../DATABASE/Admin")
 const ExamReportData = require("../../DATABASE/ExamReport")
 const DormBookingData = require("../../DATABASE/DormBooking")
 const EnrollmentData = require("../../DATABASE/EnrollmentForm")
+const DeferRequestData = require("../../DATABASE/Differs")
 const MemoData = require("../../DATABASE/Memo")
 const { adminSession, adminSessionActive, addAdminSession, removeAdminSession } = require("../../adminSessionStore")
 
@@ -21,6 +22,7 @@ async function loadDashboardData() {
     const enrollments = await EnrollmentData.find({Enrollment:false})
     const enrolled = await EnrollmentData.find({Enrollment:true})
     const dormBookings = await DormBookingData.find().sort({ createdAt: -1 })
+    const deferRequests = await DeferRequestData.find().sort({ createdAt: -1 })
     const memos = await MemoData.find().sort({ createdAt: -1 })
     const examStats = {
         cbet: await Students.countDocuments({ exambody: "CBET" }),
@@ -41,6 +43,7 @@ async function loadDashboardData() {
         enrollments,
         enrolled,
         dormBookings,
+        deferRequests,
         memos,
         examStudentsCBET: await Students.find({ exambody: "CBET" }),
         examStudentsNITA: await Students.find({ exambody: "NITA" })
@@ -109,6 +112,7 @@ app.get("/admin-voter-dashboad",async (req,res)=>{
         enrollment:dashboardData.enrollments,
         instuctors:hod,
         dormRequests: dashboardData.dormBookings,
+        deferRequests: dashboardData.deferRequests,
         memos: dashboardData.memos,
         Admins:admin
     })
@@ -687,6 +691,95 @@ app.get("/read-memo/:id/:data", async (req, res) => {
             { $addToSet: { readBy: username } }
         )
         res.redirect(`/admin-dashboad/admin-voter-dashboad?name=${username}`)
+    } catch (e) {
+        console.log(e)
+        res.send(e.message)
+    }
+})
+
+
+// ============================================================
+// DEFER REQUEST ROUTES
+// ============================================================
+
+// Approve
+app.get("/approve-defer/:id/:data", async (req, res) => {
+    const id = req.params.id
+    const data = req.params.data
+    let username = data
+    try {
+        const parsed = JSON.parse(data)
+        if (parsed && parsed.name) username = parsed.name
+    } catch (e) { }
+
+    if (!adminSessionActive(username)) return res.redirect("/admin-dashboad/admin-login")
+
+    try {
+        await DeferRequestData.updateOne({ _id: id }, { $set: { status: "Approved" } })
+        res.redirect(`/admin-dashboad/admin-voter-dashboad?name=${encodeURIComponent(username)}`)
+    } catch (e) {
+        console.log(e)
+        res.send(e.message)
+    }
+})
+
+// Deny
+app.get("/deny-defer/:id/:data", async (req, res) => {
+    const id = req.params.id
+    const data = req.params.data
+    let username = data
+    try {
+        const parsed = JSON.parse(data)
+        if (parsed && parsed.name) username = parsed.name
+    } catch (e) { }
+
+    if (!adminSessionActive(username)) return res.redirect("/admin-dashboad/admin-login")
+
+    try {
+        await DeferRequestData.updateOne({ _id: id }, { $set: { status: "Denied" } })
+        res.redirect(`/admin-dashboad/admin-voter-dashboad?name=${encodeURIComponent(username)}`)
+    } catch (e) {
+        console.log(e)
+        res.send(e.message)
+    }
+})
+
+// Revoke back to Pending
+app.get("/revoke-defer/:id/:data", async (req, res) => {
+    const id = req.params.id
+    const data = req.params.data
+    let username = data
+    try {
+        const parsed = JSON.parse(data)
+        if (parsed && parsed.name) username = parsed.name
+    } catch (e) { }
+
+    if (!adminSessionActive(username)) return res.redirect("/admin-dashboad/admin-login")
+
+    try {
+        await DeferRequestData.updateOne({ _id: id }, { $set: { status: "Pending" } })
+        res.redirect(`/admin-dashboad/admin-voter-dashboad?name=${encodeURIComponent(username)}`)
+    } catch (e) {
+        console.log(e)
+        res.send(e.message)
+    }
+})
+
+// Delete
+app.get("/delete-defer/:id/:data", async (req, res) => {
+    const id = req.params.id
+    const data = req.params.data
+    let username = data
+    try {
+        const parsed = JSON.parse(data)
+        if (parsed && parsed.name) username = parsed.name
+    } catch (e) { }
+
+    if (!adminSessionActive(username)) return res.redirect("/admin-dashboad/admin-login")
+
+    try {
+        await DeferRequestData.findOneAndDelete({ _id: id })
+        res.redirect(`/admin-dashboad/admin-voter-dashboad?name=${encodeURIComponent(username)}`)
     } catch (e) {
         console.log(e)
         res.send(e.message)

@@ -5,6 +5,7 @@ const CandidateData = require("../../DATABASE/Candidates")
 const MassageData = require("../../DATABASE/Message")
 const ExamReportData = require("../../DATABASE/ExamReport")
 const DormBookingData = require("../../DATABASE/DormBooking")
+const DeferRequestData = require("../../DATABASE/Differs")
 const Memo = require("../../DATABASE/Memo")
 
 const userdata=[]
@@ -154,6 +155,7 @@ app.get("/voter-dashboad",async (req,res)=>{
     const admision = req.query.admision
     const voted = req.query.vote
     const dormBooked = req.query.dormBooked
+    const deferSuccess = req.query.deferSuccess
     
     const time = new Date().toLocaleTimeString()
     const date = new Date().toDateString()
@@ -184,9 +186,51 @@ app.get("/voter-dashboad",async (req,res)=>{
             vote:voted,
             memo:memos,
             dormBooked:dormBooked,
+            deferSuccess: deferSuccess,
             examReports: examReports,
-            dormBookings: dormBookings
+            dormBookings: dormBookings,
+            deferRequests: deferRequests 
         }) : res.redirect("/student-dashboad/login")
+})
+
+
+// ============================================================
+// DEFER REQUEST — Student submits a defer request
+// ============================================================
+app.post("/defer/:id/:name", async (req, res) => {
+    const admission = req.params.id
+    const name = decodeURIComponent(req.params.name)
+
+    const duration = req.body.duration
+    const reason = req.body.reason
+    const startDate = req.body.startDate
+    const endDate = req.body.endDate
+    const details = req.body.details || ""
+
+    if (!userdata.includes(admission)) {
+        return res.redirect("/student-dashboad/login")
+    }
+
+    try {
+        await DeferRequestData.create({
+            admissionNo: admission,
+            studentName: name,
+            duration: duration,
+            reason: reason,
+            startDate: startDate ? new Date(startDate) : null,
+            endDate: endDate ? new Date(endDate) : null,
+            details: details,
+            status: "Pending",
+            createdAt: new Date()
+        })
+
+        res.redirect(
+            `/student-dashboad/voter-dashboad?username=${encodeURIComponent(name)}&admision=${encodeURIComponent(admission)}&deferSuccess=true`
+        )
+    } catch (e) {
+        console.log(e)
+        res.send(e.message)
+    }
 })
 
 

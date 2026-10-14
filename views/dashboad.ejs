@@ -1070,9 +1070,193 @@
         </section>
 
         <!-- ============================================================ -->
-        <!-- SECTION: STUDENT DIFFER SECTION                              -->
+        <!-- SECTION: STUDENT DEFER REQUESTS                              -->
         <!-- ============================================================ -->
         <section class="section" id="Students-Differ">
+
+            <!-- ===== STATS ===== -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number"><%= (typeof deferRequests !== 'undefined' && deferRequests) ? deferRequests.length : 0 %></div>
+                    <div class="stat-label">Total Defer Requests</div>
+                    <div class="stat-change"><i class="fas fa-hourglass-half"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">
+                        <%= (typeof deferRequests !== 'undefined' && deferRequests) ? deferRequests.filter(r => (r.status || 'Pending') === 'Pending').length : 0 %>
+                    </div>
+                    <div class="stat-label">Pending</div>
+                    <div class="stat-change" style="background:#fef3c7;color:#d97706;">
+                        <i class="fas fa-clock"></i> Awaiting
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">
+                        <%= (typeof deferRequests !== 'undefined' && deferRequests) ? deferRequests.filter(r => r.status === 'Approved').length : 0 %>
+                    </div>
+                    <div class="stat-label">Approved</div>
+                    <div class="stat-change" style="background:#dcfce7;color:#059669;">
+                        <i class="fas fa-check-circle"></i> Granted
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">
+                        <%= (typeof deferRequests !== 'undefined' && deferRequests) ? deferRequests.filter(r => r.status === 'Denied').length : 0 %>
+                    </div>
+                    <div class="stat-label">Denied</div>
+                    <div class="stat-change" style="background:#fee2e2;color:#dc2626;">
+                        <i class="fas fa-times-circle"></i> Rejected
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== FILTER TABS ===== -->
+            <div class="dorm-filter-tabs">
+                <button class="dorm-filter-tab active" onclick="filterDeferRequests('all', this)">
+                    <i class="fas fa-list"></i> All
+                    <span class="filter-count"><%= (typeof deferRequests !== 'undefined' && deferRequests) ? deferRequests.length : 0 %></span>
+                </button>
+                <button class="dorm-filter-tab" onclick="filterDeferRequests('Pending', this)">
+                    <i class="fas fa-clock"></i> Pending
+                    <span class="filter-count"><%= (typeof deferRequests !== 'undefined' && deferRequests) ? deferRequests.filter(r => (r.status || 'Pending') === 'Pending').length : 0 %></span>
+                </button>
+                <button class="dorm-filter-tab" onclick="filterDeferRequests('Approved', this)">
+                    <i class="fas fa-check-circle"></i> Approved
+                    <span class="filter-count"><%= (typeof deferRequests !== 'undefined' && deferRequests) ? deferRequests.filter(r => r.status === 'Approved').length : 0 %></span>
+                </button>
+                <button class="dorm-filter-tab" onclick="filterDeferRequests('Denied', this)">
+                    <i class="fas fa-times-circle"></i> Denied
+                    <span class="filter-count"><%= (typeof deferRequests !== 'undefined' && deferRequests) ? deferRequests.filter(r => r.status === 'Denied').length : 0 %></span>
+                </button>
+            </div>
+
+            <!-- ===== TABLE ===== -->
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-hourglass-half"></i> Defer Requests
+                    <span class="subtitle"><%= (typeof deferRequests !== 'undefined' && deferRequests) ? deferRequests.length : 0 %> total requests</span>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-wrapper">
+                        <table class="tbl-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Student Name</th>
+                                    <th>Admission No.</th>
+                                    <th>Duration</th>
+                                    <th>Reason</th>
+                                    <th>Start Date</th>
+                                    <th>Return Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (typeof deferRequests !== 'undefined' && deferRequests && deferRequests.length > 0) { %>
+                                    <% deferRequests.forEach((req, index) => { %>
+                                        <tr class="defer-row" data-status="<%= req.status || 'Pending' %>">
+                                            <td><%= index + 1 %></td>
+                                            <td>
+                                                <div class="dorm-student-cell">
+                                                    <div class="dorm-avatar">
+                                                        <%= req.studentName ? req.studentName.charAt(0).toUpperCase() : '?' %>
+                                                    </div>
+                                                    <div class="dorm-student-detail">
+                                                        <strong><%= req.studentName || 'Unknown' %></strong>
+                                                        <span>Adm: <%= req.admissionNo || '—' %></span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><span class="dorm-tag"><%= req.admissionNo || '—' %></span></td>
+                                            <td>
+                                                <span class="dorm-tag">
+                                                    <i class="fas fa-calendar-alt"></i> <%= req.duration || '—' %>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span style="font-size:12px;color:var(--text-light);">
+                                                    <%= req.reason || '—' %>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <%= req.startDate ? new Date(req.startDate).toDateString() : '—' %>
+                                            </td>
+                                            <td>
+                                                <%= req.endDate ? new Date(req.endDate).toDateString() : '—' %>
+                                            </td>
+                                            <td>
+                                                <% if ((req.status || 'Pending') === 'Pending') { %>
+                                                    <span class="dorm-status pending">
+                                                        <i class="fas fa-clock"></i> Pending
+                                                    </span>
+                                                <% } else if (req.status === 'Approved') { %>
+                                                    <span class="dorm-status approved">
+                                                        <i class="fas fa-check-circle"></i> Approved
+                                                    </span>
+                                                <% } else { %>
+                                                    <span class="dorm-status denied">
+                                                        <i class="fas fa-times-circle"></i> Denied
+                                                    </span>
+                                                <% } %>
+                                            </td>
+                                            <td>
+                                                <div class="dorm-actions">
+                                                    <% if ((req.status || 'Pending') === 'Pending') { %>
+                                                        <a href="/admin-dashboad/approve-defer/<%= req._id %>/<%= user %>"
+                                                        onclick="return confirm('Approve defer request for <%= req.studentName %>?');"
+                                                        class="dorm-btn approve" title="Approve">
+                                                            <i class="fas fa-check"></i> Approve
+                                                        </a>
+                                                        <a href="/admin-dashboad/deny-defer/<%= req._id %>/<%= user %>"
+                                                        onclick="return confirm('Deny defer request for <%= req.studentName %>?');"
+                                                        class="dorm-btn deny" title="Deny">
+                                                            <i class="fas fa-times"></i> Deny
+                                                        </a>
+                                                    <% } else if (req.status === 'Approved') { %>
+                                                        <a href="/admin-dashboad/revoke-defer/<%= req._id %>/<%= user %>"
+                                                        onclick="return confirm('Revoke approval? The request will go back to Pending.');"
+                                                        class="dorm-btn revoke" title="Revoke">
+                                                            <i class="fas fa-undo"></i> Revoke
+                                                        </a>
+                                                    <% } else { %>
+                                                        <a href="/admin-dashboad/approve-defer/<%= req._id %>/<%= user %>"
+                                                        onclick="return confirm('Re-approve this request?');"
+                                                        class="dorm-btn approve" title="Re-approve">
+                                                            <i class="fas fa-redo"></i> Re-approve
+                                                        </a>
+                                                    <% } %>
+                                                    <a href="/admin-dashboad/delete-defer/<%= req._id %>/<%= user %>"
+                                                    onclick="return confirm('Delete this defer request permanently?');"
+                                                    class="dorm-btn delete" title="Delete">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="9">
+                                            <div class="dorm-empty-state">
+                                                <i class="fas fa-hourglass-half"></i>
+                                                <h4>No Defer Requests</h4>
+                                                <p>There are currently no defer requests from students.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--text-light);">
+                    <span><i class="fas fa-info-circle"></i> Approving a defer request allows the student to pause their studies for the requested period.</span>
+                    <span style="margin-left:auto;"><i class="fas fa-clock"></i> <%= time %></span>
+                </div>
+            </div>
 
         </section>
 

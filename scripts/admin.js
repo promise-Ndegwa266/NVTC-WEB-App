@@ -225,3 +225,21 @@
         });
 
     });
+    
+    function filterDeferRequests(status, btn) {
+        // Update active tab
+        const tabs = document.querySelectorAll('#Students-Differ .dorm-filter-tab');
+        tabs.forEach(t => t.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+
+        // Filter rows
+        const rows = document.querySelectorAll('#Students-Differ .defer-row');
+        rows.forEach(row => {
+            const rowStatus = row.dataset.status || 'Pending';
+            if (status === 'all' || rowStatus === status) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }

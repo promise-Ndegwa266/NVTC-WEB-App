@@ -542,6 +542,18 @@
             </button>
           </form>
         </div>
+        <% if (typeof deferSuccess !== 'undefined' && deferSuccess === 'true') { %>
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              const toast = document.getElementById('successModal');
+              const modalTitle = document.getElementById('modalTitle');
+              const modalMessage = document.getElementById('modalMessage');
+              if (modalTitle) modalTitle.textContent = 'Defer Request Submitted';
+              if (modalMessage) modalMessage.textContent = 'Your defer request has been sent to the administration for review.';
+              if (toast) toast.classList.add('active');
+            });
+          </script>
+        <% } %>
       </section>
 
       <!-- ==================================================
