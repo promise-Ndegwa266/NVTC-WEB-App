@@ -143,3 +143,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 800);
 
         });
+        /////////////////////////////////////////////////////////////////////
+        //// IMG: DIPLAY HUNDLER
+        /////////////////////////////////////////////////////////////////            
+        function show(elem){
+            const img = document.querySelector(elem);
+            img.style.opacity=0.2;
+        }
+        function hide(elem){
+            const img = document.querySelector(elem);
+            img.style.opacity=0;
+        }
