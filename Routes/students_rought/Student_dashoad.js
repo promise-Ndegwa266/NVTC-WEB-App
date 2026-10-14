@@ -150,47 +150,55 @@ app.get("/logout/:id",(req,res)=>{
 })
 
 
-app.get("/voter-dashboad",async (req,res)=>{
+app.get("/voter-dashboad", async (req, res) => {
     const user = req.query.username
     const admision = req.query.admision
     const voted = req.query.vote
     const dormBooked = req.query.dormBooked
     const deferSuccess = req.query.deferSuccess
-    
+
     const time = new Date().toLocaleTimeString()
     const date = new Date().toDateString()
 
     const session = userdata.includes(admision)
-    const presidentialdata = await CandidateData.find({position:"President"})
-    const sportdata = await CandidateData.find({position:"Sports"})
-    const environment = await CandidateData.find({position:"Environment"})
+    const presidentialdata = await CandidateData.find({ position: "President" })
+    const sportdata = await CandidateData.find({ position: "Sports" })
+    const environment = await CandidateData.find({ position: "Environment" })
 
-    const memos = await Memo.find({$or:[{recipients:"Students"},{recipients:"Both"}]})
+    const memos = await Memo.find({ $or: [{ recipients: "Students" }, { recipients: "Both" }] })
 
     const admissionSearch = [admision]
     const admissionNumeric = Number(admision)
     if (!Number.isNaN(admissionNumeric)) admissionSearch.push(admissionNumeric)
 
-    const examReports = await ExamReportData.find({ admissionNo: { $in: admissionSearch } }).sort({ examDate: -1 })
-    const dormBookings = await DormBookingData.find({ admissionNo: { $in: admissionSearch } }).sort({ createdAt: -1 })
-    
-    session ? res.render("voterdashboad",
-        {
-            sportposition:sportdata,
-            presidentposition:presidentialdata,
-            environmentposition:environment,
-            username:user, 
-            adition:admision, 
-            time:time, 
-            date:date,
-            vote:voted,
-            memo:memos,
-            dormBooked:dormBooked,
-            deferSuccess: deferSuccess,
-            examReports: examReports,
-            dormBookings: dormBookings,
-            deferRequests: deferRequests 
-        }) : res.redirect("/student-dashboad/login")
+    const examReports = await ExamReportData
+        .find({ admissionNo: { $in: admissionSearch } })
+        .sort({ examDate: -1 })
+
+    const dormBookings = await DormBookingData
+        .find({ admissionNo: { $in: admissionSearch } })
+        .sort({ createdAt: -1 })
+        
+    const deferRequests = await DeferRequestData
+        .find({ admissionNo: { $in: admissionSearch } })
+        .sort({ createdAt: -1 })
+
+    session ? res.render("voterdashboad", {
+        sportposition: sportdata,
+        presidentposition: presidentialdata,
+        environmentposition: environment,
+        username: user,
+        adition: admision,
+        time: time,
+        date: date,
+        vote: voted,
+        memo: memos,
+        dormBooked: dormBooked,
+        deferSuccess: deferSuccess,
+        examReports: examReports,
+        dormBookings: dormBookings,
+        deferRequests: deferRequests     
+    }) : res.redirect("/student-dashboad/login")
 })
 
 
