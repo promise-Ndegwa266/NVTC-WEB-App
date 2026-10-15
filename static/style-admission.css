@@ -599,6 +599,26 @@ body::before {
     background-color: rgb(246, 40, 40);
     animation: apear 0.60s ease-out;
 }
+.input-wrapper.error input,
+.input-wrapper.error select,
+.input-wrapper.error textarea {
+    border-color: #ef4444;
+    background: #fef2f2;
+}
+
+.error-msg.visible {
+    display: block;
+    font-size: 0.78rem;
+    color: #ef4444;
+    margin-top: 4px;
+}
+
+
+
+.MessageError.show-error {
+    background: #b91c1c;
+    color: #fff;
+}
 @keyframes apear{
     from{
         transform: translateY(2cm);
