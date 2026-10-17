@@ -161,6 +161,9 @@
         const coverImg = coverSection.querySelector('img');
         const coverInput = coverSection.querySelector('input[type="file"]');
 
+        let cover = localStorage.getItem("cover")
+        cover === null ? console.log("") : coverImg.src = cover
+
         coverInput.addEventListener('change', function (e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -182,7 +185,9 @@
             // Preview the uploaded cover image
             const reader = new FileReader();
             reader.onload = function (event) {
-                coverImg.src = event.target.result;
+                localStorage.setItem("cover",event.target.result)
+                let coverIm = localStorage.getItem("cover")
+                coverImg.src = coverIm;
             };
             reader.readAsDataURL(file);
         });
@@ -191,6 +196,9 @@
         const avatarWrapper = document.querySelector('.profile-avatar-wrapper');
         const avatarImg = avatarWrapper.querySelector('.profile-avatar-large img');
         const avatarInput = avatarWrapper.querySelector('input[type="file"]');
+
+        let pro = localStorage.getItem("profile")
+        pro === null ? console.log("") : avatarImg.src = pro
 
         avatarInput.addEventListener('change', function (e) {
             const file = e.target.files[0];
@@ -213,11 +221,13 @@
             // Preview the uploaded profile picture
             const reader = new FileReader();
             reader.onload = function (event) {
-                avatarImg.src = event.target.result;
-                console.log(typeof(event.target.result));
+                localStorage.setItem("profile",event.target.result)
+                let img = localStorage.getItem("profile")
+                avatarImg.src = img;
+                
 
                 // Optional: also update the small header avatar if it exists
-                const headerAvatar = document.querySelector('.dash-header .user-info .avatar img');
+                const headerAvatar = document.querySelectorall('.dash-header .user-info .avatar img');
                 if (headerAvatar) {
                     headerAvatar.src = event.target.result;
                 }
