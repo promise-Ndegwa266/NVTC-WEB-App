@@ -1,0 +1,15 @@
+# Dependencies (Crucial to ignore!)
+node_modules/
+npm-debug.log*
+
+
+# Source control
+.git
+.gitignore
+
+# Docker configurations
+Dockerfile
+.dockerignore
+docker-compose*
+
+

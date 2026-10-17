@@ -214,6 +214,7 @@
             const reader = new FileReader();
             reader.onload = function (event) {
                 avatarImg.src = event.target.result;
+                console.log(typeof(event.target.result));
 
                 // Optional: also update the small header avatar if it exists
                 const headerAvatar = document.querySelector('.dash-header .user-info .avatar img');
