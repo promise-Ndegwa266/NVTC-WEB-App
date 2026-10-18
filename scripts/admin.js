@@ -162,7 +162,7 @@
         const coverInput = coverSection.querySelector('input[type="file"]');
 
         let cover = localStorage.getItem("cover")
-        cover === null ? console.log("") : coverImg.src = cover
+        if(cover != null){coverImg.src = cover}
 
         coverInput.addEventListener('change', function (e) {
             const file = e.target.files[0];
@@ -196,9 +196,13 @@
         const avatarWrapper = document.querySelector('.profile-avatar-wrapper');
         const avatarImg = avatarWrapper.querySelector('.profile-avatar-large img');
         const avatarInput = avatarWrapper.querySelector('input[type="file"]');
+        const headerAvatar = document.querySelector('#prof');
 
         let pro = localStorage.getItem("profile")
-        pro === null ? console.log("") : avatarImg.src = pro
+        if(pro != null){
+            avatarImg.src = pro
+            headerAvatar.src = pro
+        }
 
         avatarInput.addEventListener('change', function (e) {
             const file = e.target.files[0];
@@ -227,9 +231,8 @@
                 
 
                 // Optional: also update the small header avatar if it exists
-                const headerAvatar = document.querySelectorall('.dash-header .user-info .avatar img');
                 if (headerAvatar) {
-                    headerAvatar.src = event.target.result;
+                    headerAvatar.src = img;
                 }
             };
             reader.readAsDataURL(file);
