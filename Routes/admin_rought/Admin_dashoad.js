@@ -79,42 +79,56 @@ app.get("/admin-data-form",async (req,res)=>{
 })
 
 
-app.get("/admin-voter-dashboad",async (req,res)=>{
+app.get("/admin-voter-dashboad", async (req, res) => {
     const username = req.query.name
-    const adsesion = adminSessionActive(username)
-    if (!adsesion) return res.redirect("/admin-dashboad/admin-login")
+    const searchParam = req.query.searchResults
+
+    if (!adminSessionActive(username)) return res.redirect("/admin-dashboad/admin-login")
+
+    // ---- Parse searchResults safely ----
+    let searchResults
+    if (typeof searchParam !== 'undefined' && searchParam !== '') {
+        try {
+            searchResults = JSON.parse(decodeURIComponent(searchParam))
+            if (!Array.isArray(searchResults)) searchResults = []
+        } catch (e) {
+            searchResults = []
+        }
+    }
+    // If searchParam is undefined → searchResults stays undefined
+    // This lets the template distinguish "not searched" from "searched, no results"
 
     const adminLength = adminSession.length
-    const admindata = await AdminData.findOne({userName:username})
-    const hod = await AdminData.find({prevlage:"H.O.D"})
-    const admin = await AdminData.find({prevlage:"Admin"})
+    const admindata = await AdminData.findOne({ userName: username })
+    const hod = await AdminData.find({ prevlage: "H.O.D" })
+    const admin = await AdminData.find({ prevlage: "Admin" })
     const dashboardData = await loadDashboardData()
     const date = new Date().toDateString()
     const time = new Date().toLocaleTimeString()
 
-    res.render("dashboad",
-    {
-        candite:dashboardData.candidates,
-        thelength:dashboardData.candidates.length,
-        studentlength:dashboardData.student.length,
-        date:date,
-        time:time,
-        sport:dashboardData.SportCandidates,
-        environment:dashboardData.EnvironmentCandidates,
-        presidential:dashboardData.PresidentCandidates,
-        user: JSON.stringify({name:username}),
-        name:username,
-        activeadmin:adminLength,
-        messagedata:dashboardData.message,
-        examStats:dashboardData.examStats,
-        Admininfo:admindata,
-        enrolled:dashboardData.enrolled,
-        enrollment:dashboardData.enrollments,
-        instuctors:hod,
+    res.render("dashboad", {
+        candite: dashboardData.candidates,
+        thelength: dashboardData.candidates.length,
+        studentlength: dashboardData.student.length,
+        date: date,
+        time: time,
+        sport: dashboardData.SportCandidates,
+        environment: dashboardData.EnvironmentCandidates,
+        presidential: dashboardData.PresidentCandidates,
+        user: JSON.stringify({ name: username }),
+        searchResults: searchResults,   // ← parsed array OR undefined
+        name: username,
+        activeadmin: adminLength,
+        messagedata: dashboardData.message,
+        examStats: dashboardData.examStats,
+        Admininfo: admindata,
+        enrolled: dashboardData.enrolled,
+        enrollment: dashboardData.enrollments,
+        instuctors: hod,
         dormRequests: dashboardData.dormBookings,
         deferRequests: dashboardData.deferRequests,
         memos: dashboardData.memos,
-        Admins:admin
+        Admins: admin
     })
 })
 
@@ -288,98 +302,52 @@ app.post("/exam-report", async (req, res) => {
 
 
 app.get("/student-search", async (req, res) => {
-    const username = req.query.name
-    const admindata = await AdminData.findOne({userName:username})
-    const hod = await AdminData.find({prevlage:"H.O.D"})
-    const admin = await AdminData.find({prevlage:"Admin"})
-    if (!adminSessionActive(username)) return res.redirect("/admin-dashboad/admin-login")
+    const {
+        firstname,
+        secondname,
+        admissionno,
+        examBody,
+        name
+    } = req.query
 
-    const admissionNo = req.query.admissionno ? req.query.admissionno.trim() : ""
-    const firstname = req.query.firstname ? req.query.firstname.trim() : ""
-    const secondname = req.query.secondname ? req.query.secondname.trim() : ""
-    const examBody = req.query.examBody ? req.query.examBody.trim() : ""
-    const searchQuery = {}
-    const hasSearch = admissionNo || firstname || secondname || examBody
+    if (!adminSessionActive(name)) return res.redirect("/admin-dashboad/admin-login")
 
-    if (admissionNo) {
-        const numeric = Number(admissionNo)
-        if (!Number.isNaN(numeric) && String(numeric) === admissionNo) {
-            searchQuery.adimmisionNumber = numeric
-        } else {
-            searchQuery.adimmisionNumber = admissionNo
+    try {
+        // Build a query only from fields the user actually filled in
+        const query = {}
+
+        if (firstname && firstname.trim()) {
+            query["name.firstName"] = { $regex: firstname.trim(), $options: "i" }
         }
-    }
-
-    if (firstname) searchQuery["name.firstName"] = { $regex: firstname, $options: "i" }
-    if (secondname) searchQuery["name.secondName"] = { $regex: secondname, $options: "i" }
-
-    if (examBody) {
-        const examAdmissions = await ExamReportData.find({ examBody: examBody }).distinct("admissionNo")
-        if (examAdmissions.length > 0) {
-            searchQuery.adimmisionNumber = { $in: examAdmissions.map(v => {
-                const numeric = Number(v)
-                return Number.isNaN(numeric) ? v : numeric
-            }) }
-        } else {
-            const dashboardData = await loadDashboardData()
-            const date = new Date().toDateString()
-            const time = new Date().toLocaleTimeString()
-            return res.render("dashboad", {
-                candite: dashboardData.candidates,
-                thelength: dashboardData.candidates.length,
-                studentlength: dashboardData.student.length,
-                date,
-                time,
-                sport: dashboardData.SportCandidates,
-                environment: dashboardData.EnvironmentCandidates,
-                presidential: dashboardData.PresidentCandidates,
-                user: JSON.stringify({ name: username }),
-                name: username,
-                Admininfo:admindata,
-                activeadmin: adminSession.length,
-                messagedata: dashboardData.message,
-                examStats: dashboardData.examStats,
-                examStudentsCBET: dashboardData.examStudentsCBET,
-                examStudentsNITA: dashboardData.examStudentsNITA,
-                searchResults: [],
-                enrollment:dashboardData.enrollments,
-                enrolled:dashboardData.enrolled,
-                instuctors:hod,
-                dormRequests: dashboardData.dormBookings,
-                memos: dashboardData.memos,
-                Admins:admin
-            })
+        if (secondname && secondname.trim()) {
+            query["name.secondName"] = { $regex: secondname.trim(), $options: "i" }
         }
+        if (admissionno && admissionno.trim()) {
+            query.adimmisionNumber = admissionno.trim()
+        }
+        if (examBody && examBody.trim()) {
+            query.exambody = examBody.trim()
+        }
+
+        // No search fields → return empty results
+        if (Object.keys(query).length === 0) {
+            return res.redirect(
+                `/admin-dashboad/admin-voter-dashboad?name=${encodeURIComponent(name)}&searchResults=${encodeURIComponent(JSON.stringify([]))}`
+            )
+        }
+
+        const students = await Students.find(query).lean()
+
+        // JSON.stringify → encodeURIComponent → safe for URL
+        const encoded = encodeURIComponent(JSON.stringify(students))
+
+        res.redirect(
+            `/admin-dashboad/admin-voter-dashboad?name=${encodeURIComponent(name)}&searchResults=${encoded}`
+        )
+    } catch (e) {
+        console.log(e)
+        res.send(e.message)
     }
-
-    const searchResults = hasSearch ? await Students.find(searchQuery) : []
-    const dashboardData = await loadDashboardData()
-    const date = new Date().toDateString()
-    const time = new Date().toLocaleTimeString()
-
-    res.render("dashboad", {
-        candite: dashboardData.candidates,
-        thelength: dashboardData.candidates.length,
-        studentlength: dashboardData.student.length,
-        date,
-        time,
-        sport: dashboardData.SportCandidates,
-        environment: dashboardData.EnvironmentCandidates,
-        presidential: dashboardData.PresidentCandidates,
-        user: JSON.stringify({ name: username }),
-        name: username,
-        Admininfo:admindata,
-        activeadmin: adminSession.length,
-        messagedata: dashboardData.message,
-        examStats: dashboardData.examStats,
-        searchResults,
-        enrollment:dashboardData.enrollments,
-        enrolled:dashboardData.enrolled,
-        instuctors:hod,
-        dormRequests: dashboardData.dormBookings,
-        memos: dashboardData.memos,
-        Admins:admin
-    })
 })
 
 
