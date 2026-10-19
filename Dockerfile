@@ -8,6 +8,8 @@ RUN npm install
 
 # Copy the rest of your application code
 COPY . .
+COPY .env .env
+
 EXPOSE 3000
 CMD [ "npm", "run", "dev" ]
 
